@@ -1,7 +1,7 @@
 {
   "name": "modular-pets",
   "version": "1.0.0",
-  "description": "Modular Monolith Pet App",
+  "description": "Modular Monolith Pet Shop App",
   "main": "dist/index.js",
   "scripts": {
     "dev": "bun --watch src/index.ts",
@@ -14,6 +14,7 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.36.4",
+    "drizzle-typebox": "^0.1.1",
     "elysia": "latest",
     "pg": "^8.13.1",
     "uuid": "^11.0.3",
