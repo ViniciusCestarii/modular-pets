@@ -1,11 +1,11 @@
 import { generateSchema } from "@/modules/shared/utilities/schema";
-import { randomUUIDv7 } from "bun";
-import { date, pgTable, uuid, varchar } from "drizzle-orm/pg-core";
+import { date, uuid, varchar } from "drizzle-orm/pg-core";
+import { v7 } from "uuid";
 
-export const tableSchema = generateSchema();
+export const petSchema = generateSchema();
 
-export const petsTable = pgTable("pets", {
-  id: uuid().primaryKey().default(randomUUIDv7()),
+export const petsTable = petSchema.table("pets", {
+  id: uuid().primaryKey().$defaultFn(v7),
   name: varchar({ length: 255 }).notNull(),
   birthdate: date().notNull(),
 });

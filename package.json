@@ -2,20 +2,21 @@
   "name": "modular-pets",
   "version": "1.0.0",
   "description": "Modular Monolith Pet App",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "bun --watch src/index.ts",
     "build": "bun build src/index.ts --target bun --outdir ./dist",
     "start": "NODE_ENV=production bun dist/index.js",
     "test": "bun test",
-    "generate": "bunx drizzle-kit generate",
-    "migrate": "bunx drizzle-kit migrate"
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.36.4",
     "elysia": "latest",
     "pg": "^8.13.1",
+    "uuid": "^11.0.3",
     "zod": "^3.23.8"
   },
   "devDependencies": {
