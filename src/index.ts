@@ -7,3 +7,5 @@ const app = new Elysia().use(petsRoutes).listen(env.PORT);
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
 );
+
+export default app;
