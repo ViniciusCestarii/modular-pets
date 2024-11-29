@@ -1,8 +1,8 @@
 import Elysia from "elysia";
 import { createPet } from "./create";
 
-const petsRoutes = new Elysia()
+const petsRoutes = new Elysia();
 
-petsRoutes.use(createPet)
+petsRoutes.use(createPet);
 
-export default petsRoutes
+export default petsRoutes;

@@ -1,18 +1,18 @@
-import Elysia from 'elysia'
-import { createPetSchema } from '../../schemas/pets-schema'
-import { makeCreatePetUseCase } from '../../use-cases/pets/factories/makeCreatePet'
+import Elysia from "elysia";
+import { createPetSchema } from "../../schemas/pets-schema";
+import { makeCreatePetUseCase } from "../../use-cases/pets/factories/makeCreatePet";
 
 export const createPet = new Elysia().post(
-  '/pet',
+  "/pet",
   async ({ body, set }) => {
-    const createPetUseCase = makeCreatePetUseCase()
+    const createPetUseCase = makeCreatePetUseCase();
 
-    const createdPet = await createPetUseCase.execute(body)
+    const createdPet = await createPetUseCase.execute(body);
 
-    set.status = "Created"
-    return createdPet
+    set.status = "Created";
+    return createdPet;
   },
   {
-    body: createPetSchema
-  }
-)
+    body: createPetSchema,
+  },
+);
