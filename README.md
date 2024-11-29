@@ -61,3 +61,9 @@
   - Integrate with payment gateways (e.g., Stripe, PayPal).
   - Track payment history and generate reports.
   - Manage refunds or cancellations.
+
+## Generating Migration
+
+```
+bun generate --name add_pets
+```
