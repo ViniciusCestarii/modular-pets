@@ -3,7 +3,7 @@ import { createPetSchema } from "../../schemas/pets-schema";
 import { makeCreatePetUseCase } from "../../use-cases/pets/factories/makeCreatePet";
 
 export const createPet = new Elysia().post(
-  "/pet",
+  "/pets",
   async ({ body, set }) => {
     const createPetUseCase = makeCreatePetUseCase();
 

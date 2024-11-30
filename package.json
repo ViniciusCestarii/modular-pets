@@ -7,7 +7,8 @@
     "dev": "bun --watch src/index.ts",
     "build": "bun build src/index.ts --target bun --outdir ./dist",
     "start": "NODE_ENV=production bun dist/index.js",
-    "test": "bun test",
+    "test": "bun test src/modules/pet/use-cases/",
+    "test:e2e": "bun test src/modules/pet/controllers/ --preload src/modules/shared/utilities/test-setup.ts",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
     "lint": "eslint --fix",
@@ -23,14 +24,16 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@eslint/js": "^9.15.0",
     "@types/bun": "latest",
     "@types/pg": "^8.11.10",
     "drizzle-kit": "^0.28.1",
     "eslint": "^9.15.0",
-    "@eslint/js": "^9.15.0",
-    "typescript-eslint": "^8.16.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.12.0",
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.2",
+    "typescript-eslint": "^8.16.0"
   },
   "type": "module",
   "repository": {
