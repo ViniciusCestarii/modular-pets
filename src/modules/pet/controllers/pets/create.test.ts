@@ -8,7 +8,7 @@ test("Create a pet", async () => {
     birthdate: "2021-01-01",
   };
 
-  const request = new Request("http://localhost/pet", {
+  const request = new Request("http://localhost/pets", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -17,9 +17,11 @@ test("Create a pet", async () => {
   });
 
   const response = await app.handle(request);
-  const body = await response.json();
 
   expect(response.status).toBe(201);
+
+  const body = await response.json();
+
   expect(body).toMatchObject({
     id: expect.any(String),
     name: "Nina",
@@ -30,7 +32,7 @@ test("Create a pet", async () => {
 test("Create a pet with invalid data", async () => {
   const data = {};
 
-  const request = new Request("http://localhost/pet", {
+  const request = new Request("http://localhost/pets", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -39,8 +41,10 @@ test("Create a pet with invalid data", async () => {
   });
 
   const response = await app.handle(request);
-  const body = await response.json();
 
   expect(response.status).toBe(422);
+
+  const body = await response.json();
+
   expect(body).toBeTruthy();
 });
