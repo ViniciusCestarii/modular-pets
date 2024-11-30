@@ -1,16 +1,6 @@
-import { setupE2E } from "@/modules/shared/utilities/test";
-import { afterAll, expect, test } from "bun:test";
+import { expect, test } from "bun:test";
 import app from "@/index";
 import { CreatePet } from "../../types/pets-types";
-
-// this setupE2E should run before db setup
-// this can be achieved with vitest Environment
-
-await setupE2E();
-
-afterAll(async () => {
-  await app.stop();
-});
 
 test("Create a pet", async () => {
   const data: CreatePet = {
@@ -35,4 +25,22 @@ test("Create a pet", async () => {
     name: "Nina",
     birthdate: "2021-01-01",
   });
+});
+
+test("Create a pet with invalid data", async () => {
+  const data = {};
+
+  const request = new Request("http://localhost/pet", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const response = await app.handle(request);
+  const body = await response.json();
+
+  expect(response.status).toBe(422);
+  expect(body).toBeTruthy();
 });

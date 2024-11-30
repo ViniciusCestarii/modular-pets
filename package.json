@@ -7,7 +7,7 @@
     "dev": "bun --watch src/index.ts",
     "build": "bun build src/index.ts --target bun --outdir ./dist",
     "start": "NODE_ENV=production bun dist/index.js",
-    "test": "bun test",
+    "test:e2e": "bun test src/modules/pet/controllers/ --preload src/modules/shared/utilities/test-setup.ts",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
     "lint": "eslint --fix",
