@@ -1,5 +1,10 @@
 # modular-pets
 
+[![Build Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/build-check.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/build-check.yml)
+[![Lint Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/lint-check.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/lint-check.yml)
+[![Test E2E Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/test-e2e.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/test-e2e.yml)
+
+
 1. Pet Module
 
 - Responsibilities: Manages pets' information like their ID, name, species, breed, age, etc.
