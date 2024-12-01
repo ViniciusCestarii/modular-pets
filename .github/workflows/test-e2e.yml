@@ -34,8 +34,6 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Run E2E Tests
-        run: |
-          bun run migrate &&
-          bun run test:e2e
+        run: bun run test:e2e
         env:
           DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/modular-pets"
