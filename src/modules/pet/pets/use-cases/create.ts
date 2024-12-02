@@ -1,5 +1,5 @@
-import { PetsRepository } from "../../repositories/pets-repository";
-import { CreatePet, Pet } from "../../types/pets-types";
+import { PetsRepository } from "../repository";
+import { CreatePet, Pet } from "../types";
 
 export class CreatePetUseCase {
   constructor(private petsRepository: PetsRepository) {}

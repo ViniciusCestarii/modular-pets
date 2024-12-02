@@ -1,5 +1,5 @@
-import { DrizzlePetsRepository } from "@/modules/pet/repositories/drizzle/drizzle-pets-repository";
-import { CreatePetUseCase } from "../create-pet";
+import { DrizzlePetsRepository } from "@/modules/pet/pets/repositories/drizzle-repository";
+import { CreatePetUseCase } from "../use-cases/create";
 
 export const makeCreatePetUseCase = () => {
   const drizzlePetsRepository = new DrizzlePetsRepository();

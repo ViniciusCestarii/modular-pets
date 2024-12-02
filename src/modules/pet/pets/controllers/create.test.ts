@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test";
 import app from "@/index";
-import { CreatePet } from "../../types/pets-types";
+import { CreatePet } from "../types";
 
 test("Create a pet", async () => {
   const data: CreatePet = {

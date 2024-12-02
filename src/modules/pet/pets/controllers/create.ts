@@ -1,6 +1,6 @@
 import Elysia from "elysia";
-import { createPetSchema } from "../../schemas/pets-schema";
-import { makeCreatePetUseCase } from "../../use-cases/pets/factories/makeCreatePet";
+import { createPetSchema } from "../schema";
+import { makeCreatePetUseCase } from "../factories/make-create";
 
 export const createPet = new Elysia().post(
   "/pets",

@@ -1,5 +1,5 @@
 import { createInsertSchema, createSelectSchema } from "drizzle-typebox";
-import { petsTable } from "../models/pet";
+import { petsTable } from "./pet";
 
 export const petSchema = createSelectSchema(petsTable);
 

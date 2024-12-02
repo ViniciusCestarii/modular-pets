@@ -1,1 +1,1 @@
-export * from "@/modules/pet/models/pet";
+export * from "@/modules/pet/pets/pet";
