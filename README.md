@@ -2,6 +2,7 @@
 
 [![Build Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/build-check.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/build-check.yml)
 [![Lint Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/lint-check.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/lint-check.yml)
+[![Test Unit Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/test-unit.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/test-unit.yml)
 [![Test E2E Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/test-e2e.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/test-e2e.yml)
 
 
