@@ -1,5 +1,5 @@
 import db from "@/db";
-import { CreatePet, Pet } from "../../types/pets-types";
+import { CreatePet, Pet } from "../types";
 import { PetsRepository } from "../pets-repository";
 import { petsTable } from "@/db/schema";
 import { eq } from "drizzle-orm";

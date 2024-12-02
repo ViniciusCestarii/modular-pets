@@ -1,5 +1,5 @@
 import Elysia from "elysia";
-import { createPet } from "./create";
+import { createPet } from "./controllers/create";
 
 const petsRoutes = new Elysia();
 
