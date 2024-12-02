@@ -1,4 +1,4 @@
-name: Test E2E
+name: E2E Tests
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Test E2E
+    name: E2E Tests
     runs-on: ubuntu-latest
 
     services:
