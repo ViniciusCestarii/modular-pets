@@ -15,6 +15,13 @@
       "when": 1733241715561,
       "tag": "0001_add_species",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1733257493392,
+      "tag": "0002_add_breeds",
+      "breakpoints": true
     }
   ]
 }

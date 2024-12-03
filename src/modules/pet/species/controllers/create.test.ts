@@ -30,7 +30,7 @@ describe("Create specie e2e", () => {
     });
   });
 
-  it("should throw an error when trying to create a specie that already exists", async () => {
+  it("should return 409 when trying to create a specie that already exists", async () => {
     const specie: CreateSpecie = {
       name: "Dog",
     };
