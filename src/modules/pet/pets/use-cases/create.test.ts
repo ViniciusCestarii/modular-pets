@@ -1,6 +1,6 @@
 import { CreatePetUseCase } from "./create";
 import { InMemoryPetsRepository } from "../repositories/in-memory-repository";
-import { beforeEach, describe, expect, test } from "bun:test";
+import { beforeEach, describe, expect, it } from "bun:test";
 import { CreatePet } from "../types";
 
 describe("Create pet use case", () => {
@@ -12,7 +12,7 @@ describe("Create pet use case", () => {
     createPetUseCase = new CreatePetUseCase(inMemoryPetsRepository);
   });
 
-  test("should create a new pet", async () => {
+  it("should create a new pet", async () => {
     const pet: CreatePet = {
       name: "Buddy",
       birthdate: "2021-01-01",
