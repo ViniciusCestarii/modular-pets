@@ -1,9 +1,9 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, it } from "bun:test";
 import app from "@/index";
 import { CreatePet } from "../types";
 
 describe("Create pet e2e", () => {
-  test("Create a pet", async () => {
+  it("should create a new pet successfully", async () => {
     const data: CreatePet = {
       name: "Nina",
       birthdate: "2021-01-01",
@@ -30,7 +30,7 @@ describe("Create pet e2e", () => {
     });
   });
 
-  test("Create a pet with invalid data", async () => {
+  it("should return 422 when creating a specie with invalid data", async () => {
     const data = {};
 
     const request = new Request("http://localhost/pets", {
