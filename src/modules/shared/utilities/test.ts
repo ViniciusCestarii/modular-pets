@@ -1,5 +1,7 @@
+import { drizzle } from "drizzle-orm/node-postgres";
 import fs from "fs/promises";
 import path from "node:path";
+import { Pool } from "pg";
 
 export const generateDatabaseURL = (databaseName: string): string => {
   if (!process.env.DATABASE_URL) {
@@ -30,4 +32,29 @@ export const generateTestDrizzleConfig = async (databaseName: string) => {
   await fs.writeFile(filename, drizzleConfig);
 
   return filename;
+};
+
+export const trucanteAllTables = async () => {
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+  });
+
+  const db = drizzle(pool);
+
+  // TODO - Truncate all tables from all schemas automatically
+  const query = `SELECT table_name
+    FROM information_schema.tables
+    WHERE table_schema = 'pet'
+      AND table_type = 'BASE TABLE';
+  `;
+
+  const tables = await db.execute(query);
+
+  for (const table of tables.rows) {
+    const query = `TRUNCATE TABLE pet.${table.table_name} CASCADE;`;
+
+    await db.execute(query);
+  }
+
+  await pool.end();
 };

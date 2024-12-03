@@ -8,6 +8,13 @@
       "when": 1732895514551,
       "tag": "0000_add_pets",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1733241715561,
+      "tag": "0001_add_species",
+      "breakpoints": true
     }
   ]
 }
