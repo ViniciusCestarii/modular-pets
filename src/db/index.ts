@@ -8,12 +8,12 @@ const pool = new Pool({
 });
 
 if (process.env.NODE_ENV === "test" && !process.env.npm_lifecycle_event) {
-  throw new Error(
+  console.error(
     "Do not run tests using 'bun test', use 'bun run test' or 'bun test:e2e' instead",
   );
-}
 
-console.log("Connecting:", process.env.DATABASE_URL);
+  process.exit(1);
+}
 
 const db = drizzle(pool);
 
