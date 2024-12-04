@@ -2,7 +2,7 @@ import { describe, expect, it } from "bun:test";
 import app from "@/index";
 import { CreateBreed } from "../types";
 import db from "@/db";
-import { speciesTable } from "@/db/schema";
+import { breedsTable, speciesTable } from "@/db/schema";
 
 describe("Create breed e2e", () => {
   it("should create a new breed successfully", async () => {
@@ -36,7 +36,6 @@ describe("Create breed e2e", () => {
     expect(response.status).toBe(201);
   });
 
-  // TODO: actually implement this on use case
   it("should return 400 when trying to create a breed with unregistered specie", async () => {
     const data: CreateBreed = {
       name: "German Shepherd",
@@ -54,6 +53,38 @@ describe("Create breed e2e", () => {
     const response = await app.handle(request);
 
     expect(response.status).toBe(400);
+
+    const body = await response.json();
+
+    expect(body).toBeTruthy();
+  });
+
+  it("should return 409 when trying to create a breed that already exists", async () => {
+    const specie = (
+      await db.insert(speciesTable).values({ name: "Dog" }).returning()
+    )[0];
+
+    await db.insert(breedsTable).values({
+      name: "German Shepherd",
+      speciesId: specie.id,
+    });
+
+    const data: CreateBreed = {
+      name: "German Shepherd",
+      speciesId: specie.id,
+    };
+
+    const request = new Request("http://localhost/breeds", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const response = await app.handle(request);
+
+    expect(response.status).toBe(409);
 
     const body = await response.json();
 
