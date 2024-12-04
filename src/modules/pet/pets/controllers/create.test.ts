@@ -21,6 +21,7 @@ describe("Create pet e2e", () => {
       name: "Nina",
       birthdate: "2021-01-01",
       observations: "She's a very playful dog",
+      sex: "FEMALE",
       speciesId: specie.id,
       breedId: breed.id,
     };

@@ -39,6 +39,7 @@ describe("Create pet use case", () => {
       name: "Nina",
       birthdate: "2021-01-01",
       observations: "She's a very playful dog",
+      sex: "FEMALE",
       breedId: breed.id,
       speciesId: specie.id,
     };

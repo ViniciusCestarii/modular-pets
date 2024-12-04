@@ -36,6 +36,13 @@
       "when": 1733322815096,
       "tag": "0004_add_field_observations_pet",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1733323891794,
+      "tag": "0005_add_field_sex_pet",
+      "breakpoints": true
     }
   ]
 }
