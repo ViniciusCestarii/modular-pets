@@ -13,7 +13,8 @@
     "migrate": "drizzle-kit migrate",
     "lint": "eslint --fix",
     "check": "eslint .",
-    "check:types": "tsc --noEmit"
+    "check:types": "tsc --noEmit",
+    "db:clean": "bun run scripts/clean-db.ts"
   },
   "dependencies": {
     "@elysiajs/swagger": "^1.1.6",
