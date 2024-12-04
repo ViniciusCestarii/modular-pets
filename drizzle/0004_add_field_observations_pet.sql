@@ -1,0 +1,1 @@
+ALTER TABLE "pet"."pets" ADD COLUMN "observations" varchar(1024);

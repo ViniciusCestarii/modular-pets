@@ -22,6 +22,20 @@
       "when": 1733257493392,
       "tag": "0002_add_breeds",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1733318555554,
+      "tag": "0003_add_pets_relation_species_breeds",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1733322815096,
+      "tag": "0004_add_field_observations_pet",
+      "breakpoints": true
     }
   ]
 }
