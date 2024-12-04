@@ -1,6 +1,6 @@
-export class SpecieAlredyExistsError extends Error {
+export class SpecieAlreadyExistsError extends Error {
   constructor() {
     super("Specie already exists");
-    this.name = "SpecieAlredyExistsError";
+    this.name = "SpecieAlreadyExistsError";
   }
 }

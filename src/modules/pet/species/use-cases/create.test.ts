@@ -2,7 +2,7 @@ import { CreateSpecieUseCase } from "./create";
 import { InMemorySpeciesRepository } from "../repositories/in-memory-repository";
 import { beforeEach, describe, expect, it } from "bun:test";
 import { CreateSpecie } from "../types";
-import { SpecieAlredyExistsError } from "../errors/specie-alredy-exists";
+import { SpecieAlreadyExistsError } from "../errors/specie-alredy-exists";
 
 describe("Create specie use case", () => {
   let createSpecieUseCase: CreateSpecieUseCase;
@@ -24,7 +24,7 @@ describe("Create specie use case", () => {
     expect(createdSpecie.name).toBe(specie.name);
   });
 
-  it("should throw SpecieAlredyExistsError when creating a specie that already exists", async () => {
+  it("should throw SpecieAlreadyExistsError when creating a specie that already exists", async () => {
     await inMemorySpeciesRepository.createSpecie({ name: "Dog" });
 
     const specie: CreateSpecie = {
@@ -32,7 +32,7 @@ describe("Create specie use case", () => {
     };
 
     expect(createSpecieUseCase.execute(specie)).rejects.toThrowError(
-      SpecieAlredyExistsError,
+      SpecieAlreadyExistsError,
     );
   });
 });

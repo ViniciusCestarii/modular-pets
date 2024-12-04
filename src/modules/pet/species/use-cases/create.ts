@@ -1,4 +1,4 @@
-import { SpecieAlredyExistsError } from "../errors/specie-alredy-exists";
+import { SpecieAlreadyExistsError } from "../errors/specie-alredy-exists";
 import { SpeciesRepository } from "../repository";
 import { CreateSpecie, Specie } from "../types";
 
@@ -11,7 +11,7 @@ export class CreateSpecieUseCase {
     );
 
     if (existingSpecie) {
-      throw new SpecieAlredyExistsError();
+      throw new SpecieAlreadyExistsError();
     }
 
     const createdSpecie = await this.speciesRepository.createSpecie(specie);
