@@ -15,7 +15,7 @@ export const createSpecie = new Elysia()
     }
   })
   .post(
-    "/species",
+    "/specie",
     async ({ body, set }) => {
       const createSpecieUseCase = makeCreateSpecieUseCase();
 

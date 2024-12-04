@@ -20,7 +20,7 @@ export const createBreed = new Elysia()
     }
   })
   .post(
-    "/breeds",
+    "/breed",
     async ({ body, set }) => {
       const createBreedUseCase = makeCreateBreedUseCase();
 
