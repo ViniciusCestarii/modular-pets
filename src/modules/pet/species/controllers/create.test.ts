@@ -49,10 +49,7 @@ describe("Create specie e2e", () => {
 
     const body = await response.json();
 
-    expect(body).toMatchObject({
-      name: "Error",
-      message: "Specie already exists",
-    });
+    expect(body.name).toBe("SpecieAlreadyExistsError");
 
     expect(response.status).toBe(409);
   });
