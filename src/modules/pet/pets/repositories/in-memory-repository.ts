@@ -9,6 +9,8 @@ export class InMemoryPetsRepository implements PetsRepository {
     const newPet: Pet = {
       id: this.idCounter.toString(),
       ...pet,
+      observations: pet.observations ?? null,
+      sex: pet.sex ?? "UNKNOWN",
     };
     this.pets.push(newPet);
     this.idCounter++;
