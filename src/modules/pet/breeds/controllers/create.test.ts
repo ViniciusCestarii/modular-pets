@@ -54,7 +54,7 @@ describe("Create breed e2e", () => {
 
     const body = await response.json();
 
-    expect(body).toBeTruthy();
+    expect(body.name).toBe("SpecieNotFoundError");
 
     expect(response.status).toBe(400);
   });
@@ -86,7 +86,7 @@ describe("Create breed e2e", () => {
 
     const body = await response.json();
 
-    expect(body).toBeTruthy();
+    expect(body.name).toBe("BreedAlreadyExistsError");
 
     expect(response.status).toBe(409);
   });
