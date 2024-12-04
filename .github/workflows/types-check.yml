@@ -1,4 +1,4 @@
-name: Lint Check
+name: Types Check
 
 on:
   push:
@@ -8,8 +8,8 @@ on:
     branches: [main]
 
 jobs:
-  build:
-    name: Lint Check
+  check:
+    name: Types Check
     runs-on: ubuntu-latest
 
     steps:
