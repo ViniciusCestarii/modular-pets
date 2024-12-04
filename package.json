@@ -12,7 +12,8 @@
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
     "lint": "eslint --fix",
-    "check": "eslint ."
+    "check": "eslint .",
+    "check:types": "tsc --noEmit"
   },
   "dependencies": {
     "@elysiajs/swagger": "^1.1.6",
@@ -34,6 +35,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.12.0",
     "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
     "typescript-eslint": "^8.16.0"
   },
   "type": "module",
