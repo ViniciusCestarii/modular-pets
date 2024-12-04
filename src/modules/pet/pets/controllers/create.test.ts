@@ -80,7 +80,7 @@ describe("Create pet e2e", () => {
 
     const body = await response.json();
 
-    expect(body).toBeTruthy();
+    expect(body.name).toBe("SpecieNotFoundError");
 
     expect(response.status).toBe(400);
   });
@@ -109,7 +109,7 @@ describe("Create pet e2e", () => {
 
     const body = await response.json();
 
-    expect(body).toBeTruthy();
+    expect(body.name).toBe("BreedNotFoundError");
 
     expect(response.status).toBe(400);
   });
@@ -149,7 +149,7 @@ describe("Create pet e2e", () => {
 
     const body = await response.json();
 
-    expect(body).toBeTruthy();
+    expect(body.name).toBe("InvalidBreedSpecieError");
 
     expect(response.status).toBe(400);
   });
