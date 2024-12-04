@@ -24,7 +24,7 @@ describe("Create specie use case", () => {
     expect(createdSpecie.name).toBe(specie.name);
   });
 
-  it("should throw an error when creating a specie that already exists", async () => {
+  it("should throw SpecieAlredyExistsError when creating a specie that already exists", async () => {
     await inMemorySpeciesRepository.createSpecie({ name: "Dog" });
 
     const specie: CreateSpecie = {
