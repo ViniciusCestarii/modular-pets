@@ -167,10 +167,10 @@ describe("Create pet e2e", () => {
 
     const response = await app.handle(request);
 
-    expect(response.status).toBe(422);
-
     const body = await response.json();
 
     expect(body).toBeTruthy();
+
+    expect(response.status).toBe(422);
   });
 });

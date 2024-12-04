@@ -52,11 +52,11 @@ describe("Create breed e2e", () => {
 
     const response = await app.handle(request);
 
-    expect(response.status).toBe(400);
-
     const body = await response.json();
 
     expect(body).toBeTruthy();
+
+    expect(response.status).toBe(400);
   });
 
   it("should return 409 when trying to create a breed that already exists", async () => {
@@ -84,11 +84,11 @@ describe("Create breed e2e", () => {
 
     const response = await app.handle(request);
 
-    expect(response.status).toBe(409);
-
     const body = await response.json();
 
     expect(body).toBeTruthy();
+
+    expect(response.status).toBe(409);
   });
 
   it("should return 422 when creating a specie with invalid data", async () => {
@@ -104,10 +104,10 @@ describe("Create breed e2e", () => {
 
     const response = await app.handle(request);
 
-    expect(response.status).toBe(422);
-
     const body = await response.json();
 
     expect(body).toBeTruthy();
+
+    expect(response.status).toBe(422);
   });
 });

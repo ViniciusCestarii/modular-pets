@@ -46,8 +46,15 @@ describe("Create pet use case", () => {
 
     const createdPet = await createPetUseCase.execute(pet);
 
-    expect(createdPet).toHaveProperty("id");
-    expect(createdPet.name).toBe(pet.name);
+    expect(createdPet).toMatchObject({
+      id: expect.any(String),
+      name: "Nina",
+      birthdate: "2021-01-01",
+      observations: "She's a very playful dog",
+      sex: "FEMALE",
+      breedId: breed.id,
+      speciesId: specie.id,
+    });
   });
 
   it("should throw SpecieNotFound when creating with invalid specie id", async () => {
