@@ -5,6 +5,7 @@ import speciesRoutes from "./modules/pet/species/routes";
 import swagger from "@elysiajs/swagger";
 import breedsRoutes from "./modules/pet/breeds/routes";
 import { axiomTelemetry } from "./modules/shared/utilities/telemetry";
+import patientsRoutes from "./modules/health/patients/routes";
 
 const app = new Elysia()
   .use(axiomTelemetry())
@@ -12,6 +13,7 @@ const app = new Elysia()
   .use(petsRoutes)
   .use(speciesRoutes)
   .use(breedsRoutes)
+  .use(patientsRoutes)
   .listen(env.PORT);
 
 export default app;

@@ -43,6 +43,13 @@
       "when": 1733323891794,
       "tag": "0005_add_field_sex_pet",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1733838054262,
+      "tag": "0006_add_patients",
+      "breakpoints": true
     }
   ]
 }

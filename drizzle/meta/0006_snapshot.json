@@ -1,0 +1,254 @@
+{
+  "id": "90615f8b-4322-4690-9dd4-bae0db655134",
+  "prevId": "005c1aed-9a41-40bb-819d-8b444b65fdb3",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "pet.pets": {
+      "name": "pets",
+      "schema": "pet",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "birthdate": {
+          "name": "birthdate",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "observations": {
+          "name": "observations",
+          "type": "varchar(1024)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sex": {
+          "name": "sex",
+          "type": "sex",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'UNKNOWN'"
+        },
+        "breedId": {
+          "name": "breedId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "speciesId": {
+          "name": "speciesId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "pets_breedId_breeds_id_fk": {
+          "name": "pets_breedId_breeds_id_fk",
+          "tableFrom": "pets",
+          "tableTo": "breeds",
+          "schemaTo": "pet",
+          "columnsFrom": [
+            "breedId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "pets_speciesId_species_id_fk": {
+          "name": "pets_speciesId_species_id_fk",
+          "tableFrom": "pets",
+          "tableTo": "species",
+          "schemaTo": "pet",
+          "columnsFrom": [
+            "speciesId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "pet.species": {
+      "name": "species",
+      "schema": "pet",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "species_name_unique": {
+          "name": "species_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "pet.breeds": {
+      "name": "breeds",
+      "schema": "pet",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "speciesId": {
+          "name": "speciesId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "breeds_speciesId_species_id_fk": {
+          "name": "breeds_speciesId_species_id_fk",
+          "tableFrom": "breeds",
+          "tableTo": "species",
+          "schemaTo": "pet",
+          "columnsFrom": [
+            "speciesId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "health.patients": {
+      "name": "patients",
+      "schema": "health",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "birthdate": {
+          "name": "birthdate",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "medicalObservations": {
+          "name": "medicalObservations",
+          "type": "varchar(1024)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sex": {
+          "name": "sex",
+          "type": "sex",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'UNKNOWN'"
+        },
+        "breed": {
+          "name": "breed",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "specie": {
+          "name": "specie",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.sex": {
+      "name": "sex",
+      "schema": "public",
+      "values": [
+        "MALE",
+        "FEMALE",
+        "UNKNOWN"
+      ]
+    }
+  },
+  "schemas": {
+    "pet": "pet",
+    "health": "health"
+  },
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

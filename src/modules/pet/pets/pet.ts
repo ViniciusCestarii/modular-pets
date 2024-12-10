@@ -1,12 +1,11 @@
 import { generateSchema } from "@/modules/shared/utilities/schema";
-import { date, pgEnum, uuid, varchar } from "drizzle-orm/pg-core";
+import { date, uuid, varchar } from "drizzle-orm/pg-core";
 import { v7 } from "uuid";
 import { breedsTable } from "../breeds/breed";
 import { speciesTable } from "../species/specie";
+import { sexEnum } from "@/db/schema";
 
 export const petSchema = generateSchema();
-
-export const sexEnum = pgEnum("sex", ["MALE", "FEMALE", "UNKNOWN"]);
 
 export const petsTable = petSchema.table("pets", {
   id: uuid().primaryKey().$defaultFn(v7),
