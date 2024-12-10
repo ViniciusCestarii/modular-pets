@@ -1,5 +1,9 @@
 # modular-pets
 
+[![License](https://img.shields.io/github/license/ViniciusCestarii/modular-pets)](https://github.com/ViniciusCestarii/modular-pets/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/ViniciusCestarii/modular-pets)](https://github.com/ViniciusCestarii/modular-pets/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/ViniciusCestarii/modular-pets)](https://github.com/ViniciusCestarii/modular-pets/issues)
+
 [![Build Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/build-check.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/build-check.yml)
 [![Lint Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/lint-check.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/lint-check.yml)
 [![Type Check Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/types-check.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/types-check.yml)
