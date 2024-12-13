@@ -3,7 +3,7 @@ import { createPatientSchema } from "../schema";
 import { makeCreatePatientUseCase } from "../factories/make-create";
 
 export const createPatient = new Elysia().post(
-  "/patient",
+  "/patients",
   async ({ body, set }) => {
     const createPatientUseCase = makeCreatePatientUseCase();
 

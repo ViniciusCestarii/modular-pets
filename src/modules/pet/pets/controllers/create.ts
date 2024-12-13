@@ -25,7 +25,7 @@ export const createPet = new Elysia()
     }
   })
   .post(
-    "/pet",
+    "/pets",
     async ({ body, set }) => {
       const createPetUseCase = makeCreatePetUseCase();
 

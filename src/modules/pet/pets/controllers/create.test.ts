@@ -26,7 +26,7 @@ describe("Create pet e2e", () => {
       breedId: breed.id,
     };
 
-    const request = new Request("http://localhost/pet", {
+    const request = new Request("http://localhost/pets", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -68,7 +68,7 @@ describe("Create pet e2e", () => {
       breedId: breed.id,
     };
 
-    const request = new Request("http://localhost/pet", {
+    const request = new Request("http://localhost/pets", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -97,7 +97,7 @@ describe("Create pet e2e", () => {
       breedId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284", // Unregistered breed
     };
 
-    const request = new Request("http://localhost/pet", {
+    const request = new Request("http://localhost/pets", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -137,7 +137,7 @@ describe("Create pet e2e", () => {
       breedId: catBreed.id,
     };
 
-    const request = new Request("http://localhost/pet", {
+    const request = new Request("http://localhost/pets", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -157,7 +157,7 @@ describe("Create pet e2e", () => {
   it("should return 422 when creating a specie with invalid data", async () => {
     const data = {};
 
-    const request = new Request("http://localhost/pet", {
+    const request = new Request("http://localhost/pets", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

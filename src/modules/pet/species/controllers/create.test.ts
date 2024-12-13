@@ -10,7 +10,7 @@ describe("Create specie e2e", () => {
       name: "Dog",
     };
 
-    const request = new Request("http://localhost/specie", {
+    const request = new Request("http://localhost/species", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -37,7 +37,7 @@ describe("Create specie e2e", () => {
 
     await db.insert(speciesTable).values(specie);
 
-    const request = new Request("http://localhost/specie", {
+    const request = new Request("http://localhost/species", {
       method: "POST",
       body: JSON.stringify(specie),
       headers: {
@@ -57,7 +57,7 @@ describe("Create specie e2e", () => {
   it("should return 422 when creating a specie with invalid data", async () => {
     const data = {};
 
-    const request = new Request("http://localhost/specie", {
+    const request = new Request("http://localhost/species", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

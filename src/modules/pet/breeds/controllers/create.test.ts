@@ -15,7 +15,7 @@ describe("Create breed e2e", () => {
       speciesId: specie.id,
     };
 
-    const request = new Request("http://localhost/breed", {
+    const request = new Request("http://localhost/breeds", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -42,7 +42,7 @@ describe("Create breed e2e", () => {
       speciesId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284", // Unregistered specie
     };
 
-    const request = new Request("http://localhost/breed", {
+    const request = new Request("http://localhost/breeds", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -74,7 +74,7 @@ describe("Create breed e2e", () => {
       speciesId: specie.id,
     };
 
-    const request = new Request("http://localhost/breed", {
+    const request = new Request("http://localhost/breeds", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -94,7 +94,7 @@ describe("Create breed e2e", () => {
   it("should return 422 when creating a specie with invalid data", async () => {
     const data = {};
 
-    const request = new Request("http://localhost/breed", {
+    const request = new Request("http://localhost/breeds", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
