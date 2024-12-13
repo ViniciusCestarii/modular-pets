@@ -21,7 +21,7 @@
     "@elysiajs/swagger": "^1.1.6",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.36.4",
-    "drizzle-typebox": "^0.1.1",
+    "drizzle-typebox": "^0.2.0",
     "elysia": "latest",
     "pg": "^8.13.1",
     "uuid": "^11.0.3",
