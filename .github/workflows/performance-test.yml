@@ -36,7 +36,14 @@ jobs:
       - name: Install K6
         run: sudo apt-get update && sudo apt-get install -y k6
 
-      - name: Run Performance Tests
-        run: bun run ci:test:performance
+      - name: Start Development Server
+        run: bun run dev
         env:
           DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/modular-pets"
+
+      - name: Setup K6
+        uses: grafana/setup-k6-action@v1
+      - name: Run local k6 test
+        uses: grafana/run-k6-action@v1
+        with:
+          path: scripts/performance-test.ts
