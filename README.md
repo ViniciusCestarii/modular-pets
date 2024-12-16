@@ -3,13 +3,13 @@
 [![License](https://img.shields.io/github/license/ViniciusCestarii/modular-pets)](https://github.com/ViniciusCestarii/modular-pets/blob/main/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/ViniciusCestarii/modular-pets)](https://github.com/ViniciusCestarii/modular-pets/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/ViniciusCestarii/modular-pets)](https://github.com/ViniciusCestarii/modular-pets/issues)
+[![Dependabot](https://badgen.net/badge/Dependabot/enabled/green?icon=dependabot)](https://dependabot.com/)
 
 [![Build Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/build-check.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/build-check.yml)
 [![Lint Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/lint-check.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/lint-check.yml)
 [![Type Check Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/types-check.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/types-check.yml)
 [![Test Unit Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/test-unit.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/test-unit.yml)
 [![Test E2E Status](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/test-e2e.yml/badge.svg)](https://github.com/ViniciusCestarii/modular-pets/actions/workflows/test-e2e.yml)
-
 
 ## Overview
 
