@@ -142,3 +142,28 @@ To run end-to-end tests, use the following command:
 ```sh
 bun run test:e2e
 ```
+
+## Running with Docker
+
+To run the project using Docker, use the following commands:
+
+1. Build the Docker image:
+    ```sh
+    docker build -t modular-pets .
+    ```
+
+2. Run the Docker container:
+    ```sh
+    docker run -p 3333:3333 --env-file .env modular-pets
+    ```
+
+OR
+
+1. Use Docker Compose to build and run the project:
+    ```sh
+    docker-compose up
+    ```
+
+OBS1: Don't forget to fill in the necessary environment variables in the `.env` file. 
+
+OBS2: Use the hostname `host.docker.internal` instead of `localhost` to connect to the host machine from the Docker container.
