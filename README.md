@@ -164,6 +164,6 @@ OR
     docker-compose up
     ```
 
-OBS1: Don't forget to fill in the necessary environment variables in the `.env` file. 
+- OBS1: Don't forget to fill in the necessary environment variables in the `.env` file. 
 
-OBS2: Use the hostname `host.docker.internal` instead of `localhost` to connect to the host machine from the Docker container.
+- OBS2: Use the hostname `host.docker.internal` instead of `localhost` to connect to the host machine from the Docker container.
