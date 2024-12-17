@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import app from "@/app";
+import { app } from "@/app";
 import { CreateSpecie } from "../types";
 import db from "@/db";
 import { speciesTable } from "../specie";

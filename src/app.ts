@@ -7,7 +7,7 @@ import breedsRoutes from "./modules/pet/breeds/routes";
 import { axiomTelemetry } from "./modules/shared/utilities/telemetry";
 import patientsRoutes from "./modules/health/patients/routes";
 
-const app = new Elysia()
+export const app = new Elysia()
   .use(axiomTelemetry())
   .use(swagger())
   .use(petsRoutes)
@@ -16,4 +16,6 @@ const app = new Elysia()
   .use(patientsRoutes)
   .listen(env.PORT);
 
-export default app;
+console.log(
+  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
+);
