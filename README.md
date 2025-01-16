@@ -13,7 +13,7 @@
 
 ## Overview
 
-Modular Pets is a comprehensive system designed to manage various aspects of a pet store or adoption center. The system is modular, allowing for easy customization and extension. It includes modules for managing pets, customers, adoptions, medical records, inventory, orders, shipping, notifications, and payments.
+Modular Pets is a comprehensive system designed to manage various aspects of a pet store or adoption center. The system is modular, allowing for easy customization and extension. It will include modules for managing pets, customers, adoptions, medical records, inventory, orders, shipping, notifications, and payments.
 
 ## Modules
 
