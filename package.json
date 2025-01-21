@@ -12,6 +12,7 @@
     "test:performance": "k6 run --out web-dashboard scripts/performance-test.ts",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
+    "studio": "drizzle-kit studio",
     "lint": "eslint --fix",
     "check": "eslint .",
     "check:types": "tsc --noEmit",
@@ -23,7 +24,7 @@
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.38.2",
     "drizzle-typebox": "^0.2.0",
-    "elysia": "latest",
+    "elysia": "^1.2.10",
     "pg": "^8.13.1",
     "uuid": "^11.0.3",
     "zod": "^3.23.8"
@@ -33,7 +34,7 @@
     "@types/bun": "latest",
     "@types/k6": "^0.54.2",
     "@types/pg": "^8.11.10",
-    "drizzle-kit": "^0.30.1",
+    "drizzle-kit": "^0.30.2",
     "eslint": "^9.15.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.1",
@@ -50,7 +51,8 @@
   "keywords": [
     "pet",
     "monolith",
-    "modular"
+    "modular",
+    "bun"
   ],
   "author": "ViniciusCestarii",
   "license": "MIT",
