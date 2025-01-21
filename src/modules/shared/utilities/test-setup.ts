@@ -7,7 +7,7 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import {
   generateDatabaseURL,
   generateTestDrizzleConfig,
-  trucanteAllTables,
+  resetDb,
 } from "./test";
 import eventBus from "./events/event-emmiter";
 
@@ -26,7 +26,7 @@ execSync(`bunx drizzle-kit migrate --config=${filename}`);
 fs.unlink(filename);
 
 afterEach(async () => {
-  await trucanteAllTables();
+  await resetDb();
 });
 
 afterAll(async () => {

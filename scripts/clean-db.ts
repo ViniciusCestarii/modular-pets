@@ -1,5 +1,5 @@
-import { trucanteAllTables } from "@/modules/shared/utilities/test";
+import { resetDb } from "@/modules/shared/utilities/test";
 
-await trucanteAllTables();
+await resetDb();
 
 console.log("Database cleaned successfully");
