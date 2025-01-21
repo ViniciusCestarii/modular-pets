@@ -1,5 +1,5 @@
 import { drizzle } from "drizzle-orm/node-postgres";
-import { reset } from "drizzle-seed";
+import { reset, seed } from "drizzle-seed";
 import fs from "fs/promises";
 import path from "node:path";
 import { Pool } from "pg";
@@ -44,6 +44,18 @@ export const resetDb = async () => {
   const db = drizzle(pool);
 
   await reset(db, schemas);
+
+  await pool.end();
+};
+
+export const seedDb = async () => {
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+  });
+
+  const db = drizzle(pool);
+
+  await seed(db, schemas, { count: 2000 });
 
   await pool.end();
 };

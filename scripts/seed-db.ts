@@ -1,7 +1,5 @@
-import { seed } from "drizzle-seed";
-import * as schemas from "@/db/schema";
-import db from "@/db";
+import { seedDb } from "@/modules/shared/utilities/test";
 
-await seed(db, schemas, { count: 100 });
+await seedDb();
 
 console.log("Database seeded successfully");
