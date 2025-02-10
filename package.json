@@ -23,7 +23,7 @@
     "@elysiajs/opentelemetry": "^1.1.7",
     "@elysiajs/swagger": "^1.1.6",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.38.2",
+    "drizzle-orm": "^0.39.2",
     "drizzle-typebox": "^0.2.0",
     "elysia": "^1.2.10",
     "pg": "^8.13.1",
