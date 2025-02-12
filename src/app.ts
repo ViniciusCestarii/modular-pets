@@ -6,10 +6,12 @@ import swagger from "@elysiajs/swagger";
 import breedsRoutes from "./modules/pet/breeds/routes";
 import { axiomTelemetry } from "./modules/shared/utilities/telemetry";
 import patientsRoutes from "./modules/health/patients/routes";
+import { errorMiddleware } from "./modules/shared/utilities/error-middleware";
 
 export const app = new Elysia()
   .use(axiomTelemetry())
   .use(swagger())
+  .use(errorMiddleware())
   .use(petsRoutes)
   .use(speciesRoutes)
   .use(breedsRoutes)
