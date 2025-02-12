@@ -18,7 +18,8 @@ Modular Pets is a comprehensive system designed to manage various aspects of a p
 ## Features
 
 - Modular architecture
-- Input validation with Zod for all endpoints and nice error handling
+- Input validation with Zod for all endpoints
+- Excellent error handling
 - Automatized unit tests and e2e tests
 - SOLID principles adherence
 - Dependency injection pattern
