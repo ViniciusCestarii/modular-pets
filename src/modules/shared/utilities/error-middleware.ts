@@ -4,24 +4,26 @@ export const errorMiddleware =
   () =>
   (app: Elysia): Elysia => {
     return app.onError(({ code, error, request, body }) => {
-      console.error(
-        JSON.stringify(
-          {
-            timestamp: new Date().toString(),
-            level: "error",
-            code,
-            url: request.url,
-            body: body,
-            error: error.toString(),
-          },
-          null,
-          2,
-        ),
-      );
+      if (process.env.NODE_ENV !== "test") {
+        console.error(
+          JSON.stringify(
+            {
+              timestamp: new Date().toString(),
+              level: "error",
+              code,
+              url: request.url,
+              body: body,
+              error: error.toString(),
+            },
+            null,
+            2,
+          ),
+        );
 
-      // check to not overflood the logs with validation errors
-      if (code !== "VALIDATION") {
-        console.error(error);
+        // check to not overflood the logs with validation errors
+        if (code !== "VALIDATION") {
+          console.error(error);
+        }
       }
 
       if (
