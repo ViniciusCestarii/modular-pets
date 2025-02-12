@@ -41,7 +41,6 @@ Modular Pets is a comprehensive system designed to manage various aspects of a p
 
 ### Prerequisites
 
-- Node.js
 - Bun
 
 ### Installation
