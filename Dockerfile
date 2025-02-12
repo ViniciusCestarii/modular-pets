@@ -6,7 +6,7 @@
 
 # Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
 
-ARG BUN_VERSION=1.1.38
+ARG BUN_VERSION=1.2.2
 
 ################################################################################
 # Use bun image for base image for all stages.
