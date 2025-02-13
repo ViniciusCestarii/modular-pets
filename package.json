@@ -20,6 +20,7 @@
     "db:seed": "bun run scripts/seed-db.ts"
   },
   "dependencies": {
+    "@elysiajs/cors": "1.2.0",
     "@elysiajs/opentelemetry": "^1.1.7",
     "@elysiajs/swagger": "^1.1.6",
     "dotenv": "^16.4.5",

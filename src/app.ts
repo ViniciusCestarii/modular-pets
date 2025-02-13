@@ -7,8 +7,10 @@ import breedsRoutes from "./modules/pet/breeds/routes";
 import { axiomTelemetry } from "./modules/shared/utilities/telemetry";
 import patientsRoutes from "./modules/health/patients/routes";
 import { errorMiddleware } from "./modules/shared/utilities/error-middleware";
+import cors from "@elysiajs/cors";
 
 export const app = new Elysia()
+  .use(cors())
   .use(axiomTelemetry())
   .use(swagger())
   .use(errorMiddleware())
