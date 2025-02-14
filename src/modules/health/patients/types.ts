@@ -1,6 +1,8 @@
 import { Static } from "elysia";
-import { createPatientSchema, patientSchema } from "./schema";
+import { createPatientSchema } from "./schema";
+import { InferSelectModel } from "drizzle-orm";
+import { patientsTable } from "./patient";
 
-export type Patient = Static<typeof patientSchema>;
+export type Patient = InferSelectModel<typeof patientsTable>;
 
 export type CreatePatient = Static<typeof createPatientSchema>;

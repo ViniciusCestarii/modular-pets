@@ -1,6 +1,8 @@
-import { createInsertSchema, createSelectSchema } from "drizzle-typebox";
-import { breedsTable } from "./breed";
+import { t } from "elysia";
 
-export const breedSchema = createSelectSchema(breedsTable);
-
-export const createBreedSchema = createInsertSchema(breedsTable);
+export const createBreedSchema = t.Object({
+  name: t.String(),
+  speciesId: t.String({
+    format: "uuid",
+  }),
+});
