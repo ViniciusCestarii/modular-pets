@@ -14,7 +14,7 @@ describe("Create patient e2e", () => {
       breed: "German Shepherd",
     };
 
-    const request = new Request("http://localhost/patients", {
+    const request = new Request("http://localhost/health/patients", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -40,7 +40,7 @@ describe("Create patient e2e", () => {
   it("should return 422 when creating a specie with invalid data", async () => {
     const data = {};
 
-    const request = new Request("http://localhost/patients", {
+    const request = new Request("http://localhost/health/patients", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
