@@ -1,19 +1,25 @@
 import "dotenv/config";
-import { z } from "zod";
+import { Type as t } from "@sinclair/typebox";
+import { Value } from "@sinclair/typebox/value";
 
-const envSchema = z.object({
-  PORT: z.coerce.number().default(3333),
-  DATABASE_URL: z.string().url(),
-  AXIOM_DATASET: z.string().optional(),
-  AXIOM_TOKEN: z.string().optional(),
+const envSchema = t.Object({
+  PORT: t.String({ default: "3333" }),
+  DATABASE_URL: t.String({ format: "uri" }),
+  AXIOM_DATASET: t.Optional(t.String()),
+  AXIOM_TOKEN: t.Optional(t.String()),
 });
 
-const _env = envSchema.safeParse(process.env);
+const parsedEnv = Value.Decode(
+  envSchema,
+  Value.Default(envSchema, process.env),
+);
 
-if (_env.success === false) {
-  console.error("Invalid environment variables", _env.error.format());
-
+if (!parsedEnv) {
+  console.error(
+    "Invalid environment variables",
+    Value.Errors(envSchema, process.env),
+  );
   throw new Error("Invalid environment variables");
 }
 
-export const env = _env.data;
+export const env = parsedEnv;

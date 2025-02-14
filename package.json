@@ -20,15 +20,14 @@
     "db:seed": "bun run scripts/seed-db.ts"
   },
   "dependencies": {
-    "@elysiajs/cors": "1.2.0",
-    "@elysiajs/opentelemetry": "^1.1.7",
-    "@elysiajs/swagger": "^1.1.6",
+    "@elysiajs/cors": "^1.2.0",
+    "@elysiajs/opentelemetry": "^1.2.0",
+    "@elysiajs/swagger": "^1.2.0",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.39.2",
-    "elysia": "1.2.10",
+    "elysia": "^1.2.12",
     "pg": "^8.13.1",
-    "uuid": "^11.0.3",
-    "zod": "^3.23.8"
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
