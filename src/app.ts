@@ -10,8 +10,8 @@ import { errorMiddleware } from "./modules/shared/utilities/error-middleware";
 import cors from "@elysiajs/cors";
 
 export const app = new Elysia()
-  .use(cors())
   .use(axiomTelemetry())
+  .use(cors())
   .use(swagger())
   .use(errorMiddleware())
   .use(petsRoutes)
