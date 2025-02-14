@@ -1,6 +1,8 @@
 import { Static } from "elysia";
-import { createSpecieSchema, specieSchema } from "./schema";
+import { createSpecieSchema } from "./schema";
+import { InferSelectModel } from "drizzle-orm";
+import { speciesTable } from "./specie";
 
-export type Specie = Static<typeof specieSchema>;
+export type Specie = InferSelectModel<typeof speciesTable>;
 
 export type CreateSpecie = Static<typeof createSpecieSchema>;
