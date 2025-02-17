@@ -1,1 +1,0 @@
-- [ ] remove drizzle-typebox and mannually write validators (reason: less dependency, more control, more maintainable, less chance of conflicting with elysia)
