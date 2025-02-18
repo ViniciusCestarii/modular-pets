@@ -27,7 +27,7 @@
     "drizzle-orm": "0.39.2",
     "elysia": "1.2.14",
     "pg": "8.13.3",
-    "uuid": "11.0.3"
+    "uuid": "11.0.5"
   },
   "devDependencies": {
     "@eslint/js": "9.15.0",
