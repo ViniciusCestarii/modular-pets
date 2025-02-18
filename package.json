@@ -26,14 +26,14 @@
     "dotenv": "16.4.5",
     "drizzle-orm": "0.39.2",
     "elysia": "1.2.14",
-    "pg": "8.13.1",
+    "pg": "8.13.3",
     "uuid": "11.0.3"
   },
   "devDependencies": {
     "@eslint/js": "9.15.0",
     "@types/bun": "latest",
     "@types/k6": "0.54.2",
-    "@types/pg": "8.11.10",
+    "@types/pg": "8.11.11",
     "drizzle-kit": "0.30.2",
     "drizzle-seed": "0.3.0",
     "eslint": "9.15.0",
