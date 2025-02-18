@@ -1,6 +1,7 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
+  - package-ecosystem: "bun"
+    enable-beta-ecosystems: true
     directory: "/"
     schedule:
       interval: "weekly"
