@@ -16,7 +16,7 @@
       "devDependencies": {
         "@eslint/js": "9.20.0",
         "@types/bun": "latest",
-        "@types/k6": "0.57.0",
+        "@types/k6": "0.57.1",
         "@types/pg": "8.11.11",
         "drizzle-kit": "0.30.4",
         "drizzle-seed": "0.3.1",
@@ -211,7 +211,7 @@
 
     "@types/json-schema": ["@types/json-schema@7.0.15", "", {}, "sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA=="],
 
-    "@types/k6": ["@types/k6@0.57.0", "", {}, "sha512-82wFNqZByg0edG3RMQBEMbWji8J6EXEPl7EH1pgXzbf9Y9uxWqkf6iIMCTTR6mG0WT0HpfM3t7I3u81H9Nrmew=="],
+    "@types/k6": ["@types/k6@0.57.1", "", {}, "sha512-S/p2RQAYUBXyYROkR2fgeON/LaxJ0YR+KIlnPQW/TOeLBXD7tX4RfDSWaIecuDTWKblmc6UwANyP0e5QDZPhMw=="],
 
     "@types/node": ["@types/node@22.10.7", "", { "dependencies": { "undici-types": "~6.20.0" } }, "sha512-V09KvXxFiutGp6B7XkpaDXlNadZxrzajcY50EuoLIpQ6WWYCSvf19lVIazzfIzQvhUN2HjX12spLojTnhuKlGg=="],
 
