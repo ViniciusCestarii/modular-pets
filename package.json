@@ -22,7 +22,7 @@
   "dependencies": {
     "@elysiajs/cors": "1.2.0",
     "@elysiajs/opentelemetry": "1.2.0",
-    "@elysiajs/swagger": "1.2.0",
+    "@elysiajs/swagger": "1.2.2",
     "dotenv": "16.4.5",
     "drizzle-orm": "0.39.2",
     "elysia": "1.2.21",
