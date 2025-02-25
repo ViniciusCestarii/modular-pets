@@ -16,3 +16,8 @@ export const createPetSchema = t.Object({
     format: "uuid",
   }),
 });
+
+export const listPetSchema = t.Object({
+  page: t.Integer({ minimum: 1, default: 1 }),
+  pageSize: t.Optional(t.Integer({ minimum: 1, maximum: 100, default: 10 })),
+});
