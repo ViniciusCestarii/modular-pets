@@ -8,7 +8,7 @@
     "build": "bun build src/app.ts --target bun --outdir ./dist --sourcemap=external",
     "start": "NODE_ENV=production bun dist/app.js",
     "test": "bun test src/modules/pet/pets/use-cases/ src/modules/pet/species/use-cases/ src/modules/pet/breeds/use-cases/ src/modules/health/patients/use-cases/",
-    "test:e2e": "bun test src/modules/pet/pets/controllers/ src/modules/pet/species/controllers/ src/modules/pet/breeds/controllers/ src/modules/health/patients/controllers/ --preload src/modules/shared/utilities/test-setup.ts",
+    "test:e2e": "bun test src/modules/pet/pets/controllers/ src/modules/pet/species/controllers/ src/modules/pet/breeds/controllers/ src/modules/health/patients/controllers/ src/modules/shared/tests --preload src/modules/shared/utilities/test-setup.ts",
     "test:performance": "k6 run --out web-dashboard scripts/performance-test.ts",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
