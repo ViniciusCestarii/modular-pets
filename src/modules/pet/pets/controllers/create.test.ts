@@ -20,8 +20,8 @@ describe("Create pet e2e", () => {
     const data: CreatePet = {
       name: "Nina",
       birthdate: "2021-01-01",
-      observations: "She's a very playful dog",
       sex: "FEMALE",
+      observations: "She's a very playful dog",
       speciesId: specie.id,
       breedId: breed.id,
     };
@@ -42,6 +42,7 @@ describe("Create pet e2e", () => {
       id: expect.any(String),
       name: "Nina",
       birthdate: "2021-01-01",
+      sex: "FEMALE",
       speciesId: specie.id,
       breedId: breed.id,
     });
@@ -64,6 +65,7 @@ describe("Create pet e2e", () => {
     const data: CreatePet = {
       name: "Nina",
       birthdate: "2021-01-01",
+      sex: "FEMALE",
       speciesId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284", // Unregistered specie
       breedId: breed.id,
     };
@@ -93,6 +95,7 @@ describe("Create pet e2e", () => {
     const data: CreatePet = {
       name: "Nina",
       birthdate: "2021-01-01",
+      sex: "FEMALE",
       speciesId: specie.id,
       breedId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284", // Unregistered breed
     };
@@ -133,6 +136,7 @@ describe("Create pet e2e", () => {
     const data: CreatePet = {
       name: "Nina",
       birthdate: "2021-01-01",
+      sex: "FEMALE",
       speciesId: specieDog.id,
       breedId: catBreed.id,
     };

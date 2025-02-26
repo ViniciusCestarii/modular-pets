@@ -16,9 +16,9 @@ describe("Create patient use case", () => {
     const patient: CreatePatient = {
       name: "Nina",
       birthdate: "2021-01-01",
+      sex: "FEMALE",
       medicalObservations:
         "No prior medical conditions reported. Regular vaccinations up to date. Recent flea and tick prevention administered. Healthy and active upon initial examination.",
-      sex: "FEMALE",
       breed: "German Shepherd",
       specie: "Dog",
     };
@@ -29,9 +29,9 @@ describe("Create patient use case", () => {
       id: expect.any(String),
       name: "Nina",
       birthdate: "2021-01-01",
+      sex: "FEMALE",
       medicalObservations:
         "No prior medical conditions reported. Regular vaccinations up to date. Recent flea and tick prevention administered. Healthy and active upon initial examination.",
-      sex: "FEMALE",
       breed: "German Shepherd",
       specie: "Dog",
     });

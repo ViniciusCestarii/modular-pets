@@ -35,8 +35,8 @@ describe("Create pet use case", () => {
     const pet: CreatePet = {
       name: "Nina",
       birthdate: "2021-01-01",
-      observations: "She's a very playful dog",
       sex: "FEMALE",
+      observations: "She's a very playful dog",
       breedId: breed.id,
       speciesId: specie.id,
     };
@@ -52,8 +52,8 @@ describe("Create pet use case", () => {
       id: expect.any(String),
       name: "Nina",
       birthdate: "2021-01-01",
-      observations: "She's a very playful dog",
       sex: "FEMALE",
+      observations: "She's a very playful dog",
       breedId: breed.id,
       speciesId: specie.id,
     });

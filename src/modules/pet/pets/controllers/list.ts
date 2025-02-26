@@ -1,11 +1,11 @@
 import Elysia from "elysia";
-import { listPetSchema } from "../schema";
+import { listPetsSchema } from "../schema";
 import { makeListPetsUseCase } from "../factories/make-list";
 import { SpecieNotFoundError } from "../../shared/errors/specie-not-found";
 import { BreedNotFoundError } from "../../shared/errors/breed-not-found";
 import { InvalidBreedSpecieError } from "../../shared/errors/invalid-breed-specie";
 
-export const listPet = new Elysia()
+export const listPets = new Elysia()
   .error({
     SpecieNotFoundError,
     BreedNotFoundError,
@@ -21,6 +21,6 @@ export const listPet = new Elysia()
       return pets;
     },
     {
-      query: listPetSchema,
+      query: listPetsSchema,
     },
   );
