@@ -1,11 +1,7 @@
 import eventBus from "@/modules/shared/utilities/events/event-emmiter";
 import "dotenv/config";
-import { drizzle } from "drizzle-orm/node-postgres";
-import { Pool } from "pg";
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+import { drizzle } from "drizzle-orm/bun-sql";
+import { SQL } from "bun";
 
 if (process.env.NODE_ENV === "test" && !process.env.npm_lifecycle_event) {
   console.error(
@@ -15,10 +11,12 @@ if (process.env.NODE_ENV === "test" && !process.env.npm_lifecycle_event) {
   process.exit(1);
 }
 
-const db = drizzle(pool);
+const client = new SQL(process.env.DATABASE_URL!);
+
+const db = drizzle({ client });
 
 eventBus.on("db:close", async () => {
-  await pool.end();
+  await client.end();
 });
 
 export default db;
