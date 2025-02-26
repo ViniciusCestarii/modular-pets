@@ -21,6 +21,7 @@ describe("List pet e2e", () => {
     const createPet: CreatePet = {
       name: "Nina",
       birthdate: "2021-01-01",
+      sex: "FEMALE",
       speciesId: specie.id,
       breedId: breed.id,
     };
@@ -53,6 +54,7 @@ describe("List pet e2e", () => {
       id: expect.any(String),
       name: "Nina",
       birthdate: "2021-01-01",
+      sex: "FEMALE",
       speciesId: specie.id,
       breedId: breed.id,
     });
@@ -102,6 +104,7 @@ describe("List pet e2e", () => {
       const createPet: CreatePet = {
         name: `Nina-${i}`,
         birthdate: "2021-01-01",
+        sex: "FEMALE",
         speciesId: specie.id,
         breedId: breed.id,
       };
@@ -135,6 +138,7 @@ describe("List pet e2e", () => {
       id: expect.any(String),
       name: "Nina-10",
       birthdate: "2021-01-01",
+      sex: "FEMALE",
       speciesId: specie.id,
       breedId: breed.id,
     });

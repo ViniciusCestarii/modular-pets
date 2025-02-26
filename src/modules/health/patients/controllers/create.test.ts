@@ -30,6 +30,7 @@ describe("Create patient e2e", () => {
       id: expect.any(String),
       name: "Nina",
       birthdate: "2021-01-01",
+      sex: "FEMALE",
       specie: "Dog",
       breed: "German Shepherd",
     });
