@@ -17,7 +17,7 @@ export const createPetSchema = t.Object({
   }),
 });
 
-export const listPetSchema = t.Object({
+export const listPetsSchema = t.Object({
   page: t.Integer({ minimum: 1 }),
   pageSize: t.Integer({ minimum: 1, maximum: 100, default: 10 }),
 });
