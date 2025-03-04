@@ -2,7 +2,7 @@ import { Pagination } from "@/modules/shared/types/pagination";
 import { BreedsRepository } from "../../breeds/repository";
 import { SpeciesRepository } from "../../species/repository";
 import { PetsRepository } from "../repository";
-import { Pet } from "../types";
+import { PetList } from "../types";
 
 export class ListPetsUseCase {
   constructor(
@@ -12,7 +12,7 @@ export class ListPetsUseCase {
     private breedsRepository: BreedsRepository,
   ) {}
 
-  async execute(filter: Pagination): Promise<Pet[]> {
+  async execute(filter: Pagination): Promise<PetList> {
     const pets = await this.petsRepository.listPets(filter);
 
     return pets;
