@@ -43,12 +43,12 @@ describe("Create pet use case", () => {
 
     await inMemoryPetsRepository.createPet(pet);
 
-    const pets = await listPetUseCase.execute({
+    const paginatedPets = await listPetUseCase.execute({
       page: 1,
       pageSize: 10,
     });
 
-    expect(pets[0]).toMatchObject({
+    expect(paginatedPets.pets[0]).toMatchObject({
       id: expect.any(String),
       name: "Nina",
       birthdate: "2021-01-01",
@@ -57,5 +57,7 @@ describe("Create pet use case", () => {
       breedId: breed.id,
       speciesId: specie.id,
     });
+
+    expect(paginatedPets.total).toBe(1);
   });
 });

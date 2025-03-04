@@ -5,4 +5,9 @@ import { petsTable } from "./pet";
 
 export type Pet = InferSelectModel<typeof petsTable>;
 
+export type PetList = {
+  pets: Pet[];
+  total: number;
+};
+
 export type CreatePet = Static<typeof createPetSchema>;

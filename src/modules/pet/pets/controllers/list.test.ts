@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import { app } from "@/app";
-import { CreatePet } from "../types";
+import { CreatePet, PetList } from "../types";
 import db from "@/db";
 import { breedsTable, petsTable, speciesTable } from "@/db/schema";
 import { Pagination } from "@/modules/shared/types/pagination";
@@ -46,11 +46,17 @@ describe("List pet e2e", () => {
 
     const response = await app.handle(request);
 
-    const body = await response.json();
+    const body: PetList = await response.json();
 
-    expect(Array.isArray(body)).toBe(true);
+    const { pets, total } = body;
 
-    expect(body[0]).toMatchObject({
+    expect(Array.isArray(pets)).toBe(true);
+
+    expect(pets).toHaveLength(1);
+
+    expect(total).toBe(1);
+
+    expect(pets[0]).toMatchObject({
       id: expect.any(String),
       name: "Nina",
       birthdate: "2021-01-01",
@@ -81,9 +87,15 @@ describe("List pet e2e", () => {
 
     const response = await app.handle(request);
 
-    const body = await response.json();
+    const body: PetList = await response.json();
 
-    expect(Array.isArray(body)).toBe(true);
+    const { pets, total } = body;
+
+    expect(Array.isArray(pets)).toBe(true);
+
+    expect(pets).toHaveLength(0);
+
+    expect(total).toBe(0);
 
     expect(response.status).toBe(200);
   });
@@ -130,11 +142,13 @@ describe("List pet e2e", () => {
 
     const response = await app.handle(request);
 
-    const body = await response.json();
+    const body: PetList = await response.json();
 
-    expect(Array.isArray(body)).toBe(true);
+    const { pets, total } = body;
 
-    expect(body[0]).toMatchObject({
+    expect(Array.isArray(pets)).toBe(true);
+
+    expect(pets[0]).toMatchObject({
       id: expect.any(String),
       name: "Nina-5",
       birthdate: "2021-01-01",
@@ -143,7 +157,7 @@ describe("List pet e2e", () => {
       breedId: breed.id,
     });
 
-    expect(body[1]).toMatchObject({
+    expect(pets[1]).toMatchObject({
       id: expect.any(String),
       name: "Nina-6",
       birthdate: "2021-01-01",
@@ -151,6 +165,8 @@ describe("List pet e2e", () => {
       speciesId: specie.id,
       breedId: breed.id,
     });
+
+    expect(total).toBe(15);
 
     expect(response.status).toBe(200);
   });

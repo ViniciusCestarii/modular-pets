@@ -2,7 +2,7 @@ import db from "@/db";
 import { CreatePet, Pet } from "../types";
 import { PetsRepository } from "../repository";
 import { petsTable } from "../pet";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { Pagination } from "@/modules/shared/types/pagination";
 
 export class DrizzlePetsRepository implements PetsRepository {
@@ -22,15 +22,28 @@ export class DrizzlePetsRepository implements PetsRepository {
 
     return rows[0];
   }
-  async listPets({ page, pageSize }: Pagination): Promise<Pet[]> {
+  async listPets({
+    page,
+    pageSize,
+  }: Pagination): Promise<{ pets: Pet[]; total: number }> {
     page--;
-    const rows = await db
+
+    const petsQuery = db
       .select()
       .from(petsTable)
       .orderBy(petsTable.name)
       .limit(pageSize)
       .offset(page * pageSize);
 
-    return rows;
+    const totalQuery = db
+      .select({ count: sql`count(*)`.mapWith(Number) })
+      .from(petsTable);
+
+    const [pets, [{ count: total }]] = await Promise.all([
+      petsQuery,
+      totalQuery,
+    ]);
+
+    return { pets, total };
   }
 }
