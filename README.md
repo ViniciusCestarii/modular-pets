@@ -41,7 +41,7 @@ Modular Pets is a comprehensive system designed to manage various aspects of a p
 
 ### Prerequisites
 
-- Bun
+- [Bun](https://bun.sh/docs/installation)
 
 ### Installation
 

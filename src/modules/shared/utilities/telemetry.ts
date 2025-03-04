@@ -13,17 +13,19 @@ export const axiomTelemetry =
 
     console.info("Setting up telemetry");
 
-    return opentelemetry({
-      spanProcessors: [
-        new BatchSpanProcessor(
-          new OTLPTraceExporter({
-            url: "https://api.axiom.co/v1/traces",
-            headers: {
-              Authorization: `Bearer ${env.AXIOM_TOKEN}`,
-              "X-Axiom-Dataset": env.AXIOM_DATASET,
-            },
-          }),
-        ),
-      ],
-    });
+    return app.use(
+      opentelemetry({
+        spanProcessors: [
+          new BatchSpanProcessor(
+            new OTLPTraceExporter({
+              url: "https://api.axiom.co/v1/traces",
+              headers: {
+                Authorization: `Bearer ${env.AXIOM_TOKEN}`,
+                "X-Axiom-Dataset": env.AXIOM_DATASET,
+              },
+            }),
+          ),
+        ],
+      }),
+    );
   };

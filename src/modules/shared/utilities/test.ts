@@ -46,12 +46,12 @@ export const resetDb = async () => {
   await client.end();
 };
 
-export const seedDb = async () => {
+export const seedDb = async (count: number) => {
   const client = new SQL(process.env.DATABASE_URL!);
 
   const db = drizzle({ client });
 
-  await seed(db, schemas, { count: 2000 });
+  await seed(db, schemas, { count });
 
   await client.end();
 };
