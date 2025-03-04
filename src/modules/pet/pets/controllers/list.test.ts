@@ -20,7 +20,7 @@ describe("List pet e2e", () => {
 
     const createPet: CreatePet = {
       name: "Nina",
-      birthdate: "2021-01-01T00:00:00.000Z",
+      birthdate: "2021-01-01",
       sex: "FEMALE",
       speciesId: specie.id,
       breedId: breed.id,
@@ -59,7 +59,7 @@ describe("List pet e2e", () => {
     expect(pets[0]).toMatchObject({
       id: expect.any(String),
       name: "Nina",
-      birthdate: "2021-01-01T00:00:00.000Z",
+      birthdate: "2021-01-01",
       sex: "FEMALE",
       speciesId: specie.id,
       breedId: breed.id,
@@ -115,7 +115,7 @@ describe("List pet e2e", () => {
     for (let i = 0; i < 15; i++) {
       const createPet: CreatePet = {
         name: `Nina-${i}`,
-        birthdate: "2021-01-01T00:00:00.000Z",
+        birthdate: "2021-01-01",
         sex: "FEMALE",
         speciesId: specie.id,
         breedId: breed.id,
@@ -151,7 +151,7 @@ describe("List pet e2e", () => {
     expect(pets[0]).toMatchObject({
       id: expect.any(String),
       name: "Nina-5",
-      birthdate: "2021-01-01T00:00:00.000Z",
+      birthdate: "2021-01-01",
       sex: "FEMALE",
       speciesId: specie.id,
       breedId: breed.id,
@@ -160,7 +160,7 @@ describe("List pet e2e", () => {
     expect(pets[1]).toMatchObject({
       id: expect.any(String),
       name: "Nina-6",
-      birthdate: "2021-01-01T00:00:00.000Z",
+      birthdate: "2021-01-01",
       sex: "FEMALE",
       speciesId: specie.id,
       breedId: breed.id,

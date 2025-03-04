@@ -41,7 +41,7 @@ describe("Create pet e2e", () => {
     expect(body).toMatchObject({
       id: expect.any(String),
       name: "Nina",
-      birthdate: "2021-01-01T00:00:00.000Z",
+      birthdate: "2021-01-01",
       sex: "FEMALE",
       speciesId: specie.id,
       breedId: breed.id,
