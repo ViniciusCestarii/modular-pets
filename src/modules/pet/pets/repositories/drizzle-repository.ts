@@ -27,6 +27,7 @@ export class DrizzlePetsRepository implements PetsRepository {
     const rows = await db
       .select()
       .from(petsTable)
+      .orderBy(petsTable.name)
       .limit(pageSize)
       .offset(page * pageSize);
 
