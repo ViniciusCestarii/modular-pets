@@ -136,7 +136,16 @@ describe("List pet e2e", () => {
 
     expect(body[0]).toMatchObject({
       id: expect.any(String),
-      name: "Nina-10",
+      name: "Nina-5",
+      birthdate: "2021-01-01",
+      sex: "FEMALE",
+      speciesId: specie.id,
+      breedId: breed.id,
+    });
+
+    expect(body[1]).toMatchObject({
+      id: expect.any(String),
+      name: "Nina-6",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       speciesId: specie.id,
