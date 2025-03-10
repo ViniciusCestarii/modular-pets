@@ -189,3 +189,13 @@ OR
   - Track payment history and generate reports.
   - Manage refunds or cancellations.
 
+### 10. Create an Auth Module
+
+- **Responsibilities**: Hndle user authentication and authorization, including login, registration, token management, and permission handling.
+
+- **Key Features**:
+  - User registration and login (JWT, OAuth2, etc.)
+  - Token generation and validation
+  - Role-based access control (RBAC)
+  - Password hashing and security features
+

@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it } from "bun:test";
 import { CreateBreed } from "../types";
 import { InMemorySpeciesRepository } from "../../species/repositories/in-memory-repository";
 import { SpecieNotFoundError } from "../../shared/errors/specie-not-found";
-import { BreedAlreadyExistsError } from "../errors/breed-alredy-exists";
+import { BreedAlreadyExistsError } from "../errors/breed-already-exists";
 
 describe("Create breed use case", () => {
   let createBreedUseCase: CreateBreedUseCase;

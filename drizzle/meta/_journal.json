@@ -50,6 +50,13 @@
       "when": 1733838054262,
       "tag": "0006_add_patients",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1741617791513,
+      "tag": "0007_add_auth_user",
+      "breakpoints": true
     }
   ]
 }

@@ -7,3 +7,6 @@ export * from "@/modules/pet/breeds/breed";
 
 export * from "@/modules/health/drizzle";
 export * from "@/modules/health/patients/patient";
+
+export * from "@/modules/auth/drizzle";
+export * from "@/modules/auth/users/user";

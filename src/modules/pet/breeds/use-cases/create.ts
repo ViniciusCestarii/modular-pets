@@ -1,6 +1,6 @@
 import { SpecieNotFoundError } from "../../shared/errors/specie-not-found";
 import { SpeciesRepository } from "../../species/repository";
-import { BreedAlreadyExistsError } from "../errors/breed-alredy-exists";
+import { BreedAlreadyExistsError } from "../errors/breed-already-exists";
 import { BreedsRepository } from "../repository";
 import { CreateBreed, Breed } from "../types";
 
