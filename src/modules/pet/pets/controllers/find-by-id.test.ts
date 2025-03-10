@@ -33,7 +33,6 @@ describe("Find pet by id e2e", () => {
 
     const request = new Request(url, {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
     });
 
     const response = await app.handle(request);
@@ -59,7 +58,6 @@ describe("Find pet by id e2e", () => {
 
     const request = new Request(url, {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
     });
 
     const response = await app.handle(request);
