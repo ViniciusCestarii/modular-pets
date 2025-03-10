@@ -4,6 +4,7 @@ import { CreateUser, Login } from "../types";
 import db from "@/db";
 import { usersTable } from "../user";
 import { hashPassword } from "../utils/password";
+import { tokenExpirationTime, verifyToken } from "@/modules/shared/auth/jwt";
 
 describe("Login user e2e", () => {
   it("should login an user", async () => {
@@ -15,10 +16,12 @@ describe("Login user e2e", () => {
       birthdate: "1990-01-01",
     };
 
-    await db.insert(usersTable).values(user).execute();
+    const createdUser = (
+      await db.insert(usersTable).values(user).returning().execute()
+    )[0];
 
     const data: Login = {
-      email: user.email,
+      email: createdUser.email,
       password: password,
     };
 
@@ -32,9 +35,20 @@ describe("Login user e2e", () => {
 
     const response = await app.handle(request);
 
-    const body: { token: string } = await response.json();
+    const body: { token: string; expiresIn: number } = await response.json();
 
-    expect(body.token).toMatch("implement token generation here");
+    expect(body.expiresIn).toBe(tokenExpirationTime);
+
+    expect(body.token).toBeTruthy();
+
+    const decodedToken = await verifyToken(body.token);
+
+    // check some of the token payload
+    expect(decodedToken.payload).toMatchObject({
+      id: createdUser.id,
+      sub: createdUser.id,
+      email: createdUser.email,
+    });
 
     expect(response.status).toBe(200);
   });

@@ -1,3 +1,4 @@
+import { signToken } from "@/modules/shared/auth/jwt";
 import { InvalidCredentialsError } from "../error/invalid-credentials";
 import { UsersRepository } from "../repository";
 import { Login } from "../types";
@@ -19,7 +20,10 @@ export class LoginUserUseCase {
       throw new InvalidCredentialsError();
     }
 
-    const token = "implement token generation here";
+    const token = await signToken({
+      id: user.id,
+      email: user.email,
+    });
 
     return token;
   }

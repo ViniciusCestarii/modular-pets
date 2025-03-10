@@ -4,6 +4,7 @@ import { CreateUser, Login } from "../types";
 import { LoginUserUseCase } from "./login";
 import { InvalidCredentialsError } from "../error/invalid-credentials";
 import { hashPassword } from "../utils/password";
+import { verifyToken } from "@/modules/shared/auth/jwt";
 
 describe("Login user", () => {
   let loginUserUseCase: LoginUserUseCase;
@@ -23,7 +24,7 @@ describe("Login user", () => {
       birthdate: "1990-01-01",
     };
 
-    await inMemoryUsersRepository.createUser(user);
+    const createdUser = await inMemoryUsersRepository.createUser(user);
 
     const login: Login = {
       email: user.email,
@@ -32,7 +33,16 @@ describe("Login user", () => {
 
     const token = await loginUserUseCase.execute(login);
 
-    expect(token).toBe("implement token generation here");
+    expect(token).toBeTruthy();
+
+    const decodedToken = await verifyToken(token);
+
+    // check some of the token payload
+    expect(decodedToken.payload).toMatchObject({
+      id: createdUser.id,
+      sub: createdUser.id,
+      email: user.email,
+    });
   });
 
   it("should throw InvalidCredentials when logging with an uneregistered email", async () => {

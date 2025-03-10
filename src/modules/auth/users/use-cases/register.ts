@@ -1,3 +1,4 @@
+import { signToken } from "@/modules/shared/auth/jwt";
 import { UserAlreadyExistsError } from "../error/user-already-exists";
 import { UsersRepository } from "../repository";
 import { CreateUser, UserRegisterReturn } from "../types";
@@ -19,7 +20,10 @@ export class RegisterUserUseCase {
 
     const createdUser = await this.usersRepository.createUser(user);
 
-    const token = "implement token generation here";
+    const token = await signToken({
+      id: createdUser.id,
+      email: createdUser.email,
+    });
 
     return { user: createdUser, token };
   }

@@ -3,6 +3,7 @@ import { InMemoryUsersRepository } from "../repositories/in-memory-repository";
 import { beforeEach, describe, expect, it } from "bun:test";
 import { CreateUser } from "../types";
 import { UserAlreadyExistsError } from "../error/user-already-exists";
+import { verifyToken } from "@/modules/shared/auth/jwt";
 
 describe("Create user use case", () => {
   let registerUserUseCase: RegisterUserUseCase;
@@ -21,16 +22,25 @@ describe("Create user use case", () => {
       birthdate: "1990-01-01",
     };
 
-    const createdUser = await registerUserUseCase.execute(user);
+    const response = await registerUserUseCase.execute(user);
 
-    expect(createdUser.user).toMatchObject({
+    expect(response.user).toMatchObject({
       id: expect.any(String),
       name: user.name,
       email: user.email,
       birthdate: user.birthdate,
     });
 
-    expect(createdUser.token).toBe("implement token generation here");
+    expect(response.token).toBeTruthy();
+
+    const decodedToken = await verifyToken(response.token);
+
+    // check some of the token payload
+    expect(decodedToken.payload).toMatchObject({
+      id: response.user.id,
+      sub: response.user.id,
+      email: user.email,
+    });
   });
 
   it("should throw UserAlreadyExistsError when creating a user with an email that already exists", async () => {

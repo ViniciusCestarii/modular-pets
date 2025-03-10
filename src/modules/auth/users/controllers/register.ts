@@ -2,6 +2,7 @@ import Elysia from "elysia";
 import { makeRegisterUserUseCase } from "../factories/make-register";
 import { UserAlreadyExistsError } from "../error/user-already-exists";
 import { createUserSchema } from "../schema";
+import { tokenExpirationTime } from "@/modules/shared/auth/jwt";
 
 export const registerUser = new Elysia()
   .error({
@@ -22,7 +23,7 @@ export const registerUser = new Elysia()
       const registerReturn = await registerUserUseCase.execute(body);
 
       set.status = "Created";
-      return registerReturn;
+      return { ...registerReturn, expiresIn: tokenExpirationTime };
     },
     {
       body: createUserSchema,

@@ -2,6 +2,7 @@ import Elysia from "elysia";
 import { loginSchema } from "../schema";
 import { makeLoginUserUseCase } from "../factories/make-login";
 import { InvalidCredentialsError } from "../error/invalid-credentials";
+import { tokenExpirationTime } from "@/modules/shared/auth/jwt";
 
 export const loginUser = new Elysia()
   .error({
@@ -22,7 +23,7 @@ export const loginUser = new Elysia()
       const token = await loginUserUseCase.execute(body);
 
       set.status = "OK";
-      return { token };
+      return { token, expiresIn: tokenExpirationTime };
     },
     {
       body: loginSchema,

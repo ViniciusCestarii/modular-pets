@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { Type as t } from "@sinclair/typebox";
+import { t } from "elysia";
 import { Value } from "@sinclair/typebox/value";
 
 const envSchema = t.Object({

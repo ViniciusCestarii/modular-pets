@@ -3,6 +3,7 @@ import { app } from "@/app";
 import { CreateUser, UserRegisterReturn } from "../types";
 import db from "@/db";
 import { usersTable } from "../user";
+import { tokenExpirationTime, verifyToken } from "@/modules/shared/auth/jwt";
 
 describe("Create user e2e", () => {
   it("should create a new user successfully", async () => {
@@ -23,7 +24,8 @@ describe("Create user e2e", () => {
 
     const response = await app.handle(request);
 
-    const body: UserRegisterReturn = await response.json();
+    const body: UserRegisterReturn & { expiresIn: number } =
+      await response.json();
 
     expect(body.user).toMatchObject({
       id: expect.any(String),
@@ -36,6 +38,17 @@ describe("Create user e2e", () => {
     expect(body.user.password).toBeUndefined();
 
     expect(body.token).toBeTruthy();
+
+    const decodedToken = await verifyToken(body.token);
+
+    // check some of the token payload
+    expect(decodedToken.payload).toMatchObject({
+      id: body.user.id,
+      sub: body.user.id,
+      email: body.user.email,
+    });
+
+    expect(body.expiresIn).toBe(tokenExpirationTime);
 
     expect(response.status).toBe(201);
   });

@@ -20,13 +20,13 @@
   },
   "dependencies": {
     "@elysiajs/cors": "1.2.0",
-    "@elysiajs/jwt": "1.2.0",
     "@elysiajs/opentelemetry": "1.2.0",
     "@elysiajs/swagger": "1.2.2",
     "bcrypt": "5.1.1",
     "dotenv": "16.4.5",
     "drizzle-orm": "0.39.3",
     "elysia": "1.2.21",
+    "jose": "6.0.8",
     "pg": "8.13.3",
     "uuid": "11.0.5"
   },
