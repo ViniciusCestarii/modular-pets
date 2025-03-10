@@ -2,8 +2,10 @@ import Elysia from "elysia";
 import { createSpecieSchema } from "../schema";
 import { makeCreateSpecieUseCase } from "../factories/make-create";
 import { SpecieAlreadyExistsError } from "../errors/specie-alredy-exists";
+import { auth } from "@/modules/shared/auth/plugin";
 
 export const createSpecie = new Elysia()
+  .use(auth())
   .error({
     SpecieAlreadyExistsError,
   })

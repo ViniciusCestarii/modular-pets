@@ -3,6 +3,7 @@ import { app } from "@/app";
 import { CreateSpecie } from "../types";
 import db from "@/db";
 import { speciesTable } from "../specie";
+import { bearerToken } from "@/modules/shared/utilities/test";
 
 describe("Create specie e2e", () => {
   it("should create a specie successfully", async () => {
@@ -15,6 +16,7 @@ describe("Create specie e2e", () => {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: bearerToken,
       },
     });
 
@@ -42,6 +44,7 @@ describe("Create specie e2e", () => {
       body: JSON.stringify(specie),
       headers: {
         "Content-Type": "application/json",
+        Authorization: bearerToken,
       },
     });
 
@@ -62,6 +65,7 @@ describe("Create specie e2e", () => {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: bearerToken,
       },
     });
 
@@ -72,5 +76,27 @@ describe("Create specie e2e", () => {
     expect(body).toBeTruthy();
 
     expect(response.status).toBe(422);
+  });
+
+  it("should return 401 trying being Unauthorized", async () => {
+    const data: CreateSpecie = {
+      name: "Dog",
+    };
+
+    const request = new Request("http://localhost/pet/species", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const response = await app.handle(request);
+
+    const body = await response.json();
+
+    expect(body.name).toBe("Unauthorized");
+
+    expect(response.status).toBe(401);
   });
 });

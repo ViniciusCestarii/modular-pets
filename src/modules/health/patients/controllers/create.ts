@@ -1,8 +1,9 @@
 import Elysia from "elysia";
 import { createPatientSchema } from "../schema";
 import { makeCreatePatientUseCase } from "../factories/make-create";
+import { auth } from "@/modules/shared/auth/plugin";
 
-export const createPatient = new Elysia().post(
+export const createPatient = new Elysia().use(auth()).post(
   "/patients",
   async ({ body, set }) => {
     const createPatientUseCase = makeCreatePatientUseCase();

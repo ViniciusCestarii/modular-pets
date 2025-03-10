@@ -3,8 +3,10 @@ import { createBreedSchema } from "../schema";
 import { makeCreateBreedUseCase } from "../factories/make-create";
 import { SpecieNotFoundError } from "../../shared/errors/specie-not-found";
 import { BreedAlreadyExistsError } from "../errors/breed-already-exists";
+import { auth } from "@/modules/shared/auth/plugin";
 
 export const createBreed = new Elysia()
+  .use(auth())
   .error({
     SpecieNotFoundError,
     BreedAlreadyExistsError,
