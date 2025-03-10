@@ -1,5 +1,5 @@
 import db from "@/db";
-import { CreateUser, User } from "../types";
+import { CreateUser, FullUser, User } from "../types";
 import { UsersRepository } from "../repository";
 import { usersTable } from "../user";
 import { eq, sql } from "drizzle-orm";
@@ -36,19 +36,6 @@ export class DrizzleUsersRepository implements UsersRepository {
     return rows[0];
   }
 
-  async findUserByEmail(email: string): Promise<User | null> {
-    const rows = await db
-      .select(userViewModel)
-      .from(usersTable)
-      .where(eq(usersTable.email, email));
-
-    if (rows.length === 0) {
-      return null;
-    }
-
-    return rows[0];
-  }
-
   async listUsers({
     page,
     pageSize,
@@ -72,5 +59,31 @@ export class DrizzleUsersRepository implements UsersRepository {
     ]);
 
     return { users, total };
+  }
+
+  async findUserByEmail(email: string): Promise<User | null> {
+    const rows = await db
+      .select(userViewModel)
+      .from(usersTable)
+      .where(eq(usersTable.email, email));
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    return rows[0];
+  }
+
+  async findFullUserByEmail(email: string): Promise<FullUser | null> {
+    const rows = await db
+      .select()
+      .from(usersTable)
+      .where(eq(usersTable.email, email));
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    return rows[0];
   }
 }

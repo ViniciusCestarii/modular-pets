@@ -1,7 +1,7 @@
-import { UserAlreadyExistsError } from "../error/user-already-exists.ts";
+import { UserAlreadyExistsError } from "../error/user-already-exists";
 import { UsersRepository } from "../repository";
 import { CreateUser, UserRegisterReturn } from "../types";
-import { hashPassword } from "../utils/password.js";
+import { hashPassword } from "../utils/password";
 
 export class RegisterUserUseCase {
   constructor(private usersRepository: UsersRepository) {}

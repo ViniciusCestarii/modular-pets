@@ -1,7 +1,7 @@
 import { Static } from "elysia";
 import { InferSelectModel } from "drizzle-orm";
 import { usersTable } from "./user";
-import { createUserSchema } from "./schema";
+import { createUserSchema, loginSchema } from "./schema";
 
 export type FullUser = InferSelectModel<typeof usersTable>;
 
@@ -18,3 +18,5 @@ export type UserRegisterReturn = {
 };
 
 export type CreateUser = Static<typeof createUserSchema>;
+
+export type Login = Static<typeof loginSchema>;

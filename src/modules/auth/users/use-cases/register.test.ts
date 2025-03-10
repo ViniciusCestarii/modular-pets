@@ -2,7 +2,7 @@ import { RegisterUserUseCase } from "./register";
 import { InMemoryUsersRepository } from "../repositories/in-memory-repository";
 import { beforeEach, describe, expect, it } from "bun:test";
 import { CreateUser } from "../types";
-import { UserAlreadyExistsError } from "../error/user-already-exists.ts";
+import { UserAlreadyExistsError } from "../error/user-already-exists";
 
 describe("Create user use case", () => {
   let registerUserUseCase: RegisterUserUseCase;
