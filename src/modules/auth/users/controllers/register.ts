@@ -3,6 +3,7 @@ import { makeRegisterUserUseCase } from "../factories/make-register";
 import { UserAlreadyExistsError } from "../error/user-already-exists";
 import { createUserSchema } from "../schema";
 import { tokenExpirationTime } from "@/modules/shared/auth/jwt";
+import { setJwtCookie } from "../utils/cookie";
 
 export const registerUser = new Elysia()
   .error({
@@ -17,10 +18,12 @@ export const registerUser = new Elysia()
   })
   .post(
     "/users",
-    async ({ body, set }) => {
+    async ({ body, set, cookie }) => {
       const registerUserUseCase = makeRegisterUserUseCase();
 
       const registerReturn = await registerUserUseCase.execute(body);
+
+      setJwtCookie(cookie, registerReturn.token);
 
       set.status = "Created";
       return { ...registerReturn, expiresIn: tokenExpirationTime };

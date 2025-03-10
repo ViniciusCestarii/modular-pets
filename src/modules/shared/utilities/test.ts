@@ -4,6 +4,7 @@ import fs from "fs/promises";
 import path from "node:path";
 import { Pool } from "pg";
 import * as schemas from "@/db/schema";
+import { signToken } from "../auth/jwt";
 
 export const generateDatabaseURL = (databaseName: string): string => {
   if (!process.env.DATABASE_URL) {
@@ -59,3 +60,12 @@ export const seedDb = async (count: number) => {
 
   await pool.end();
 };
+
+const tokenTest = await signToken({
+  email: "john.doe@gmail.com",
+  id: "f93e5473-83da-4e8d-818d-62bc55c1b3a3",
+});
+
+const bearerToken = `Bearer ${tokenTest}`;
+
+export { bearerToken };

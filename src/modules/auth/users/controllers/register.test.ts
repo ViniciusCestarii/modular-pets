@@ -42,13 +42,15 @@ describe("Create user e2e", () => {
     const decodedToken = await verifyToken(body.token);
 
     // check some of the token payload
-    expect(decodedToken.payload).toMatchObject({
+    expect(decodedToken!.payload).toMatchObject({
       id: body.user.id,
       sub: body.user.id,
       email: body.user.email,
     });
 
     expect(body.expiresIn).toBe(tokenExpirationTime);
+
+    expect(response.headers.get("Set-Cookie")).toInclude(`auth=${body.token}`);
 
     expect(response.status).toBe(201);
   });

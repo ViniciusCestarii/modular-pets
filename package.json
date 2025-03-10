@@ -16,7 +16,8 @@
     "check": "eslint .",
     "check:types": "tsc --noEmit",
     "db:clean": "bun run scripts/clean-db.ts",
-    "db:seed": "bun run scripts/seed-db.ts"
+    "db:seed": "bun run scripts/seed-db.ts",
+    "generate-keys": "bun run scripts/generate-keys.ts"
   },
   "dependencies": {
     "@elysiajs/cors": "1.2.0",
