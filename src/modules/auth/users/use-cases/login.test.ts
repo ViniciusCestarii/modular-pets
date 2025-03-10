@@ -38,7 +38,7 @@ describe("Login user", () => {
     const decodedToken = await verifyToken(token);
 
     // check some of the token payload
-    expect(decodedToken.payload).toMatchObject({
+    expect(decodedToken!.payload).toMatchObject({
       id: createdUser.id,
       sub: createdUser.id,
       email: user.email,
