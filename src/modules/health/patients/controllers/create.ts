@@ -15,5 +15,8 @@ export const createPatient = new Elysia().use(auth()).post(
   },
   {
     body: createPatientSchema,
+    detail: {
+      tags: ["Health"],
+    },
   },
 );

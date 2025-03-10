@@ -13,5 +13,8 @@ export const listPets = new Elysia().get(
   },
   {
     query: listPetsSchema,
+    detail: {
+      tags: ["Pet"],
+    },
   },
 );

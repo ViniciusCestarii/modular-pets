@@ -30,5 +30,72 @@ export const registerUser = new Elysia()
     },
     {
       body: createUserSchema,
+      detail: {
+        tags: ["Auth"],
+        description:
+          "Register a new user and return a JWT token for authentication.",
+        requestBody: {
+          content: {
+            "application/json": {
+              schema: createUserSchema,
+            },
+          },
+        },
+        responses: {
+          "201": {
+            description: "User successfully registered and token generated.",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    user: {
+                      type: "object",
+                      properties: {
+                        id: { type: "string" },
+                        name: { type: "string" },
+                        email: { type: "string" },
+                        birthdate: { type: "string" },
+                      },
+                      required: ["id", "username", "email"],
+                    },
+                    token: {
+                      type: "string",
+                      description: "The JWT authentication token.",
+                    },
+                    expiresIn: {
+                      type: "integer",
+                      description:
+                        "The expiration time of the token in seconds.",
+                    },
+                  },
+                  required: ["user", "token", "expiresIn"],
+                },
+              },
+            },
+          },
+          "409": {
+            description: "User already exists",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    message: {
+                      type: "string",
+                      example:
+                        "User already exists with this email or username.",
+                    },
+                    name: {
+                      type: "string",
+                      example: "UserAlreadyExistsError",
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
   );

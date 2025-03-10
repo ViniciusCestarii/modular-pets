@@ -38,5 +38,8 @@ export const createPet = new Elysia()
     },
     {
       body: createPetSchema,
+      detail: {
+        tags: ["Pet"],
+      },
     },
   );
