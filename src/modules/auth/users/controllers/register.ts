@@ -17,7 +17,7 @@ export const registerUser = new Elysia()
     }
   })
   .post(
-    "/users",
+    "/users/register",
     async ({ body, set, cookie }) => {
       const registerUserUseCase = makeRegisterUserUseCase();
 
