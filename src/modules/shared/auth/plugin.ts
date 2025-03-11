@@ -6,13 +6,8 @@ export const auth = () =>
     name: "auth",
   })
     .onBeforeHandle(async ({ request, set }) => {
-      if (await checkCookie(request)) {
-        return;
-      }
-
-      if (await checkAuthorizationHeader(request)) {
-        return;
-      }
+      if (await checkCookie(request)) return;
+      if (await checkAuthorizationHeader(request)) return;
 
       set.status = "Unauthorized";
       return {
@@ -34,20 +29,20 @@ const checkCookie = async (request: Request) => {
 
   const token = cookieToken.trimStart().replace("auth=", "");
 
-  const isValid = await verifyToken(token);
+  const payload = await verifyToken(token);
 
-  return isValid;
+  return payload;
 };
 
 const checkAuthorizationHeader = async (request: Request) => {
   const authorization = request.headers.get("Authorization");
   if (!authorization) {
-    return false;
+    return null;
   }
 
   // separating the Bearer from the token
   const token = authorization.split(" ")[1];
-  const isValid = await verifyToken(token);
+  const payload = await verifyToken(token);
 
-  return isValid;
+  return payload;
 };
