@@ -33,5 +33,8 @@ export const createBreed = new Elysia()
     },
     {
       body: createBreedSchema,
+      detail: {
+        tags: ["Pet"],
+      },
     },
   );

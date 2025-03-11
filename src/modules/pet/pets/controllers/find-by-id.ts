@@ -28,5 +28,8 @@ export const findPetById = new Elysia()
           format: "uuid",
         }),
       }),
+      detail: {
+        tags: ["Pet"],
+      },
     },
   );
