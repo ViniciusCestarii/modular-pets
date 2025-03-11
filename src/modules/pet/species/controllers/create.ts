@@ -1,5 +1,5 @@
 import Elysia from "elysia";
-import { createSpecieSchema } from "../schema";
+import { createSpecieSchema, specieSchema } from "../schema";
 import { makeCreateSpecieUseCase } from "../factories/make-create";
 import { SpecieAlreadyExistsError } from "../errors/specie-alredy-exists";
 import { auth } from "@/modules/shared/auth/plugin";
@@ -31,6 +31,16 @@ export const createSpecie = new Elysia()
       auth: true,
       detail: {
         tags: ["Pet"],
+        responses: {
+          200: {
+            description: "Success",
+            content: {
+              "application/json": {
+                schema: specieSchema,
+              },
+            },
+          },
+        },
       },
     },
   );

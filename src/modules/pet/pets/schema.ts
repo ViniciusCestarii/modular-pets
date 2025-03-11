@@ -1,4 +1,6 @@
 import { t } from "elysia";
+import { createSelectSchema } from "drizzle-typebox";
+import { petsTable } from "./pet";
 
 export const createPetSchema = t.Object({
   name: t.String(),
@@ -14,6 +16,9 @@ export const createPetSchema = t.Object({
     format: "uuid",
   }),
 });
+
+// just for swagger
+export const petSchema = createSelectSchema(petsTable) as never;
 
 export const listPetsSchema = t.Object({
   page: t.Integer({ minimum: 1 }),

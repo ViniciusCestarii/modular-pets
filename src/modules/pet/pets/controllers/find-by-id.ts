@@ -1,6 +1,7 @@
 import Elysia, { t } from "elysia";
 import { PetNotFoundError } from "../errors/pet-not-found";
 import { makeFindPetByIdUseCase } from "../factories/make-find-by-id";
+import { petSchema } from "../schema";
 
 export const findPetById = new Elysia()
   .error({
@@ -30,6 +31,16 @@ export const findPetById = new Elysia()
       }),
       detail: {
         tags: ["Pet"],
+        responses: {
+          200: {
+            description: "Success",
+            content: {
+              "application/json": {
+                schema: petSchema,
+              },
+            },
+          },
+        },
       },
     },
   );
