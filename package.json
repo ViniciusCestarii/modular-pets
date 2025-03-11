@@ -23,7 +23,7 @@
     "@elysiajs/cors": "1.2.0",
     "@elysiajs/opentelemetry": "1.2.0",
     "@elysiajs/swagger": "1.2.2",
-    "bcrypt": "5.1.1",
+    "bcryptjs": "3.0.2",
     "dotenv": "16.4.5",
     "drizzle-orm": "0.39.3",
     "elysia": "1.2.21",
@@ -33,7 +33,6 @@
   },
   "devDependencies": {
     "@eslint/js": "9.20.0",
-    "@types/bcrypt": "5.0.2",
     "@types/bun": "latest",
     "@types/k6": "0.57.0",
     "@types/pg": "8.11.11",

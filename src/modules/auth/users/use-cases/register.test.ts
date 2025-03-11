@@ -36,7 +36,7 @@ describe("Create user use case", () => {
     const decodedToken = await verifyToken(response.token);
 
     // check some of the token payload
-    expect(decodedToken.payload).toMatchObject({
+    expect(decodedToken!.payload!).toMatchObject({
       id: response.user.id,
       sub: response.user.id,
       email: user.email,

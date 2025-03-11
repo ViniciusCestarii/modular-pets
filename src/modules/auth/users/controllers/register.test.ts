@@ -14,7 +14,7 @@ describe("Create user e2e", () => {
       birthdate: "1990-01-01",
     };
 
-    const request = new Request("http://localhost/auth/users", {
+    const request = new Request("http://localhost/auth/users/register", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -65,7 +65,7 @@ describe("Create user e2e", () => {
 
     await db.insert(usersTable).values(data).execute();
 
-    const request = new Request("http://localhost/auth/users", {
+    const request = new Request("http://localhost/auth/users/register", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -85,7 +85,7 @@ describe("Create user e2e", () => {
   it("should return 422 when creating a specie with invalid data", async () => {
     const data = {};
 
-    const request = new Request("http://localhost/auth/users", {
+    const request = new Request("http://localhost/auth/users/register", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
