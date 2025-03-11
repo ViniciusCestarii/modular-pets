@@ -1,5 +1,5 @@
 import Elysia from "elysia";
-import { createBreedSchema } from "../schema";
+import { breedSchema, createBreedSchema } from "../schema";
 import { makeCreateBreedUseCase } from "../factories/make-create";
 import { SpecieNotFoundError } from "../../shared/errors/specie-not-found";
 import { BreedAlreadyExistsError } from "../errors/breed-already-exists";
@@ -35,6 +35,16 @@ export const createBreed = new Elysia()
       body: createBreedSchema,
       detail: {
         tags: ["Pet"],
+        responses: {
+          200: {
+            description: "Success",
+            content: {
+              "application/json": {
+                schema: breedSchema,
+              },
+            },
+          },
+        },
       },
     },
   );
