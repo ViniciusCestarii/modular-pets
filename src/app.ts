@@ -7,12 +7,14 @@ import cors from "@elysiajs/cors";
 import healthRoutes from "./modules/health/shared/routes";
 import petRoutes from "./modules/pet/shared/routes";
 import authRoutes from "./modules/auth/shared/routes";
+import { auth } from "./modules/shared/auth/plugin";
 
 export const app = new Elysia()
   .use(axiomTelemetry())
   .use(cors())
   .use(swagger())
   .use(errorMiddleware())
+  .use(auth())
   .use(petRoutes)
   .use(healthRoutes)
   .use(authRoutes)
@@ -21,3 +23,5 @@ export const app = new Elysia()
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
 );
+
+export type App = typeof app;

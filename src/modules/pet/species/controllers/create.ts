@@ -28,5 +28,6 @@ export const createSpecie = new Elysia()
     },
     {
       body: createSpecieSchema,
+      auth: true,
     },
   );

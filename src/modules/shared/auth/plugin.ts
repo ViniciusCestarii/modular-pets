@@ -1,23 +1,41 @@
 import Elysia from "elysia";
 import { verifyToken } from "./jwt";
 
+// with macro it's possible to pick the token from elysia
+// new Elysia()
+// .use(auth())
+// .post(
+//   "/pets",
+//   async ({ body, set, token }) => {
+//   ...
+//   },
+//   {
+//     body: createPetSchema,
+//     auth: true, // this will trigger the auth macro
+//   },
+
 export const auth = () =>
   new Elysia({
     name: "auth",
-  })
-    .onBeforeHandle(async ({ request, set }) => {
-      if (await checkCookie(request)) return;
-      if (await checkAuthorizationHeader(request)) return;
+  }).macro({
+    // I will add auth based on roles in the future
+    // auth: ({ roles }: {roles: string[]}) => ({
+    auth: () => ({
+      resolve: async ({ request, error }) => {
+        let token = await getTokenFromCookie(request);
+        if (token) return { token };
+        token = await getTokenFromAuthorizationHeader(request);
+        if (token) return { token };
 
-      set.status = "Unauthorized";
-      return {
-        name: "Unauthorized",
-        message: "Unauthorized",
-      };
-    })
-    .as("scoped");
+        return error("Unauthorized", {
+          name: "Unauthorized",
+          message: "Unauthorized",
+        });
+      },
+    }),
+  });
 
-const checkCookie = async (request: Request) => {
+const getTokenFromCookie = async (request: Request) => {
   const cookies = request.headers.get("Cookie");
   const cookieToken = cookies
     ?.split(";")
@@ -34,7 +52,7 @@ const checkCookie = async (request: Request) => {
   return payload;
 };
 
-const checkAuthorizationHeader = async (request: Request) => {
+const getTokenFromAuthorizationHeader = async (request: Request) => {
   const authorization = request.headers.get("Authorization");
   if (!authorization) {
     return null;
