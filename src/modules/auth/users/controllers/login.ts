@@ -29,5 +29,60 @@ export const loginUser = new Elysia()
     },
     {
       body: loginSchema,
+      detail: {
+        tags: ["Auth"],
+        description: "Login user and retrieve an authentication token.",
+        requestBody: {
+          content: {
+            "application/json": {
+              schema: loginSchema,
+            },
+          },
+        },
+        responses: {
+          "200": {
+            description: "Successful login and token generation.",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    token: {
+                      type: "string",
+                      description: "The JWT authentication token.",
+                    },
+                    expiresIn: {
+                      type: "integer",
+                      description:
+                        "The expiration time of the token in seconds.",
+                    },
+                  },
+                  required: ["token", "expiresIn"],
+                },
+              },
+            },
+          },
+          "401": {
+            description: "Invalid credentials provided.",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    message: {
+                      type: "string",
+                      example: "Invalid credentials",
+                    },
+                    name: {
+                      type: "string",
+                      example: "InvalidCredentialsError",
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
   );
