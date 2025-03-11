@@ -1,28 +1,41 @@
 import Elysia from "elysia";
 import { verifyToken } from "./jwt";
 
+// with macro it's possible to pick the token from elysia
+// new Elysia()
+// .use(auth())
+// .post(
+//   "/pets",
+//   async ({ body, set, token }) => {
+//   ...
+//   },
+//   {
+//     body: createPetSchema,
+//     auth: true, // this will trigger the auth macro
+//   },
+
 export const auth = () =>
   new Elysia({
     name: "auth",
-  })
-    .onBeforeHandle(async ({ request, set }) => {
-      if (await checkCookie(request)) {
-        return;
-      }
+  }).macro({
+    // I will add auth based on roles in the future
+    // auth: ({ roles }: {roles: string[]}) => ({
+    auth: () => ({
+      resolve: async ({ request, error }) => {
+        let token = await getTokenFromCookie(request);
+        if (token) return { token };
+        token = await getTokenFromAuthorizationHeader(request);
+        if (token) return { token };
 
-      if (await checkAuthorizationHeader(request)) {
-        return;
-      }
+        return error("Unauthorized", {
+          name: "Unauthorized",
+          message: "Unauthorized",
+        });
+      },
+    }),
+  });
 
-      set.status = "Unauthorized";
-      return {
-        name: "Unauthorized",
-        message: "Unauthorized",
-      };
-    })
-    .as("scoped");
-
-const checkCookie = async (request: Request) => {
+const getTokenFromCookie = async (request: Request) => {
   const cookies = request.headers.get("Cookie");
   const cookieToken = cookies
     ?.split(";")
@@ -34,20 +47,20 @@ const checkCookie = async (request: Request) => {
 
   const token = cookieToken.trimStart().replace("auth=", "");
 
-  const isValid = await verifyToken(token);
+  const payload = await verifyToken(token);
 
-  return isValid;
+  return payload;
 };
 
-const checkAuthorizationHeader = async (request: Request) => {
+const getTokenFromAuthorizationHeader = async (request: Request) => {
   const authorization = request.headers.get("Authorization");
   if (!authorization) {
-    return false;
+    return null;
   }
 
   // separating the Bearer from the token
   const token = authorization.split(" ")[1];
-  const isValid = await verifyToken(token);
+  const payload = await verifyToken(token);
 
-  return isValid;
+  return payload;
 };
