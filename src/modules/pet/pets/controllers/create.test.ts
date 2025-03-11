@@ -3,6 +3,7 @@ import { app } from "@/app";
 import { CreatePet } from "../types";
 import db from "@/db";
 import { breedsTable, speciesTable } from "@/db/schema";
+import { bearerToken } from "@/modules/shared/utilities/test";
 
 describe("Create pet e2e", () => {
   it("should create a new pet successfully", async () => {
@@ -31,6 +32,7 @@ describe("Create pet e2e", () => {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: bearerToken,
       },
     });
 
@@ -75,6 +77,7 @@ describe("Create pet e2e", () => {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: bearerToken,
       },
     });
 
@@ -105,6 +108,7 @@ describe("Create pet e2e", () => {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: bearerToken,
       },
     });
 
@@ -146,6 +150,7 @@ describe("Create pet e2e", () => {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: bearerToken,
       },
     });
 
@@ -166,6 +171,7 @@ describe("Create pet e2e", () => {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: bearerToken,
       },
     });
 
@@ -176,5 +182,32 @@ describe("Create pet e2e", () => {
     expect(body).toBeTruthy();
 
     expect(response.status).toBe(422);
+  });
+
+  it("should return 401 trying being Unauthorized", async () => {
+    const data: CreatePet = {
+      name: "Nina",
+      birthdate: "2021-01-01",
+      sex: "FEMALE",
+      observations: "She's a very playful dog",
+      speciesId: "00000000-0000-0000-0000-000000000000",
+      breedId: "00000000-0000-0000-0000-000000000000",
+    };
+
+    const request = new Request("http://localhost/pet/pets", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const response = await app.handle(request);
+
+    const body = await response.json();
+
+    expect(body.name).toBe("Unauthorized");
+
+    expect(response.status).toBe(401);
   });
 });

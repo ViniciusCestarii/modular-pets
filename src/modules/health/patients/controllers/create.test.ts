@@ -1,6 +1,7 @@
 import { describe, expect, it } from "bun:test";
 import { app } from "@/app";
 import { CreatePatient } from "../types";
+import { bearerToken } from "@/modules/shared/utilities/test";
 
 describe("Create patient e2e", () => {
   it("should create a new patient successfully", async () => {
@@ -19,6 +20,7 @@ describe("Create patient e2e", () => {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: bearerToken,
       },
     });
 
@@ -46,6 +48,7 @@ describe("Create patient e2e", () => {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: bearerToken,
       },
     });
 
@@ -56,5 +59,33 @@ describe("Create patient e2e", () => {
     expect(body).toBeTruthy();
 
     expect(response.status).toBe(422);
+  });
+
+  it("should return 401 trying being Unauthorized", async () => {
+    const data: CreatePatient = {
+      name: "Nina",
+      birthdate: "2021-01-01",
+      medicalObservations:
+        "No prior medical conditions reported. Regular vaccinations up to date. Recent flea and tick prevention administered. Healthy and active upon initial examination.",
+      sex: "FEMALE",
+      specie: "Dog",
+      breed: "German Shepherd",
+    };
+
+    const request = new Request("http://localhost/health/patients", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const response = await app.handle(request);
+
+    const body = await response.json();
+
+    expect(body.name).toBe("Unauthorized");
+
+    expect(response.status).toBe(401);
   });
 });

@@ -41,7 +41,6 @@ describe("List pet e2e", () => {
 
     const request = new Request(url.toString(), {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
     });
 
     const response = await app.handle(request);
@@ -82,7 +81,6 @@ describe("List pet e2e", () => {
 
     const request = new Request(url.toString(), {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
     });
 
     const response = await app.handle(request);
@@ -137,7 +135,6 @@ describe("List pet e2e", () => {
 
     const request = new Request(url.toString(), {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
     });
 
     const response = await app.handle(request);
@@ -185,7 +182,6 @@ describe("List pet e2e", () => {
 
     const request = new Request(url.toString(), {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
     });
 
     const response = await app.handle(request);

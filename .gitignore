@@ -41,3 +41,9 @@ yarn-error.log*
 **/*.log
 package-lock.json
 **/*.bun
+
+# keys
+*.pem
+
+# Allow .pem files in keys/test
+!keys/test/*.pem

@@ -6,6 +6,7 @@ import { errorMiddleware } from "./modules/shared/utilities/error-middleware";
 import cors from "@elysiajs/cors";
 import healthRoutes from "./modules/health/shared/routes";
 import petRoutes from "./modules/pet/shared/routes";
+import authRoutes from "./modules/auth/shared/routes";
 
 export const app = new Elysia()
   .use(axiomTelemetry())
@@ -14,6 +15,7 @@ export const app = new Elysia()
   .use(errorMiddleware())
   .use(petRoutes)
   .use(healthRoutes)
+  .use(authRoutes)
   .listen(env.PORT);
 
 console.log(

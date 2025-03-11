@@ -26,3 +26,5 @@ jobs:
 
       - name: Run Unit Tests
         run: bun run test
+        env:
+          DATABASE_URL: "postgresql://just-to-avoid-error:just-to-avoid-error@localhost:5432/just-to-avoid-error"
