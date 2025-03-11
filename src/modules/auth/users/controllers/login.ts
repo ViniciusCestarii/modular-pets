@@ -35,7 +35,7 @@ export const loginUser = new Elysia()
         requestBody: {
           content: {
             "application/json": {
-              schema: loginSchema, // Assuming loginSchema is already defined to validate the body
+              schema: loginSchema,
             },
           },
         },
@@ -71,7 +71,7 @@ export const loginUser = new Elysia()
                   properties: {
                     message: {
                       type: "string",
-                      example: "Invalid username or password.",
+                      example: "Invalid credentials",
                     },
                     name: {
                       type: "string",

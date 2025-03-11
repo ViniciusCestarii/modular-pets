@@ -83,8 +83,7 @@ export const registerUser = new Elysia()
                   properties: {
                     message: {
                       type: "string",
-                      example:
-                        "User already exists with this email or username.",
+                      example: "User already exists",
                     },
                     name: {
                       type: "string",
