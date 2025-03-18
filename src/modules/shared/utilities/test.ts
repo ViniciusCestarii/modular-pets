@@ -66,6 +66,8 @@ const tokenTest = await signToken({
   id: "f93e5473-83da-4e8d-818d-62bc55c1b3a3",
 });
 
-const bearerToken = `Bearer ${tokenTest}`;
+export const bearerToken = `Bearer ${tokenTest}`;
 
-export { bearerToken };
+export const dogImagePath = path.resolve(
+  "src/modules/shared/test-assets/milli-dog.jpg",
+);

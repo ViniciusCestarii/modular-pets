@@ -2,12 +2,11 @@ import db from "@/db";
 import { ImagesRepository } from "../repository";
 import { Image, Owner } from "../types";
 import { imagesTable } from "../image";
-import fileToBase64 from "../utils/file-to-base64";
 import { eq } from "drizzle-orm";
 
-export class DbRepository implements ImagesRepository {
+export class DbImagesRepository implements ImagesRepository {
   async uploadImage(owner: Owner, file: File): Promise<Image> {
-    const base64 = await fileToBase64(file);
+    const base64 = Buffer.from(await file.arrayBuffer()).toString("base64");
     const url = `data:${file.type};base64,${base64}`;
     const rows = await db
       .insert(imagesTable)
