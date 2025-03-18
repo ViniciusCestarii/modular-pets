@@ -10,3 +10,6 @@ export * from "@/modules/health/patients/patient";
 
 export * from "@/modules/auth/drizzle";
 export * from "@/modules/auth/users/user";
+
+export * from "@/modules/shared/drizzle";
+export * from "@/modules/shared/images/image";
