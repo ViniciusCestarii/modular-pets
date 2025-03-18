@@ -38,3 +38,5 @@ jobs:
         run: bun run test:e2e
         env:
           DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/modular-pets"
+          PRIVATE_TOKEN_KEY_PATH: "keys/test/token-private.pem"
+          PUBLIC_TOKEN_KEY_PATH: "keys/test/token-public.pem"
