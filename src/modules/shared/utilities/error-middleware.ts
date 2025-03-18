@@ -29,7 +29,8 @@ export const errorMiddleware =
       if (
         code === "UNKNOWN" ||
         code === "INTERNAL_SERVER_ERROR" ||
-        code === 500
+        code === 500 ||
+        code === "PARSE"
       ) {
         return error;
       }
