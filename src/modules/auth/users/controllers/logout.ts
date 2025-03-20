@@ -20,6 +20,8 @@ export const logoutUser = new Elysia().use(auth()).post(
   {
     auth: true,
     detail: {
+      summary: "Logout",
+      description: "Logout the user",
       tags: ["Auth"],
       responses: {
         204: {

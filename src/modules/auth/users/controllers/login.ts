@@ -30,6 +30,7 @@ export const loginUser = new Elysia()
     {
       body: loginSchema,
       detail: {
+        summary: "Login",
         tags: ["Auth"],
         description: "Login user and retrieve an authentication token.",
         requestBody: {

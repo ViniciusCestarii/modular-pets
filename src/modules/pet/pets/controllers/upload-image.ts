@@ -40,6 +40,8 @@ export const uploadPetImage = new Elysia()
         image: t.File({ format: "image/*" }),
       }),
       detail: {
+        summary: "Upload pet image",
+        description: "Upload a new image for a pet",
         tags: ["Pet"],
         responses: {
           201: {

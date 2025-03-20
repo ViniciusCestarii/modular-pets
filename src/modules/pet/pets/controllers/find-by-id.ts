@@ -30,6 +30,8 @@ export const findPetById = new Elysia()
         }),
       }),
       detail: {
+        summary: "Find pet by id",
+        description: "Find a pet by its id",
         tags: ["Pet"],
         responses: {
           200: {

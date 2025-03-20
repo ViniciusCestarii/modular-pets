@@ -32,6 +32,8 @@ export const createSpecie = new Elysia()
       body: createSpecieSchema,
       auth: true,
       detail: {
+        summary: "Create specie",
+        description: "Create a new specie",
         tags: ["Pet"],
         responses: {
           200: {

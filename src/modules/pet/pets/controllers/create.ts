@@ -46,6 +46,8 @@ export const createPet = new Elysia()
       body: createPetSchema,
       auth: true,
       detail: {
+        summary: "Create pet",
+        description: "Create a new pet",
         tags: ["Pet"],
         responses: {
           200: {

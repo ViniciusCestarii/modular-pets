@@ -14,6 +14,8 @@ export const listPets = new Elysia().get(
   {
     query: listPetsSchema,
     detail: {
+      summary: "List pets",
+      description: "List paginated pets",
       tags: ["Pet"],
       responses: {
         200: {

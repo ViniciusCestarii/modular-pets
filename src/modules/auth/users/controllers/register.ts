@@ -35,9 +35,10 @@ export const registerUser = new Elysia()
     {
       body: createUserSchema,
       detail: {
-        tags: ["Auth"],
+        summary: "Register",
         description:
           "Register a new user and return a JWT token for authentication.",
+        tags: ["Auth"],
         requestBody: {
           content: {
             "application/json": {

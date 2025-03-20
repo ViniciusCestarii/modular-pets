@@ -40,6 +40,8 @@ export const createBreed = new Elysia()
       body: createBreedSchema,
       auth: true,
       detail: {
+        summary: "Create breed",
+        description: "Create a new breed",
         tags: ["Pet"],
         responses: {
           200: {
