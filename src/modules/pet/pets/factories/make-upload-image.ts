@@ -1,14 +1,14 @@
-import { DbImagesRepository } from "@/modules/shared/images/repositories/db-repository";
 import { UploadPetImageUseCase } from "../use-cases/upload-image";
 import { DrizzlePetsRepository } from "../repositories/drizzle-repository";
+import { makeImageRespository } from "@/modules/shared/images/factories/make-image-repository";
 
 export const makeUploadImagePetsUseCase = () => {
   const drizzlePetsRepository = new DrizzlePetsRepository();
-  const dbImageRepository = new DbImagesRepository();
+  const imageRepository = makeImageRespository();
 
   const useCase = new UploadPetImageUseCase(
     drizzlePetsRepository,
-    dbImageRepository,
+    imageRepository,
   );
 
   return useCase;

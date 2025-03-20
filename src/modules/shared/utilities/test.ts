@@ -68,6 +68,9 @@ const tokenTest = await signToken({
 
 export const bearerToken = `Bearer ${tokenTest}`;
 
-export const dogImagePath = path.resolve(
+const dogImagePath = path.resolve(
   "src/modules/shared/test-assets/milli-dog.jpg",
 );
+
+const imageBuffer = await fs.readFile(dogImagePath);
+export const dogImageFile = new File([imageBuffer], "milli-dog.jpg");

@@ -7,6 +7,9 @@ const envSchema = t.Object({
   DATABASE_URL: t.String({ format: "uri" }),
   PUBLIC_TOKEN_KEY_PATH: t.String(),
   PRIVATE_TOKEN_KEY_PATH: t.String(),
+  IMAGE_STORAGE: t.Union([t.Literal("s3"), t.Literal("local")], {
+    default: "local",
+  }),
   AXIOM_DATASET: t.Optional(t.String()),
   AXIOM_TOKEN: t.Optional(t.String()),
 });

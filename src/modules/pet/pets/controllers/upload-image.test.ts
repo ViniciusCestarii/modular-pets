@@ -4,8 +4,7 @@ import { CreatePet } from "../types";
 import db from "@/db";
 import { breedsTable, petsTable, speciesTable } from "@/db/schema";
 import { Image } from "@/modules/shared/images/types";
-import fs from "fs/promises";
-import { bearerToken, dogImagePath } from "@/modules/shared/utilities/test";
+import { bearerToken, dogImageFile } from "@/modules/shared/utilities/test";
 
 describe("Upload pet image e2e", () => {
   it("should upload pet image", async () => {
@@ -33,11 +32,8 @@ describe("Upload pet image e2e", () => {
 
     const url = `http://localhost/pet/pets/${pet.id}/images`;
 
-    const imageBuffer = await fs.readFile(dogImagePath);
-    const imageFile = new File([imageBuffer], "dog.jpg");
-
     const formData = new FormData();
-    formData.append("image", imageFile);
+    formData.append("image", dogImageFile);
 
     const request = new Request(url, {
       method: "POST",
@@ -85,11 +81,8 @@ describe("Upload pet image e2e", () => {
   it("should return 401 trying being Unauthorized", async () => {
     const url = `http://localhost/pet/pets/00000000-0000-0000-0000-000000000000/images`;
 
-    const imageBuffer = await fs.readFile(dogImagePath);
-    const imageFile = new File([imageBuffer], "dog.jpg");
-
     const formData = new FormData();
-    formData.append("image", imageFile);
+    formData.append("image", dogImageFile);
 
     const request = new Request(url, {
       method: "POST",
