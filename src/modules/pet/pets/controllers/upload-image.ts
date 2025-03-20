@@ -3,7 +3,8 @@ import { makeUploadImagePetsUseCase } from "../factories/make-upload-image";
 import { PetNotFoundError } from "../errors/pet-not-found";
 import { auth } from "@/modules/shared/auth/plugin";
 import { swaggerImageSchema } from "@/modules/shared/images/schema";
-import { errorPetNotFoundSchema } from "../schema";
+import { swaggerErrorPetNotFoundSchema } from "../schema";
+import { swaggerUnauthorizedSchema } from "@/modules/auth/users/schema";
 
 export const uploadPetImage = new Elysia()
   .use(auth)
@@ -49,11 +50,19 @@ export const uploadPetImage = new Elysia()
               },
             },
           },
+          401: {
+            description: "Unauthorized",
+            content: {
+              "application/json": {
+                schema: swaggerUnauthorizedSchema,
+              },
+            },
+          },
           404: {
             description: "Pet not found",
             content: {
               "application/json": {
-                schema: errorPetNotFoundSchema,
+                schema: swaggerErrorPetNotFoundSchema,
               },
             },
           },

@@ -33,7 +33,7 @@ export const swaggerPetSchema = t.Intersect([
   }),
 ]);
 
-export const errorPetNotFoundSchema = t.Object({
+export const swaggerErrorPetNotFoundSchema = t.Object({
   name: t.Literal(PetNotFoundError.name),
   message: t.Literal(new PetNotFoundError().message),
 });

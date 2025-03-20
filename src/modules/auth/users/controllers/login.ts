@@ -1,5 +1,5 @@
 import Elysia from "elysia";
-import { loginSchema } from "../schema";
+import { loginSchema, swaggerInvalidCredentialsErrorSchema } from "../schema";
 import { makeLoginUserUseCase } from "../factories/make-login";
 import { InvalidCredentialsError } from "../error/invalid-credentials";
 import { tokenExpirationTime } from "@/modules/shared/auth/jwt";
@@ -66,19 +66,7 @@ export const loginUser = new Elysia()
             description: "Invalid credentials provided.",
             content: {
               "application/json": {
-                schema: {
-                  type: "object",
-                  properties: {
-                    message: {
-                      type: "string",
-                      example: "Invalid credentials",
-                    },
-                    name: {
-                      type: "string",
-                      example: "InvalidCredentialsError",
-                    },
-                  },
-                },
+                schema: swaggerInvalidCredentialsErrorSchema,
               },
             },
           },

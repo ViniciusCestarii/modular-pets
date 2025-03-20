@@ -5,6 +5,12 @@ import { SpecieNotFoundError } from "../../shared/errors/specie-not-found";
 import { BreedNotFoundError } from "../../shared/errors/breed-not-found";
 import { InvalidBreedSpecieError } from "../../shared/errors/invalid-breed-specie";
 import { auth } from "@/modules/shared/auth/plugin";
+import { swaggerUnauthorizedSchema } from "@/modules/auth/users/schema";
+import {
+  swaggerBreedNotFoundErrorSchema,
+  swaggerInvalidBreedSpecieErrorSchema,
+  swaggerSpecieNotFoundErrorSchema,
+} from "../../shared/schema";
 
 export const createPet = new Elysia()
   .use(auth())
@@ -47,6 +53,28 @@ export const createPet = new Elysia()
             content: {
               "application/json": {
                 schema: swaggerPetSchema,
+              },
+            },
+          },
+          400: {
+            description: "Bad Request",
+            content: {
+              "application/json": {
+                schema: {
+                  oneOf: [
+                    swaggerSpecieNotFoundErrorSchema,
+                    swaggerBreedNotFoundErrorSchema,
+                    swaggerInvalidBreedSpecieErrorSchema,
+                  ],
+                },
+              },
+            },
+          },
+          401: {
+            description: "Unauthorized",
+            content: {
+              "application/json": {
+                schema: swaggerUnauthorizedSchema,
               },
             },
           },

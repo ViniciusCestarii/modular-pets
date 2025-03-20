@@ -8,9 +8,9 @@ export const createSpecieSchema = t.Object({
 });
 
 // just for swagger
-export const specieSchema = createSelectSchema(speciesTable);
+export const swaggerSpecieSchema = createSelectSchema(speciesTable);
 
-export const errorSpecieAlreadyExistsSchema = t.Object({
+export const swaggerSpecieAlreadyExistsErrorSchema = t.Object({
   name: t.Literal(SpecieAlreadyExistsError.name),
   message: t.Literal(new SpecieAlreadyExistsError().message),
 });

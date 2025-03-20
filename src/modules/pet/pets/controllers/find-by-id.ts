@@ -1,7 +1,7 @@
 import Elysia, { t } from "elysia";
 import { PetNotFoundError } from "../errors/pet-not-found";
 import { makeFindPetByIdUseCase } from "../factories/make-find-by-id";
-import { errorPetNotFoundSchema, swaggerPetSchema } from "../schema";
+import { swaggerErrorPetNotFoundSchema, swaggerPetSchema } from "../schema";
 
 export const findPetById = new Elysia()
   .error({
@@ -44,7 +44,7 @@ export const findPetById = new Elysia()
             description: "Pet not found",
             content: {
               "application/json": {
-                schema: errorPetNotFoundSchema,
+                schema: swaggerErrorPetNotFoundSchema,
               },
             },
           },

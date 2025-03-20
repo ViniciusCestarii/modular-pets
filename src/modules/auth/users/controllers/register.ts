@@ -1,9 +1,13 @@
 import Elysia from "elysia";
 import { makeRegisterUserUseCase } from "../factories/make-register";
 import { UserAlreadyExistsError } from "../error/user-already-exists";
-import { createUserSchema } from "../schema";
 import { tokenExpirationTime } from "@/modules/shared/auth/jwt";
 import { setJwtCookie } from "../utils/cookie";
+import {
+  createUserSchema,
+  swaggerUserAlreadyExistsErrorSchema,
+  swaggerUserViewSchema,
+} from "../schema";
 
 export const registerUser = new Elysia()
   .error({
@@ -49,16 +53,7 @@ export const registerUser = new Elysia()
                 schema: {
                   type: "object",
                   properties: {
-                    user: {
-                      type: "object",
-                      properties: {
-                        id: { type: "string" },
-                        name: { type: "string" },
-                        email: { type: "string" },
-                        birthdate: { type: "string" },
-                      },
-                      required: ["id", "username", "email"],
-                    },
+                    user: swaggerUserViewSchema,
                     token: {
                       type: "string",
                       description: "The JWT authentication token.",
@@ -78,19 +73,7 @@ export const registerUser = new Elysia()
             description: "User already exists",
             content: {
               "application/json": {
-                schema: {
-                  type: "object",
-                  properties: {
-                    message: {
-                      type: "string",
-                      example: "User already exists",
-                    },
-                    name: {
-                      type: "string",
-                      example: "UserAlreadyExistsError",
-                    },
-                  },
-                },
+                schema: swaggerUserAlreadyExistsErrorSchema,
               },
             },
           },

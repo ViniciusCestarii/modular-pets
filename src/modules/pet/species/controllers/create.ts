@@ -1,8 +1,10 @@
 import Elysia from "elysia";
-import { createSpecieSchema, specieSchema } from "../schema";
+import { createSpecieSchema, swaggerSpecieSchema } from "../schema";
 import { makeCreateSpecieUseCase } from "../factories/make-create";
 import { SpecieAlreadyExistsError } from "../errors/specie-alredy-exists";
 import { auth } from "@/modules/shared/auth/plugin";
+import { swaggerUnauthorizedSchema } from "@/modules/auth/users/schema";
+import { swaggerSpecieNotFoundErrorSchema } from "../../shared/schema";
 
 export const createSpecie = new Elysia()
   .use(auth())
@@ -36,7 +38,23 @@ export const createSpecie = new Elysia()
             description: "Success",
             content: {
               "application/json": {
-                schema: specieSchema,
+                schema: swaggerSpecieSchema,
+              },
+            },
+          },
+          401: {
+            description: "Unauthorized",
+            content: {
+              "application/json": {
+                schema: swaggerUnauthorizedSchema,
+              },
+            },
+          },
+          409: {
+            description: "Specie already exists",
+            content: {
+              "application/json": {
+                schema: swaggerSpecieNotFoundErrorSchema,
               },
             },
           },
