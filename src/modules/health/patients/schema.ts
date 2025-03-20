@@ -1,4 +1,6 @@
+import { createSelectSchema } from "drizzle-typebox";
 import { t } from "elysia";
+import { patientsTable } from "./patient";
 
 export const createPatientSchema = t.Object({
   name: t.String(),
@@ -8,3 +10,5 @@ export const createPatientSchema = t.Object({
   breed: t.String(),
   specie: t.String(),
 });
+
+export const swaggerPatientSchema = createSelectSchema(patientsTable) as never;
