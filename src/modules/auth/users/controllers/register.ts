@@ -1,7 +1,7 @@
 import Elysia from "elysia";
 import { makeRegisterUserUseCase } from "../factories/make-register";
 import { UserAlreadyExistsError } from "../error/user-already-exists";
-import { tokenExpirationTime } from "@/modules/shared/auth/jwt";
+import { tokenExpirationTime } from "@/utils/auth/jwt";
 import { setJwtCookie } from "../utils/cookie";
 import {
   createUserSchema,

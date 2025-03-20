@@ -4,7 +4,7 @@ import { CreateUser, Login } from "../types";
 import { LoginUserUseCase } from "./login";
 import { InvalidCredentialsError } from "../error/invalid-credentials";
 import { hashPassword } from "../utils/password";
-import { verifyToken } from "@/modules/shared/auth/jwt";
+import { verifyToken } from "@/utils/auth/jwt";
 
 describe("Login user", () => {
   let loginUserUseCase: LoginUserUseCase;

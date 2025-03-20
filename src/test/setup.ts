@@ -4,12 +4,8 @@ import { execSync } from "node:child_process";
 import { afterAll, afterEach } from "bun:test";
 import fs from "fs/promises";
 import { drizzle } from "drizzle-orm/node-postgres";
-import {
-  generateDatabaseURL,
-  generateTestDrizzleConfig,
-  resetDb,
-} from "./test";
-import eventBus from "./events/event-emmiter";
+import { generateDatabaseURL, generateTestDrizzleConfig, resetDb } from ".";
+import eventBus from "@/utils/event-emmiter";
 
 const databaseName = `test_modular_pets_${randomUUID().replaceAll("-", "_")}`;
 

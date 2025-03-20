@@ -4,7 +4,7 @@ import fs from "fs/promises";
 import path from "node:path";
 import { Pool } from "pg";
 import * as schemas from "@/db/schema";
-import { signToken } from "../auth/jwt";
+import { signToken } from "@/utils/auth/jwt";
 
 export const generateDatabaseURL = (databaseName: string): string => {
   if (!process.env.DATABASE_URL) {
@@ -68,9 +68,7 @@ const tokenTest = await signToken({
 
 export const bearerToken = `Bearer ${tokenTest}`;
 
-const dogImagePath = path.resolve(
-  "src/modules/shared/test-assets/milli-dog.jpg",
-);
+const dogImagePath = path.resolve("src/test/assets/milli-dog.jpg");
 
 const imageBuffer = await fs.readFile(dogImagePath);
 export const dogImageFile = new File([imageBuffer], "milli-dog.jpg");

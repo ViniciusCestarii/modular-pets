@@ -1,4 +1,4 @@
-import { seedDb } from "@/modules/shared/utilities/test";
+import { seedDb } from "@/test";
 
 const DEFAULT_VALUE = 1000;
 

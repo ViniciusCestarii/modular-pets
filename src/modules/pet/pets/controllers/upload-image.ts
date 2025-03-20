@@ -1,7 +1,7 @@
 import Elysia, { t } from "elysia";
 import { makeUploadImagePetsUseCase } from "../factories/make-upload-image";
 import { PetNotFoundError } from "../errors/pet-not-found";
-import { auth } from "@/modules/shared/auth/plugin";
+import { auth } from "@/utils/auth/plugin";
 import { swaggerImageSchema } from "@/modules/shared/images/schema";
 import { swaggerErrorPetNotFoundSchema } from "../schema";
 import { swaggerUnauthorizedSchema } from "@/modules/auth/users/schema";

@@ -2,7 +2,7 @@ import Elysia from "elysia";
 import { createSpecieSchema, swaggerSpecieSchema } from "../schema";
 import { makeCreateSpecieUseCase } from "../factories/make-create";
 import { SpecieAlreadyExistsError } from "../errors/specie-alredy-exists";
-import { auth } from "@/modules/shared/auth/plugin";
+import { auth } from "@/utils/auth/plugin";
 import { swaggerUnauthorizedSchema } from "@/modules/auth/users/schema";
 import { swaggerSpecieNotFoundErrorSchema } from "../../shared/schema";
 

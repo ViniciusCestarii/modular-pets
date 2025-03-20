@@ -1,4 +1,4 @@
-import { BaseError } from "@/modules/shared/utilities/base-error";
+import { BaseError } from "@/utils/base-error";
 
 export class PetNotFoundError extends BaseError {
   constructor() {

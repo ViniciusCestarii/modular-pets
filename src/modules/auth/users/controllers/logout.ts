@@ -1,4 +1,4 @@
-import { auth } from "@/modules/shared/auth/plugin";
+import { auth } from "@/utils/auth/plugin";
 import Elysia from "elysia";
 import { swaggerUnauthorizedSchema } from "../schema";
 

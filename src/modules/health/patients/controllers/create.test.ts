@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
 import { app } from "@/app";
 import { CreatePatient } from "../types";
-import { bearerToken } from "@/modules/shared/utilities/test";
+import { bearerToken } from "@/test";
 
 describe("Create patient e2e", () => {
   it("should create a new patient successfully", async () => {

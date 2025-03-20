@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import { app } from "@/app";
-import { signToken } from "@/modules/shared/auth/jwt";
+import { signToken } from "@/utils/auth/jwt";
 
 describe("Logout user e2e", () => {
   it("should logout an user", async () => {

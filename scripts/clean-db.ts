@@ -1,4 +1,4 @@
-import { resetDb } from "@/modules/shared/utilities/test";
+import { resetDb } from "@/test";
 
 await resetDb();
 

@@ -1,4 +1,4 @@
-import eventBus from "@/modules/shared/utilities/events/event-emmiter";
+import eventBus from "@/utils/event-emmiter";
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";

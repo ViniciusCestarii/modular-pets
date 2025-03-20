@@ -3,7 +3,7 @@ import { app } from "@/app";
 import { CreateSpecie } from "../types";
 import db from "@/db";
 import { speciesTable } from "../specie";
-import { bearerToken } from "@/modules/shared/utilities/test";
+import { bearerToken } from "@/test";
 
 describe("Create specie e2e", () => {
   it("should create a specie successfully", async () => {
