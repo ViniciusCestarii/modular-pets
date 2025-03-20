@@ -1,7 +1,8 @@
 import Elysia from "elysia";
-import { createPatientSchema } from "../schema";
+import { createPatientSchema, swaggerPatientSchema } from "../schema";
 import { makeCreatePatientUseCase } from "../factories/make-create";
 import { auth } from "@/modules/shared/auth/plugin";
+import { swaggerUnauthorizedSchema } from "@/modules/auth/users/schema";
 
 export const createPatient = new Elysia().use(auth()).post(
   "/patients",
@@ -17,7 +18,27 @@ export const createPatient = new Elysia().use(auth()).post(
     body: createPatientSchema,
     auth: true,
     detail: {
+      summary: "Create patient",
+      description: "Create a new patient",
       tags: ["Health"],
+      responses: {
+        201: {
+          description: "Success",
+          content: {
+            "application/json": {
+              schema: swaggerPatientSchema,
+            },
+          },
+        },
+        401: {
+          description: "Unauthorized",
+          content: {
+            "application/json": {
+              schema: swaggerUnauthorizedSchema,
+            },
+          },
+        },
+      },
     },
   },
 );
