@@ -78,6 +78,9 @@ export const registerUser = new Elysia()
               },
             },
           },
+          422: {
+            description: "Validation Error",
+          },
         },
       },
     },

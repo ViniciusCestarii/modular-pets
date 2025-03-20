@@ -38,6 +38,9 @@ export const createPatient = new Elysia().use(auth()).post(
             },
           },
         },
+        422: {
+          description: "Validation Error",
+        },
       },
     },
   },

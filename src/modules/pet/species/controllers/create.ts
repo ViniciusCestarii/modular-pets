@@ -60,6 +60,9 @@ export const createSpecie = new Elysia()
               },
             },
           },
+          422: {
+            description: "Validation Error",
+          },
         },
       },
     },

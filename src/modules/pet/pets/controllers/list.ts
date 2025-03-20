@@ -40,6 +40,9 @@ export const listPets = new Elysia().get(
             },
           },
         },
+        422: {
+          description: "Validation Error",
+        },
       },
     },
   },

@@ -50,6 +50,9 @@ export const findPetById = new Elysia()
               },
             },
           },
+          422: {
+            description: "Validation Error",
+          },
         },
       },
     },

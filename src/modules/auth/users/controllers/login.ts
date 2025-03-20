@@ -41,7 +41,7 @@ export const loginUser = new Elysia()
           },
         },
         responses: {
-          "200": {
+          200: {
             description: "Successful login and token generation.",
             content: {
               "application/json": {
@@ -63,13 +63,16 @@ export const loginUser = new Elysia()
               },
             },
           },
-          "401": {
+          401: {
             description: "Invalid credentials provided.",
             content: {
               "application/json": {
                 schema: swaggerInvalidCredentialsErrorSchema,
               },
             },
+          },
+          422: {
+            description: "Validation Error",
           },
         },
       },

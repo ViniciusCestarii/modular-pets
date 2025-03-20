@@ -80,6 +80,9 @@ export const createPet = new Elysia()
               },
             },
           },
+          422: {
+            description: "Validation Error",
+          },
         },
       },
     },
