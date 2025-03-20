@@ -1,12 +1,12 @@
 import { Pagination } from "@/modules/shared/types/pagination";
 import { PetsRepository } from "../repository";
-import { CreatePet, Pet, PetList } from "../types";
+import { CreatePet, Pet, PetList, PetView } from "../types";
 
 export class InMemoryPetsRepository implements PetsRepository {
   private pets: Pet[] = [];
   private idCounter = 1;
 
-  async createPet(pet: CreatePet): Promise<Pet> {
+  async createPet(pet: CreatePet): Promise<PetView> {
     const newPet: Pet = {
       id: this.idCounter.toString(),
       ...pet,
@@ -15,11 +15,26 @@ export class InMemoryPetsRepository implements PetsRepository {
     };
     this.pets.push(newPet);
     this.idCounter++;
-    return newPet;
+
+    const petView: PetView = {
+      ...newPet,
+      images: [],
+    };
+
+    return petView;
   }
 
-  async findPetById(id: string): Promise<Pet | null> {
-    return this.pets.find((pet) => pet.id === id) || null;
+  async findPetById(id: string): Promise<PetView | null> {
+    const petFound = this.pets.find((pet) => pet.id === id);
+
+    if (!petFound) {
+      return null;
+    }
+
+    return {
+      ...petFound,
+      images: [],
+    };
   }
 
   async listPets({ page, pageSize }: Pagination): Promise<PetList> {
@@ -27,7 +42,11 @@ export class InMemoryPetsRepository implements PetsRepository {
     const start = page * pageSize;
     const end = start + pageSize;
     const paginatedPets = this.pets.slice(start, end);
+    const pets: PetView[] = paginatedPets.map((pet) => ({
+      ...pet,
+      images: [],
+    }));
 
-    return { pets: paginatedPets, total: this.pets.length };
+    return { pets, total: this.pets.length };
   }
 }

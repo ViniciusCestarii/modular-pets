@@ -57,6 +57,13 @@
       "when": 1741617791513,
       "tag": "0007_add_auth_user",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1742301852274,
+      "tag": "0008_add_shared_images",
+      "breakpoints": true
     }
   ]
 }
