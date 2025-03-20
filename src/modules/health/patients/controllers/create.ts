@@ -1,7 +1,7 @@
 import Elysia from "elysia";
 import { createPatientSchema, swaggerPatientSchema } from "../schema";
 import { makeCreatePatientUseCase } from "../factories/make-create";
-import { auth } from "@/modules/shared/auth/plugin";
+import { auth } from "@/utils/auth/plugin";
 import { swaggerUnauthorizedSchema } from "@/modules/auth/users/schema";
 
 export const createPatient = new Elysia().use(auth()).post(

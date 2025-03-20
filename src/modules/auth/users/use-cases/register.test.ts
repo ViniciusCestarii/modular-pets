@@ -3,7 +3,7 @@ import { InMemoryUsersRepository } from "../repositories/in-memory-repository";
 import { beforeEach, describe, expect, it } from "bun:test";
 import { CreateUser } from "../types";
 import { UserAlreadyExistsError } from "../error/user-already-exists";
-import { verifyToken } from "@/modules/shared/auth/jwt";
+import { verifyToken } from "@/utils/auth/jwt";
 
 describe("Create user use case", () => {
   let registerUserUseCase: RegisterUserUseCase;

@@ -2,7 +2,7 @@ import Elysia from "elysia";
 import { loginSchema, swaggerInvalidCredentialsErrorSchema } from "../schema";
 import { makeLoginUserUseCase } from "../factories/make-login";
 import { InvalidCredentialsError } from "../error/invalid-credentials";
-import { tokenExpirationTime } from "@/modules/shared/auth/jwt";
+import { tokenExpirationTime } from "@/utils/auth/jwt";
 import { setJwtCookie } from "../utils/cookie";
 
 export const loginUser = new Elysia()

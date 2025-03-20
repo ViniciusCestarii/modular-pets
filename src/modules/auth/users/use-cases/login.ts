@@ -1,4 +1,4 @@
-import { signToken } from "@/modules/shared/auth/jwt";
+import { signToken } from "@/utils/auth/jwt";
 import { InvalidCredentialsError } from "../error/invalid-credentials";
 import { UsersRepository } from "../repository";
 import { Login } from "../types";

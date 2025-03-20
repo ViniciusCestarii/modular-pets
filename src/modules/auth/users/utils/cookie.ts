@@ -1,4 +1,4 @@
-import { tokenExpirationTime } from "@/modules/shared/auth/jwt";
+import { tokenExpirationTime } from "@/utils/auth/jwt";
 import { Cookie } from "elysia";
 
 export const setJwtCookie = (

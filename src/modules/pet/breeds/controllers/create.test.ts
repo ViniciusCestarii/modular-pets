@@ -3,7 +3,7 @@ import { app } from "@/app";
 import { CreateBreed } from "../types";
 import db from "@/db";
 import { breedsTable, speciesTable } from "@/db/schema";
-import { bearerToken } from "@/modules/shared/utilities/test";
+import { bearerToken } from "@/test";
 
 describe("Create breed e2e", () => {
   it("should create a new breed successfully", async () => {

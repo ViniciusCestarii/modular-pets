@@ -4,7 +4,7 @@ import { CreateUser, Login } from "../types";
 import db from "@/db";
 import { usersTable } from "../user";
 import { hashPassword } from "../utils/password";
-import { tokenExpirationTime, verifyToken } from "@/modules/shared/auth/jwt";
+import { tokenExpirationTime, verifyToken } from "@/utils/auth/jwt";
 
 describe("Login user e2e", () => {
   it("should login an user", async () => {

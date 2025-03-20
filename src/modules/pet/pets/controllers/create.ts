@@ -4,7 +4,7 @@ import { makeCreatePetUseCase } from "../factories/make-create";
 import { SpecieNotFoundError } from "../../shared/errors/specie-not-found";
 import { BreedNotFoundError } from "../../shared/errors/breed-not-found";
 import { InvalidBreedSpecieError } from "../../shared/errors/invalid-breed-specie";
-import { auth } from "@/modules/shared/auth/plugin";
+import { auth } from "@/utils/auth/plugin";
 import { swaggerUnauthorizedSchema } from "@/modules/auth/users/schema";
 import {
   swaggerBreedNotFoundErrorSchema,

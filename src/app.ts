@@ -1,10 +1,10 @@
 import { Elysia } from "elysia";
 import { env } from "./env";
-import { axiomTelemetry } from "./modules/shared/utilities/telemetry";
-import { errorMiddleware } from "./modules/shared/utilities/error-middleware";
+import { axiomTelemetry } from "./plugins/telemetry";
+import { errorMiddleware } from "./plugins/error-middleware";
 import cors from "@elysiajs/cors";
-import { auth } from "./modules/shared/auth/plugin";
-import { openApi } from "./modules/shared/utilities/open-api";
+import { auth } from "./utils/auth/plugin";
+import { openApi } from "./plugins/open-api";
 import petRoutes from "./modules/pet/routes";
 import healthRoutes from "./modules/health/routes";
 import authRoutes from "./modules/auth/routes";

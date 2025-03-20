@@ -4,7 +4,7 @@ import { CreatePet } from "../types";
 import db from "@/db";
 import { breedsTable, petsTable, speciesTable } from "@/db/schema";
 import { Image } from "@/modules/shared/images/types";
-import { bearerToken, dogImageFile } from "@/modules/shared/utilities/test";
+import { bearerToken, dogImageFile } from "@/test";
 
 describe("Upload pet image e2e", () => {
   it("should upload pet image", async () => {

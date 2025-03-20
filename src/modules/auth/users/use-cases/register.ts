@@ -1,4 +1,4 @@
-import { signToken } from "@/modules/shared/auth/jwt";
+import { signToken } from "@/utils/auth/jwt";
 import { UserAlreadyExistsError } from "../error/user-already-exists";
 import { UsersRepository } from "../repository";
 import { CreateUser, UserRegisterReturn } from "../types";

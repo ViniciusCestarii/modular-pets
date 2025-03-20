@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from "bun:test";
 import { CreatePet } from "../types";
 import { UploadPetImageUseCase } from "./upload-image";
 import { InMemoryImagesRepository } from "@/modules/shared/images/repositories/in-memory-repository";
-import { dogImageFile } from "@/modules/shared/utilities/test";
+import { dogImageFile } from "@/test";
 import { PetNotFoundError } from "../errors/pet-not-found";
 
 describe("Create pet use case", () => {

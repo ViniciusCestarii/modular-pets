@@ -3,7 +3,7 @@ import { app } from "@/app";
 import { CreateUser, UserRegisterReturn } from "../types";
 import db from "@/db";
 import { usersTable } from "../user";
-import { tokenExpirationTime, verifyToken } from "@/modules/shared/auth/jwt";
+import { tokenExpirationTime, verifyToken } from "@/utils/auth/jwt";
 
 describe("Create user e2e", () => {
   it("should create a new user successfully", async () => {
