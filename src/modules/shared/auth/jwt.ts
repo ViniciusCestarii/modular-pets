@@ -21,17 +21,17 @@ if (!publicKey) {
 
 const ecPublicKey = await jose.importSPKI(publicKey, algorithm);
 
-export const verifyToken = async (token: string) => {
-  try {
-    return await jose.jwtVerify(token, ecPublicKey);
-  } catch {
-    return null;
-  }
-};
-
 export type TokenPayload = {
   id: string;
   email: string;
+};
+
+export const verifyToken = async (token: string) => {
+  try {
+    return await jose.jwtVerify<TokenPayload>(token, ecPublicKey);
+  } catch {
+    return null;
+  }
 };
 
 export const signToken = async (payload: TokenPayload) => {
