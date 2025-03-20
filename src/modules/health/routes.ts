@@ -1,5 +1,5 @@
 import Elysia from "elysia";
-import { createPatient } from "../patients/controllers/create";
+import { createPatient } from "./patients/controllers/create";
 
 const healthRoutes = new Elysia();
 

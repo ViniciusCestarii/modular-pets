@@ -1,7 +1,7 @@
 import Elysia from "elysia";
-import { registerUser } from "../users/controllers/register";
-import { loginUser } from "../users/controllers/login";
-import { logoutUser } from "../users/controllers/logout";
+import { registerUser } from "./users/controllers/register";
+import { loginUser } from "./users/controllers/login";
+import { logoutUser } from "./users/controllers/logout";
 
 const authRoutes = new Elysia();
 
