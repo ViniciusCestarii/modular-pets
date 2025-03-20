@@ -1,9 +1,14 @@
 import Elysia from "elysia";
-import { createBreedSchema } from "../schema";
+import {
+  swaggerBreedSchema,
+  createBreedSchema,
+  swaggerBreedAlreadyExistsSchema,
+} from "../schema";
 import { makeCreateBreedUseCase } from "../factories/make-create";
 import { SpecieNotFoundError } from "../../shared/errors/specie-not-found";
 import { BreedAlreadyExistsError } from "../errors/breed-already-exists";
 import { auth } from "@/modules/shared/auth/plugin";
+import { swaggerUnauthorizedSchema } from "@/modules/auth/users/schema";
 
 export const createBreed = new Elysia()
   .use(auth())
@@ -35,7 +40,38 @@ export const createBreed = new Elysia()
       body: createBreedSchema,
       auth: true,
       detail: {
+        summary: "Create breed",
+        description: "Create a new breed",
         tags: ["Pet"],
+        responses: {
+          200: {
+            description: "Success",
+            content: {
+              "application/json": {
+                schema: swaggerBreedSchema,
+              },
+            },
+          },
+          401: {
+            description: "Unauthorized",
+            content: {
+              "application/json": {
+                schema: swaggerUnauthorizedSchema,
+              },
+            },
+          },
+          409: {
+            description: "Breed already exists",
+            content: {
+              "application/json": {
+                schema: swaggerBreedAlreadyExistsSchema,
+              },
+            },
+          },
+          422: {
+            description: "Validation error",
+          },
+        },
       },
     },
   );

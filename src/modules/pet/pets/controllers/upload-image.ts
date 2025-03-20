@@ -2,6 +2,9 @@ import Elysia, { t } from "elysia";
 import { makeUploadImagePetsUseCase } from "../factories/make-upload-image";
 import { PetNotFoundError } from "../errors/pet-not-found";
 import { auth } from "@/modules/shared/auth/plugin";
+import { swaggerImageSchema } from "@/modules/shared/images/schema";
+import { swaggerErrorPetNotFoundSchema } from "../schema";
+import { swaggerUnauthorizedSchema } from "@/modules/auth/users/schema";
 
 export const uploadPetImage = new Elysia()
   .use(auth)
@@ -37,7 +40,38 @@ export const uploadPetImage = new Elysia()
         image: t.File({ format: "image/*" }),
       }),
       detail: {
+        summary: "Upload pet image",
+        description: "Upload a new image for a pet",
         tags: ["Pet"],
+        responses: {
+          201: {
+            description: "Success",
+            content: {
+              "application/json": {
+                schema: swaggerImageSchema,
+              },
+            },
+          },
+          401: {
+            description: "Unauthorized",
+            content: {
+              "application/json": {
+                schema: swaggerUnauthorizedSchema,
+              },
+            },
+          },
+          404: {
+            description: "Pet not found",
+            content: {
+              "application/json": {
+                schema: swaggerErrorPetNotFoundSchema,
+              },
+            },
+          },
+          422: {
+            description: "Validation Error",
+          },
+        },
       },
     },
   );

@@ -1,6 +1,7 @@
 import Elysia, { t } from "elysia";
 import { PetNotFoundError } from "../errors/pet-not-found";
 import { makeFindPetByIdUseCase } from "../factories/make-find-by-id";
+import { swaggerErrorPetNotFoundSchema, swaggerPetSchema } from "../schema";
 
 export const findPetById = new Elysia()
   .error({
@@ -29,7 +30,30 @@ export const findPetById = new Elysia()
         }),
       }),
       detail: {
+        summary: "Find pet by id",
+        description: "Find a pet by its id",
         tags: ["Pet"],
+        responses: {
+          200: {
+            description: "Success",
+            content: {
+              "application/json": {
+                schema: swaggerPetSchema,
+              },
+            },
+          },
+          404: {
+            description: "Pet not found",
+            content: {
+              "application/json": {
+                schema: swaggerErrorPetNotFoundSchema,
+              },
+            },
+          },
+          422: {
+            description: "Validation Error",
+          },
+        },
       },
     },
   );

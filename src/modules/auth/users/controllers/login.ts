@@ -1,5 +1,5 @@
 import Elysia from "elysia";
-import { loginSchema } from "../schema";
+import { loginSchema, swaggerInvalidCredentialsErrorSchema } from "../schema";
 import { makeLoginUserUseCase } from "../factories/make-login";
 import { InvalidCredentialsError } from "../error/invalid-credentials";
 import { tokenExpirationTime } from "@/modules/shared/auth/jwt";
@@ -30,6 +30,7 @@ export const loginUser = new Elysia()
     {
       body: loginSchema,
       detail: {
+        summary: "Login",
         tags: ["Auth"],
         description: "Login user and retrieve an authentication token.",
         requestBody: {
@@ -40,7 +41,7 @@ export const loginUser = new Elysia()
           },
         },
         responses: {
-          "200": {
+          200: {
             description: "Successful login and token generation.",
             content: {
               "application/json": {
@@ -62,25 +63,16 @@ export const loginUser = new Elysia()
               },
             },
           },
-          "401": {
+          401: {
             description: "Invalid credentials provided.",
             content: {
               "application/json": {
-                schema: {
-                  type: "object",
-                  properties: {
-                    message: {
-                      type: "string",
-                      example: "Invalid credentials",
-                    },
-                    name: {
-                      type: "string",
-                      example: "InvalidCredentialsError",
-                    },
-                  },
-                },
+                schema: swaggerInvalidCredentialsErrorSchema,
               },
             },
+          },
+          422: {
+            description: "Validation Error",
           },
         },
       },

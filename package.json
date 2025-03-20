@@ -26,6 +26,7 @@
     "bcryptjs": "3.0.2",
     "dotenv": "16.4.5",
     "drizzle-orm": "0.39.3",
+    "drizzle-typebox": "0.3.0",
     "elysia": "1.2.21",
     "jose": "6.0.8",
     "pg": "8.13.3",
