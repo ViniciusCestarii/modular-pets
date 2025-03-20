@@ -2,6 +2,8 @@ import Elysia, { t } from "elysia";
 import { makeUploadImagePetsUseCase } from "../factories/make-upload-image";
 import { PetNotFoundError } from "../errors/pet-not-found";
 import { auth } from "@/modules/shared/auth/plugin";
+import { swaggerImageSchema } from "@/modules/shared/images/schema";
+import { errorPetNotFoundSchema } from "../schema";
 
 export const uploadPetImage = new Elysia()
   .use(auth)
@@ -38,6 +40,24 @@ export const uploadPetImage = new Elysia()
       }),
       detail: {
         tags: ["Pet"],
+        responses: {
+          201: {
+            description: "Success",
+            content: {
+              "application/json": {
+                schema: swaggerImageSchema,
+              },
+            },
+          },
+          404: {
+            description: "Pet not found",
+            content: {
+              "application/json": {
+                schema: errorPetNotFoundSchema,
+              },
+            },
+          },
+        },
       },
     },
   );

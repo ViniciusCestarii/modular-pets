@@ -10,4 +10,4 @@ export const createBreedSchema = t.Object({
 });
 
 // just for swagger
-export const breedSchema = createSelectSchema(breedsTable) as never;
+export const breedSchema = createSelectSchema(breedsTable);
