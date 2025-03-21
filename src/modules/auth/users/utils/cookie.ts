@@ -11,7 +11,7 @@ export const setJwtCookie = (
     value: token,
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    maxAge: tokenExpirationTime * 1000,
+    maxAge: tokenExpirationTime,
     path: "/",
   });
 };
