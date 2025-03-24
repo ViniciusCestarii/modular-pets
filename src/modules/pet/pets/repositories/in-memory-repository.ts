@@ -12,6 +12,7 @@ export class InMemoryPetsRepository implements PetsRepository {
       ...pet,
       observations: pet.observations ?? null,
       sex: pet.sex ?? "UNKNOWN",
+      mainImageId: null,
     };
     this.pets.push(newPet);
     this.idCounter++;
