@@ -11,6 +11,11 @@ export const createPetSchema = t.Object({
   sex: t.Union([t.Literal("MALE"), t.Literal("FEMALE"), t.Literal("UNKNOWN")], {
     default: "UNKNOWN",
   }),
+  mainImageId: t.Optional(
+    t.String({
+      format: "uuid",
+    }),
+  ),
   breedId: t.String({
     format: "uuid",
   }),

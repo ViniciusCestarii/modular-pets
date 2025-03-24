@@ -2,7 +2,7 @@ import { date, uuid, varchar } from "drizzle-orm/pg-core";
 import { v7 } from "uuid";
 import { breedsTable } from "../breeds/breed";
 import { speciesTable } from "../species/specie";
-import { sexEnum } from "@/db/schema";
+import { imagesTable, sexEnum } from "@/db/schema";
 import { petPgSchema } from "../drizzle";
 
 export const petsTable = petPgSchema.table("pets", {
@@ -11,6 +11,7 @@ export const petsTable = petPgSchema.table("pets", {
   birthdate: date().notNull(),
   observations: varchar({ length: 1024 }),
   sex: sexEnum().default("UNKNOWN").notNull(),
+  mainImageId: uuid().references(() => imagesTable.id),
   breedId: uuid()
     .references(() => breedsTable.id)
     .notNull(),

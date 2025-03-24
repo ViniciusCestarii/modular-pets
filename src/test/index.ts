@@ -1,10 +1,12 @@
-import { drizzle } from "drizzle-orm/node-postgres";
+import { drizzle, NodePgDatabase } from "drizzle-orm/node-postgres";
 import { reset, seed } from "drizzle-seed";
 import fs from "fs/promises";
 import path from "node:path";
 import { Pool } from "pg";
 import * as schemas from "@/db/schema";
 import { signToken } from "@/utils/auth/jwt";
+import { eq } from "drizzle-orm";
+import { fileToBase64Url } from "@/utils/transform";
 
 export const generateDatabaseURL = (databaseName: string): string => {
   if (!process.env.DATABASE_URL) {
@@ -49,6 +51,37 @@ export const resetDb = async () => {
   await pool.end();
 };
 
+const firstPetId = "09f1a972-dd95-4359-0c58-d272d1ef23b0";
+
+const seedImages = async (db: NodePgDatabase) => {
+  const resetImagesPromises = [
+    db.update(schemas.petsTable).set({
+      mainImageId: null,
+    }),
+    db.delete(schemas.imagesTable),
+  ];
+
+  await Promise.all(resetImagesPromises);
+
+  const url = await fileToBase64Url(dogImageFile);
+
+  const imageId = await db
+    .insert(schemas.imagesTable)
+    .values({
+      ownerType: "pet",
+      src: url,
+      ownerId: firstPetId,
+    })
+    .returning({ id: schemas.imagesTable.id });
+
+  await db
+    .update(schemas.petsTable)
+    .set({
+      mainImageId: imageId[0].id,
+    })
+    .where(eq(schemas.petsTable.id, firstPetId));
+};
+
 export const seedDb = async (count: number) => {
   const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -57,6 +90,8 @@ export const seedDb = async (count: number) => {
   const db = drizzle(pool);
 
   await seed(db, schemas, { count });
+
+  await seedImages(db);
 
   await pool.end();
 };

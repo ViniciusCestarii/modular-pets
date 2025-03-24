@@ -1,0 +1,2 @@
+ALTER TABLE "pet"."pets" ADD COLUMN "mainImageId" uuid;--> statement-breakpoint
+ALTER TABLE "pet"."pets" ADD CONSTRAINT "pets_mainImageId_images_id_fk" FOREIGN KEY ("mainImageId") REFERENCES "shared"."images"("id") ON DELETE no action ON UPDATE no action;
