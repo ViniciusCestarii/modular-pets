@@ -25,7 +25,7 @@
     "@elysiajs/swagger": "1.2.2",
     "bcryptjs": "3.0.2",
     "dotenv": "16.4.5",
-    "drizzle-orm": "0.39.3",
+    "drizzle-orm": "0.41.0",
     "drizzle-typebox": "0.3.0",
     "elysia": "1.2.21",
     "jose": "6.0.8",
