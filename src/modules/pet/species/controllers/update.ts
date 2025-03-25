@@ -1,43 +1,43 @@
 import Elysia from "elysia";
-import { createSpecieSchema, swaggerSpecieSchema } from "../schema";
-import { makeCreateSpecieUseCase } from "../factories/make-create";
-import { SpecieAlreadyExistsError } from "../errors/specie-alredy-exists";
+import { updateSpecieSchema, swaggerSpecieSchema } from "../schema";
+import { makeUpdateSpecieUseCase } from "../factories/make-update";
 import { auth } from "@/utils/auth/plugin";
 import { swaggerUnauthorizedSchema } from "@/modules/auth/users/schema";
 import { swaggerSpecieNotFoundErrorSchema } from "../../shared/schema";
+import { SpecieNotFoundError } from "../../shared/errors/specie-not-found";
 
-export const createSpecie = new Elysia()
+export const updateSpecie = new Elysia()
   .use(auth())
   .error({
-    SpecieAlreadyExistsError,
+    SpecieNotFoundError,
   })
   .onError(({ code, error, set }) => {
     switch (code) {
-      case "SpecieAlreadyExistsError":
-        set.status = "Conflict";
+      case "SpecieNotFoundError":
+        set.status = "Not Found";
         return error;
     }
   })
-  .post(
+  .put(
     "/species",
     async ({ body, set }) => {
-      const createSpecieUseCase = makeCreateSpecieUseCase();
+      const updateSpecieUseCase = makeUpdateSpecieUseCase();
 
-      const createdSpecie = await createSpecieUseCase.execute(body);
+      const updatedSpecie = await updateSpecieUseCase.execute(body);
 
-      set.status = "Created";
-      return createdSpecie;
+      set.status = "OK";
+      return updatedSpecie;
     },
     {
-      body: createSpecieSchema,
+      body: updateSpecieSchema,
       auth: true,
       detail: {
-        summary: "Create specie",
-        description: "Create a new specie",
+        summary: "Update specie",
+        description: "Update a specie",
         tags: ["Pet"],
         responses: {
-          201: {
-            description: "Created",
+          200: {
+            description: "Success",
             content: {
               "application/json": {
                 schema: swaggerSpecieSchema,
@@ -52,8 +52,8 @@ export const createSpecie = new Elysia()
               },
             },
           },
-          409: {
-            description: "Specie already exists",
+          404: {
+            description: "Specie not found",
             content: {
               "application/json": {
                 schema: swaggerSpecieNotFoundErrorSchema,

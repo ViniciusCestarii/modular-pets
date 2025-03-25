@@ -5,6 +5,7 @@ import { findPetById } from "./pets/controllers/find-by-id";
 import { uploadPetImage } from "./pets/controllers/upload-image";
 import { createBreed } from "./breeds/controllers/create";
 import { createSpecie } from "./species/controllers/create";
+import { updateSpecie } from "./species/controllers/update";
 
 const petRoutes = new Elysia();
 
@@ -15,7 +16,8 @@ petRoutes.group("pet", (app) =>
     .use(findPetById)
     .use(uploadPetImage)
     .use(createBreed)
-    .use(createSpecie),
+    .use(createSpecie)
+    .use(updateSpecie),
 );
 
 export default petRoutes;

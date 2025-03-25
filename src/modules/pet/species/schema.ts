@@ -7,6 +7,11 @@ export const createSpecieSchema = t.Object({
   name: t.String(),
 });
 
+export const updateSpecieSchema = t.Object({
+  id: t.String({ format: "uuid" }),
+  name: t.String(),
+});
+
 // just for swagger
 export const swaggerSpecieSchema = createSelectSchema(speciesTable);
 
