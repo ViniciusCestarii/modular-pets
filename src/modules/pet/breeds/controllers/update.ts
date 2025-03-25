@@ -1,51 +1,50 @@
 import Elysia from "elysia";
-import {
-  swaggerBreedSchema,
-  createBreedSchema,
-  swaggerBreedAlreadyExistsSchema,
-} from "../schema";
-import { makeCreateBreedUseCase } from "../factories/make-create";
+import { swaggerBreedSchema, updateBreedSchema } from "../schema";
+import { makeUpdateBreedUseCase } from "../factories/make-update";
 import { SpecieNotFoundError } from "../../shared/errors/specie-not-found";
-import { BreedAlreadyExistsError } from "../errors/breed-already-exists";
 import { auth } from "@/utils/auth/plugin";
 import { swaggerUnauthorizedSchema } from "@/modules/auth/users/schema";
-import { swaggerSpecieNotFoundErrorSchema } from "../../shared/schema";
+import {
+  swaggerBreedNotFoundErrorSchema,
+  swaggerSpecieNotFoundErrorSchema,
+} from "../../shared/schema";
+import { BreedNotFoundError } from "../../shared/errors/breed-not-found";
 
-export const createBreed = new Elysia()
+export const updateBreed = new Elysia()
   .use(auth())
   .error({
+    BreedNotFoundError,
     SpecieNotFoundError,
-    BreedAlreadyExistsError,
   })
   .onError(({ code, error, set }) => {
     switch (code) {
+      case "BreedNotFoundError":
+        set.status = "Not Found";
+        return error;
       case "SpecieNotFoundError":
         set.status = "Bad Request";
         return error;
-      case "BreedAlreadyExistsError":
-        set.status = "Conflict";
-        return error;
     }
   })
-  .post(
+  .put(
     "/breeds",
     async ({ body, set }) => {
-      const createBreedUseCase = makeCreateBreedUseCase();
+      const updateBreedUseCase = makeUpdateBreedUseCase();
 
-      const createdBreed = await createBreedUseCase.execute(body);
+      const updatedBreed = await updateBreedUseCase.execute(body);
 
-      set.status = "Created";
-      return createdBreed;
+      set.status = "OK";
+      return updatedBreed;
     },
     {
-      body: createBreedSchema,
+      body: updateBreedSchema,
       auth: true,
       detail: {
-        summary: "Create breed",
-        description: "Create a new breed",
+        summary: "Update breed",
+        description: "Update a breed",
         tags: ["Pet"],
         responses: {
-          201: {
+          200: {
             description: "Success",
             content: {
               "application/json": {
@@ -57,7 +56,7 @@ export const createBreed = new Elysia()
             description: "Specie not found",
             content: {
               "application/json": {
-                schema: swaggerSpecieNotFoundErrorSchema,
+                schema: swaggerBreedNotFoundErrorSchema,
               },
             },
           },
@@ -69,11 +68,11 @@ export const createBreed = new Elysia()
               },
             },
           },
-          409: {
-            description: "Breed already exists",
+          404: {
+            description: "Breed not found",
             content: {
               "application/json": {
-                schema: swaggerBreedAlreadyExistsSchema,
+                schema: swaggerSpecieNotFoundErrorSchema,
               },
             },
           },

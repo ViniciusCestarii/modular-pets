@@ -1,5 +1,5 @@
 import { BreedsRepository } from "../repository";
-import { CreateBreed, Breed } from "../types";
+import { CreateBreed, Breed, UpdateBreed } from "../types";
 
 export class InMemoryBreedsRepository implements BreedsRepository {
   private breeds: Breed[] = [];
@@ -13,6 +13,19 @@ export class InMemoryBreedsRepository implements BreedsRepository {
     this.breeds.push(newBreed);
     this.idCounter++;
     return newBreed;
+  }
+
+  async updateBreed(breed: UpdateBreed): Promise<Breed> {
+    const index = this.breeds.findIndex((b) => b.id === breed.id);
+
+    this.breeds[index] = {
+      ...this.breeds[index],
+      ...breed,
+    };
+
+    const updatedBreed = this.breeds[index];
+
+    return updatedBreed;
   }
 
   async findBreedById(id: string): Promise<Breed | null> {

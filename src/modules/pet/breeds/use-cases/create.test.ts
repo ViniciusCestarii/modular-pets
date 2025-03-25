@@ -39,7 +39,7 @@ describe("Create breed use case", () => {
     });
   });
 
-  it("should throw SpecieNotFound when creating with invalid specie id", async () => {
+  it("should throw SpecieNotFound when trying to create a breed with a non-existent specie id", async () => {
     const breed: CreateBreed = {
       name: "German Shepherd",
       speciesId: "NonExistentId",
