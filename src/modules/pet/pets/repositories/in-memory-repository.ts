@@ -6,7 +6,7 @@ export class InMemoryPetsRepository implements PetsRepository {
   private pets: Pet[] = [];
   private idCounter = 1;
 
-  async createPet(pet: CreatePet): Promise<Pet> {
+  async createPet(pet: CreatePet): Promise<PetView> {
     const newPet: Pet = {
       id: this.idCounter.toString(),
       ...pet,
@@ -17,7 +17,12 @@ export class InMemoryPetsRepository implements PetsRepository {
     this.pets.push(newPet);
     this.idCounter++;
 
-    return newPet;
+    return {
+      ...newPet,
+      images: [],
+      breed: null,
+      specie: null,
+    };
   }
 
   async findPetById(id: string): Promise<PetView | null> {

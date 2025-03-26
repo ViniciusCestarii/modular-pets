@@ -8,12 +8,30 @@ import { breedsTable, imagesTable, speciesTable } from "@/db/schema";
 import { ImageView } from "@/modules/shared/images/types";
 
 export class DrizzlePetsRepository implements PetsRepository {
-  async createPet(pet: CreatePet): Promise<Pet> {
+  async createPet(pet: CreatePet): Promise<PetView> {
     const rows = await db.insert(petsTable).values(pet).returning();
 
     const createdPet = rows[0];
 
-    return createdPet;
+    const breed = (
+      await db
+        .select()
+        .from(breedsTable)
+        .where(eq(breedsTable.id, createdPet.breedId))
+    )[0];
+    const specie = (
+      await db
+        .select()
+        .from(speciesTable)
+        .where(eq(speciesTable.id, createdPet.speciesId))
+    )[0];
+
+    return {
+      ...createdPet,
+      breed,
+      specie,
+      images: [],
+    };
   }
   async findPetById(id: string): Promise<PetView | null> {
     const rows = await db

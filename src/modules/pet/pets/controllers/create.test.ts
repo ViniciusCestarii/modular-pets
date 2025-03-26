@@ -47,6 +47,8 @@ describe("Create pet e2e", () => {
       sex: "FEMALE",
       speciesId: specie.id,
       breedId: breed.id,
+      breed,
+      specie,
     });
 
     expect(response.status).toBe(201);
