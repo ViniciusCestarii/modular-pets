@@ -25,6 +25,14 @@ export class DrizzleBreedsRepository implements BreedsRepository {
     return updatedBreed;
   }
 
+  async findAllBreedsBySpeciesId(speciesId: string): Promise<Breed[]> {
+    return await db
+      .select()
+      .from(breedsTable)
+      .where(eq(breedsTable.speciesId, speciesId))
+      .orderBy(breedsTable.name);
+  }
+
   async findBreedById(id: string): Promise<Breed | null> {
     const rows = await db
       .select()

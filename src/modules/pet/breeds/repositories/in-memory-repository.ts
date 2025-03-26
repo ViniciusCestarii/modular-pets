@@ -28,6 +28,12 @@ export class InMemoryBreedsRepository implements BreedsRepository {
     return updatedBreed;
   }
 
+  async findAllBreedsBySpeciesId(speciesId: string): Promise<Breed[]> {
+    return this.breeds
+      .filter((breed) => breed.speciesId === speciesId)
+      .toSorted((a, b) => a.name.localeCompare(b.name));
+  }
+
   async findBreedById(id: string): Promise<Breed | null> {
     return this.breeds.find((breed) => breed.id === id) || null;
   }
