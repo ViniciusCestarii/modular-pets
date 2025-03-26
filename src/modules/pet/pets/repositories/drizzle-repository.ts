@@ -4,17 +4,14 @@ import { PetsRepository } from "../repository";
 import { petsTable } from "../pet";
 import { eq, sql } from "drizzle-orm";
 import { Pagination } from "@/modules/shared/types/pagination";
-import { imagesTable } from "@/db/schema";
+import { breedsTable, imagesTable, speciesTable } from "@/db/schema";
 import { ImageView } from "@/modules/shared/images/types";
 
 export class DrizzlePetsRepository implements PetsRepository {
-  async createPet(pet: CreatePet): Promise<PetView> {
+  async createPet(pet: CreatePet): Promise<Pet> {
     const rows = await db.insert(petsTable).values(pet).returning();
 
-    const createdPet = {
-      ...rows[0],
-      images: [],
-    };
+    const createdPet = rows[0];
 
     return createdPet;
   }
@@ -23,6 +20,8 @@ export class DrizzlePetsRepository implements PetsRepository {
       .select()
       .from(petsTable)
       .leftJoin(imagesTable, eq(imagesTable.ownerId, petsTable.id))
+      .leftJoin(breedsTable, eq(breedsTable.id, petsTable.breedId))
+      .leftJoin(speciesTable, eq(speciesTable.id, petsTable.speciesId))
       .where(eq(petsTable.id, id));
 
     if (rows.length === 0) {
@@ -32,6 +31,8 @@ export class DrizzlePetsRepository implements PetsRepository {
     const pet = {
       ...rows[0].pets,
       images: extractImages(rows),
+      breed: rows[0].breeds,
+      specie: rows[0].species,
     };
 
     return pet;
@@ -46,6 +47,8 @@ export class DrizzlePetsRepository implements PetsRepository {
       .select()
       .from(petsTable)
       .leftJoin(imagesTable, eq(imagesTable.ownerId, petsTable.id))
+      .leftJoin(breedsTable, eq(breedsTable.id, petsTable.breedId))
+      .leftJoin(speciesTable, eq(speciesTable.id, petsTable.speciesId))
       .orderBy(petsTable.name)
       .limit(pageSize)
       .offset(page * pageSize);
@@ -64,7 +67,12 @@ export class DrizzlePetsRepository implements PetsRepository {
         const pet = row.pets;
         const image = row.images;
         if (!acc[pet.id]) {
-          acc[pet.id] = { ...pet, images: [] };
+          acc[pet.id] = {
+            ...pet,
+            images: [],
+            breed: row.breeds,
+            specie: row.species,
+          };
         }
         if (image) {
           acc[pet.id].images.push({
