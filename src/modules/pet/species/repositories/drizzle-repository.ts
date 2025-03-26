@@ -25,6 +25,10 @@ export class DrizzleSpeciesRepository implements SpeciesRepository {
     return updatedSpecie;
   }
 
+  async findAll(): Promise<Specie[]> {
+    return await db.select().from(speciesTable).orderBy(speciesTable.name);
+  }
+
   async findSpecieById(id: string): Promise<Specie | null> {
     const rows = await db
       .select()

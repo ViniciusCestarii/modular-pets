@@ -28,6 +28,10 @@ export class InMemorySpeciesRepository implements SpeciesRepository {
     return updatedSpecie;
   }
 
+  async findAll(): Promise<Specie[]> {
+    return this.species.toSorted((a, b) => a.name.localeCompare(b.name));
+  }
+
   async findSpecieById(id: string): Promise<Specie | null> {
     return this.species.find((specie) => specie.id === id) || null;
   }
