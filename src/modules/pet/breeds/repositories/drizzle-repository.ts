@@ -1,5 +1,5 @@
 import db from "@/db";
-import { CreateBreed, Breed } from "../types";
+import { CreateBreed, Breed, UpdateBreed } from "../types";
 import { BreedsRepository } from "../repository";
 import { breedsTable } from "../breed";
 import { eq } from "drizzle-orm";
@@ -11,6 +11,26 @@ export class DrizzleBreedsRepository implements BreedsRepository {
     const createdBreed = rows[0];
 
     return createdBreed;
+  }
+
+  async updateBreed(breed: UpdateBreed): Promise<Breed> {
+    const rows = await db
+      .update(breedsTable)
+      .set(breed)
+      .where(eq(breedsTable.id, breed.id))
+      .returning();
+
+    const updatedBreed = rows[0];
+
+    return updatedBreed;
+  }
+
+  async findAllBreedsBySpeciesId(speciesId: string): Promise<Breed[]> {
+    return await db
+      .select()
+      .from(breedsTable)
+      .where(eq(breedsTable.speciesId, speciesId))
+      .orderBy(breedsTable.name);
   }
 
   async findBreedById(id: string): Promise<Breed | null> {

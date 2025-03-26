@@ -1,5 +1,5 @@
 import Elysia from "elysia";
-import { listPetsSchema, swaggerPetSchema } from "../schema";
+import { listPetsSchema, swaggerViewPetSchema } from "../schema";
 import { makeListPetsUseCase } from "../factories/make-list";
 
 export const listPets = new Elysia().get(
@@ -28,7 +28,7 @@ export const listPets = new Elysia().get(
                 properties: {
                   pets: {
                     type: "array",
-                    items: swaggerPetSchema,
+                    items: swaggerViewPetSchema,
                   },
                   total: {
                     type: "integer",

@@ -1,5 +1,5 @@
 import db from "@/db";
-import { CreateSpecie, Specie } from "../types";
+import { CreateSpecie, Specie, UpdateSpecie } from "../types";
 import { SpeciesRepository } from "../repository";
 import { speciesTable } from "../specie";
 import { eq } from "drizzle-orm";
@@ -12,6 +12,23 @@ export class DrizzleSpeciesRepository implements SpeciesRepository {
 
     return createdSpecie;
   }
+
+  async updateSpecie(specie: UpdateSpecie): Promise<Specie> {
+    const rows = await db
+      .update(speciesTable)
+      .set(specie)
+      .where(eq(speciesTable.id, specie.id))
+      .returning();
+
+    const updatedSpecie = rows[0];
+
+    return updatedSpecie;
+  }
+
+  async findAll(): Promise<Specie[]> {
+    return await db.select().from(speciesTable).orderBy(speciesTable.name);
+  }
+
   async findSpecieById(id: string): Promise<Specie | null> {
     const rows = await db
       .select()

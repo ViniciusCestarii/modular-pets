@@ -17,12 +17,12 @@ export class InMemoryPetsRepository implements PetsRepository {
     this.pets.push(newPet);
     this.idCounter++;
 
-    const petView: PetView = {
+    return {
       ...newPet,
       images: [],
+      breed: null,
+      specie: null,
     };
-
-    return petView;
   }
 
   async findPetById(id: string): Promise<PetView | null> {
@@ -35,6 +35,8 @@ export class InMemoryPetsRepository implements PetsRepository {
     return {
       ...petFound,
       images: [],
+      breed: null,
+      specie: null,
     };
   }
 
@@ -46,6 +48,8 @@ export class InMemoryPetsRepository implements PetsRepository {
     const pets: PetView[] = paginatedPets.map((pet) => ({
       ...pet,
       images: [],
+      breed: null,
+      specie: null,
     }));
 
     return { pets, total: this.pets.length };

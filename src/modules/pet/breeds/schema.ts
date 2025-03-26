@@ -10,6 +10,14 @@ export const createBreedSchema = t.Object({
   }),
 });
 
+export const updateBreedSchema = t.Object({
+  id: t.String({ format: "uuid" }),
+  name: t.String(),
+  speciesId: t.String({
+    format: "uuid",
+  }),
+});
+
 // just for swagger
 export const swaggerBreedSchema = createSelectSchema(breedsTable);
 

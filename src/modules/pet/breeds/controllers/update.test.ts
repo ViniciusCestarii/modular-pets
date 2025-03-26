@@ -1,23 +1,31 @@
 import { describe, expect, it } from "bun:test";
 import { app } from "@/app";
-import { CreateBreed } from "../types";
+import { UpdateBreed } from "../types";
 import db from "@/db";
 import { breedsTable, speciesTable } from "@/db/schema";
 import { bearerToken } from "@/test";
 
-describe("Create breed e2e", () => {
-  it("should create a new breed successfully", async () => {
+describe("Update breed e2e", () => {
+  it("should update a new breed successfully", async () => {
     const specie = (
       await db.insert(speciesTable).values({ name: "Dog" }).returning()
     )[0];
 
-    const data: CreateBreed = {
-      name: "German Shepherd",
+    const breed = (
+      await db
+        .insert(breedsTable)
+        .values({ name: "German Shepherd", speciesId: specie.id })
+        .returning()
+    )[0];
+
+    const data: UpdateBreed = {
+      id: breed.id,
+      name: "Pug",
       speciesId: specie.id,
     };
 
     const request = new Request("http://localhost/pet/breeds", {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -31,21 +39,33 @@ describe("Create breed e2e", () => {
 
     expect(body).toMatchObject({
       id: expect.any(String),
-      name: "German Shepherd",
+      name: "Pug",
       speciesId: data.speciesId,
     });
 
-    expect(response.status).toBe(201);
+    expect(response.status).toBe(200);
   });
 
-  it("should return 400 when trying to create a breed with unregistered specie", async () => {
-    const data: CreateBreed = {
+  it("should return 400 when trying to update a breed with unregistered specie", async () => {
+    const specie = (
+      await db.insert(speciesTable).values({ name: "Dog" }).returning()
+    )[0];
+
+    const breed = (
+      await db
+        .insert(breedsTable)
+        .values({ name: "German Shepherd", speciesId: specie.id })
+        .returning()
+    )[0];
+
+    const data: UpdateBreed = {
+      id: breed.id,
       name: "German Shepherd",
-      speciesId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284", // Unregistered specie
+      speciesId: "00000000-0000-0000-0000-000000000000",
     };
 
     const request = new Request("http://localhost/pet/breeds", {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -62,23 +82,19 @@ describe("Create breed e2e", () => {
     expect(response.status).toBe(400);
   });
 
-  it("should return 409 when trying to create a breed that already exists", async () => {
+  it("should return 404 when trying to update a breed that doesn't exist", async () => {
     const specie = (
       await db.insert(speciesTable).values({ name: "Dog" }).returning()
     )[0];
 
-    await db.insert(breedsTable).values({
-      name: "German Shepherd",
-      speciesId: specie.id,
-    });
-
-    const data: CreateBreed = {
+    const data: UpdateBreed = {
+      id: "00000000-0000-0000-0000-000000000000",
       name: "German Shepherd",
       speciesId: specie.id,
     };
 
     const request = new Request("http://localhost/pet/breeds", {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -90,16 +106,16 @@ describe("Create breed e2e", () => {
 
     const body = await response.json();
 
-    expect(body.name).toBe("BreedAlreadyExistsError");
+    expect(body.name).toBe("BreedNotFoundError");
 
-    expect(response.status).toBe(409);
+    expect(response.status).toBe(404);
   });
 
-  it("should return 422 when creating a breed with invalid data", async () => {
+  it("should return 422 when creating a specie with invalid data", async () => {
     const data = {};
 
     const request = new Request("http://localhost/pet/breeds", {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -117,13 +133,14 @@ describe("Create breed e2e", () => {
   });
 
   it("should return 401 trying being Unauthorized", async () => {
-    const data: CreateBreed = {
+    const data: UpdateBreed = {
+      id: "00000000-0000-0000-0000-000000000000",
       name: "German Shepherd",
       speciesId: "00000000-0000-0000-0000-000000000000",
     };
 
     const request = new Request("http://localhost/pet/breeds", {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",

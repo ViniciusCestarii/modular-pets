@@ -3,6 +3,8 @@ import { createSelectSchema } from "drizzle-typebox";
 import { petsTable } from "./pet";
 import { PetNotFoundError } from "./errors/pet-not-found";
 import { swaggerViewImageSchema } from "@/modules/shared/images/schema";
+import { swaggerBreedSchema } from "../breeds/schema";
+import { swaggerSpecieSchema } from "../species/schema";
 
 export const createPetSchema = t.Object({
   name: t.String(),
@@ -30,11 +32,13 @@ export const listPetsSchema = t.Object({
 });
 
 // just for swagger
-const basePetSchema = createSelectSchema(petsTable) as never; // this must be never or it give ts error
-export const swaggerPetSchema = t.Intersect([
-  basePetSchema,
+export const swaggerPetSchema = createSelectSchema(petsTable) as never; // this must be never or it give ts error
+export const swaggerViewPetSchema = t.Intersect([
+  swaggerPetSchema,
   t.Object({
     images: t.Array(swaggerViewImageSchema),
+    breed: swaggerBreedSchema,
+    specie: swaggerSpecieSchema,
   }),
 ]);
 

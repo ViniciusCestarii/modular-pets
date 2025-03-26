@@ -1,5 +1,5 @@
 import Elysia from "elysia";
-import { createPetSchema, swaggerPetSchema } from "../schema";
+import { createPetSchema, swaggerViewPetSchema } from "../schema";
 import { makeCreatePetUseCase } from "../factories/make-create";
 import { SpecieNotFoundError } from "../../shared/errors/specie-not-found";
 import { BreedNotFoundError } from "../../shared/errors/breed-not-found";
@@ -54,7 +54,7 @@ export const createPet = new Elysia()
             description: "Success",
             content: {
               "application/json": {
-                schema: swaggerPetSchema,
+                schema: swaggerViewPetSchema,
               },
             },
           },
