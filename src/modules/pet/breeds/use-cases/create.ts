@@ -17,9 +17,11 @@ export class CreateBreedUseCase {
       throw new SpecieNotFoundError();
     }
 
-    const existingBreed = await this.breedsRepository.findBreedByName(
-      breed.name,
-    );
+    const existingBreed =
+      await this.breedsRepository.findBreedByNameAndSpecieId(
+        breed.name,
+        breed.speciesId,
+      );
 
     if (existingBreed) {
       throw new BreedAlreadyExistsError();

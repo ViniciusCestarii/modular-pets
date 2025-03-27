@@ -38,7 +38,14 @@ export class InMemoryBreedsRepository implements BreedsRepository {
     return this.breeds.find((breed) => breed.id === id) || null;
   }
 
-  async findBreedByName(name: string): Promise<Breed | null> {
-    return this.breeds.find((breed) => breed.name === name) || null;
+  async findBreedByNameAndSpecieId(
+    name: string,
+    specieId: string,
+  ): Promise<Breed | null> {
+    return (
+      this.breeds.find(
+        (breed) => breed.name === name && breed.speciesId === specieId,
+      ) || null
+    );
   }
 }

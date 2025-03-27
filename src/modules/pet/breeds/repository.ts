@@ -5,5 +5,8 @@ export interface BreedsRepository {
   updateBreed(breed: UpdateBreed): Promise<Breed>;
   findAllBreedsBySpeciesId(speciesId: string): Promise<Breed[]>;
   findBreedById(id: string): Promise<Breed | null>;
-  findBreedByName(name: string): Promise<Breed | null>;
+  findBreedByNameAndSpecieId(
+    name: string,
+    specieId: string,
+  ): Promise<Breed | null>;
 }

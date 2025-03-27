@@ -2,7 +2,7 @@ import db from "@/db";
 import { CreateBreed, Breed, UpdateBreed } from "../types";
 import { BreedsRepository } from "../repository";
 import { breedsTable } from "../breed";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 
 export class DrizzleBreedsRepository implements BreedsRepository {
   async createBreed(breed: CreateBreed): Promise<Breed> {
@@ -46,11 +46,16 @@ export class DrizzleBreedsRepository implements BreedsRepository {
     return rows[0];
   }
 
-  async findBreedByName(name: string): Promise<Breed | null> {
+  async findBreedByNameAndSpecieId(
+    name: string,
+    specieId: string,
+  ): Promise<Breed | null> {
     const rows = await db
       .select()
       .from(breedsTable)
-      .where(eq(breedsTable.name, name));
+      .where(
+        and(eq(breedsTable.name, name), eq(breedsTable.speciesId, specieId)),
+      );
 
     if (rows.length === 0) {
       return null;
