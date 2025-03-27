@@ -15,7 +15,7 @@ export const petsTable = petPgSchema.table("pets", {
   breedId: uuid()
     .references(() => breedsTable.id)
     .notNull(),
-  speciesId: uuid()
+  specieId: uuid()
     .references(() => speciesTable.id)
     .notNull(),
 });

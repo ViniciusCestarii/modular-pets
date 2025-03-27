@@ -14,14 +14,14 @@ describe("Update breed e2e", () => {
     const breed = (
       await db
         .insert(breedsTable)
-        .values({ name: "German Shepherd", speciesId: specie.id })
+        .values({ name: "German Shepherd", specieId: specie.id })
         .returning()
     )[0];
 
     const data: UpdateBreed = {
       id: breed.id,
       name: "Pug",
-      speciesId: specie.id,
+      specieId: specie.id,
     };
 
     const request = new Request("http://localhost/pet/breeds", {
@@ -40,7 +40,7 @@ describe("Update breed e2e", () => {
     expect(body).toMatchObject({
       id: expect.any(String),
       name: "Pug",
-      speciesId: data.speciesId,
+      specieId: data.specieId,
     });
 
     expect(response.status).toBe(200);
@@ -54,14 +54,14 @@ describe("Update breed e2e", () => {
     const breed = (
       await db
         .insert(breedsTable)
-        .values({ name: "German Shepherd", speciesId: specie.id })
+        .values({ name: "German Shepherd", specieId: specie.id })
         .returning()
     )[0];
 
     const data: UpdateBreed = {
       id: breed.id,
       name: "German Shepherd",
-      speciesId: "00000000-0000-0000-0000-000000000000",
+      specieId: "00000000-0000-0000-0000-000000000000",
     };
 
     const request = new Request("http://localhost/pet/breeds", {
@@ -90,7 +90,7 @@ describe("Update breed e2e", () => {
     const data: UpdateBreed = {
       id: "00000000-0000-0000-0000-000000000000",
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     };
 
     const request = new Request("http://localhost/pet/breeds", {
@@ -136,7 +136,7 @@ describe("Update breed e2e", () => {
     const data: UpdateBreed = {
       id: "00000000-0000-0000-0000-000000000000",
       name: "German Shepherd",
-      speciesId: "00000000-0000-0000-0000-000000000000",
+      specieId: "00000000-0000-0000-0000-000000000000",
     };
 
     const request = new Request("http://localhost/pet/breeds", {

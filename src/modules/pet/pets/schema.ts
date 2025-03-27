@@ -27,7 +27,7 @@ export const createPetSchema = t.Object({
   breedId: t.String({
     format: "uuid",
   }),
-  speciesId: t.String({
+  specieId: t.String({
     format: "uuid",
   }),
 });
@@ -38,7 +38,7 @@ export const listPetsSchema = t.Object({
   name: t.Optional(t.String()),
   sex: t.Optional(t.Union(sexSchema)),
   breedId: t.Optional(t.String({ format: "uuid" })),
-  speciesId: t.Optional(t.String({ format: "uuid" })),
+  specieId: t.Optional(t.String({ format: "uuid" })),
   minBirthdate: t.Optional(
     t.String({
       format: "date",

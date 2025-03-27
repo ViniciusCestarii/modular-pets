@@ -23,8 +23,8 @@ const insertDogCat = async () => {
   const [germanShepherd, siamese] = await db
     .insert(breedsTable)
     .values([
-      { id: cockatielId, name: "German Sheperd", speciesId: dog.id },
-      { id: siameseId, name: "Siamese", speciesId: cat.id },
+      { id: cockatielId, name: "German Sheperd", specieId: dog.id },
+      { id: siameseId, name: "Siamese", specieId: cat.id },
     ])
     .returning();
 
@@ -35,7 +35,7 @@ const insertDogCat = async () => {
       name: `Marley-${i}`,
       birthdate: `20${i}-01-01`,
       sex: "MALE",
-      speciesId: dog.id,
+      specieId: dog.id,
       breedId: germanShepherd.id,
     };
 
@@ -45,7 +45,7 @@ const insertDogCat = async () => {
       name: `Pandora-${i}`,
       birthdate: `20${i}-01-01`,
       sex: "FEMALE",
-      speciesId: cat.id,
+      specieId: cat.id,
       breedId: siamese.id,
     };
 
@@ -64,7 +64,7 @@ describe("List pet e2e", () => {
     const breed = (
       await db
         .insert(breedsTable)
-        .values({ name: "German Shepherd", speciesId: specie.id })
+        .values({ name: "German Shepherd", specieId: specie.id })
         .returning()
     )[0];
 
@@ -72,7 +72,7 @@ describe("List pet e2e", () => {
       name: "Nina",
       birthdate: "2021-01-01",
       sex: "FEMALE",
-      speciesId: specie.id,
+      specieId: specie.id,
       breedId: breed.id,
     };
 
@@ -110,7 +110,7 @@ describe("List pet e2e", () => {
       name: "Nina",
       birthdate: "2021-01-01",
       sex: "FEMALE",
-      speciesId: specie.id,
+      specieId: specie.id,
       breedId: breed.id,
     });
 
@@ -156,7 +156,7 @@ describe("List pet e2e", () => {
     const breed = (
       await db
         .insert(breedsTable)
-        .values({ name: "German Shepherd", speciesId: specie.id })
+        .values({ name: "German Shepherd", specieId: specie.id })
         .returning()
     )[0];
 
@@ -167,7 +167,7 @@ describe("List pet e2e", () => {
         name: `Nina-${i}`,
         birthdate: "2021-01-01",
         sex: "FEMALE",
-        speciesId: specie.id,
+        specieId: specie.id,
         breedId: breed.id,
       };
 
@@ -204,7 +204,7 @@ describe("List pet e2e", () => {
       name: "Nina-5",
       birthdate: "2021-01-01",
       sex: "FEMALE",
-      speciesId: specie.id,
+      specieId: specie.id,
       breedId: breed.id,
     });
 
@@ -213,7 +213,7 @@ describe("List pet e2e", () => {
       name: "Nina-6",
       birthdate: "2021-01-01",
       sex: "FEMALE",
-      speciesId: specie.id,
+      specieId: specie.id,
       breedId: breed.id,
     });
 
@@ -302,7 +302,7 @@ describe("List pet e2e", () => {
     const data: ListPets = {
       page: 1,
       pageSize: 10,
-      speciesId: catId,
+      specieId: catId,
     };
 
     Object.entries(data).forEach(([key, value]) => {
@@ -323,7 +323,7 @@ describe("List pet e2e", () => {
       id: expect.any(String),
       name: "Pandora-0",
       sex: "FEMALE",
-      speciesId: catId,
+      specieId: catId,
     });
 
     expect(total).toBe(15);

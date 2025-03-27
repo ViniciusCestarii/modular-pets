@@ -26,7 +26,7 @@ describe("Find pet by id use case", () => {
 
     const breed = await inMemoryBreedsRepository.createBreed({
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     });
 
     const petToCreate: CreatePet = {
@@ -35,7 +35,7 @@ describe("Find pet by id use case", () => {
       sex: "FEMALE",
       observations: "She's a very playful dog",
       breedId: breed.id,
-      speciesId: specie.id,
+      specieId: specie.id,
     };
 
     const newPet = await inMemoryPetsRepository.createPet(petToCreate);
@@ -49,7 +49,7 @@ describe("Find pet by id use case", () => {
       sex: "FEMALE",
       observations: "She's a very playful dog",
       breedId: breed.id,
-      speciesId: specie.id,
+      specieId: specie.id,
     });
   });
 

@@ -25,11 +25,11 @@ export class DrizzleBreedsRepository implements BreedsRepository {
     return updatedBreed;
   }
 
-  async findAllBreedsBySpeciesId(speciesId: string): Promise<Breed[]> {
+  async findAllBreedsByspecieId(specieId: string): Promise<Breed[]> {
     return await db
       .select()
       .from(breedsTable)
-      .where(eq(breedsTable.speciesId, speciesId))
+      .where(eq(breedsTable.specieId, specieId))
       .orderBy(breedsTable.name);
   }
 
@@ -54,7 +54,7 @@ export class DrizzleBreedsRepository implements BreedsRepository {
       .select()
       .from(breedsTable)
       .where(
-        and(eq(breedsTable.name, name), eq(breedsTable.speciesId, specieId)),
+        and(eq(breedsTable.name, name), eq(breedsTable.specieId, specieId)),
       );
 
     if (rows.length === 0) {

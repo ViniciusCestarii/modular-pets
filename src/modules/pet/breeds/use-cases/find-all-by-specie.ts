@@ -17,7 +17,7 @@ export class FindAllBreedsBySpecieUseCase {
     }
 
     const breeds =
-      await this.breedsRepository.findAllBreedsBySpeciesId(specieId);
+      await this.breedsRepository.findAllBreedsByspecieId(specieId);
 
     return breeds;
   }

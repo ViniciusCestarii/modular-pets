@@ -11,7 +11,7 @@ export class CreateBreedUseCase {
   ) {}
 
   async execute(breed: CreateBreed): Promise<Breed> {
-    const specie = await this.speciesRepository.findSpecieById(breed.speciesId);
+    const specie = await this.speciesRepository.findSpecieById(breed.specieId);
 
     if (!specie) {
       throw new SpecieNotFoundError();
@@ -20,7 +20,7 @@ export class CreateBreedUseCase {
     const existingBreed =
       await this.breedsRepository.findBreedByNameAndSpecieId(
         breed.name,
-        breed.speciesId,
+        breed.specieId,
       );
 
     if (existingBreed) {
