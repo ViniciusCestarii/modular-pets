@@ -17,7 +17,7 @@ export class UpdateBreedUseCase {
       throw new BreedNotFoundError();
     }
 
-    const specie = await this.speciesRepository.findSpecieById(breed.speciesId);
+    const specie = await this.speciesRepository.findSpecieById(breed.specieId);
 
     if (!specie) {
       throw new SpecieNotFoundError();

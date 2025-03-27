@@ -5,7 +5,7 @@ import { BreedAlreadyExistsError } from "./errors/breed-already-exists";
 
 export const createBreedSchema = t.Object({
   name: t.String(),
-  speciesId: t.String({
+  specieId: t.String({
     format: "uuid",
   }),
 });
@@ -13,7 +13,7 @@ export const createBreedSchema = t.Object({
 export const updateBreedSchema = t.Object({
   id: t.String({ format: "uuid" }),
   name: t.String(),
-  speciesId: t.String({
+  specieId: t.String({
     format: "uuid",
   }),
 });

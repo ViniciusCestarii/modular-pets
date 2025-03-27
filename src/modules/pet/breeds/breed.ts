@@ -8,9 +8,9 @@ export const breedsTable = petPgSchema.table(
   {
     id: uuid().primaryKey().$defaultFn(v7),
     name: varchar({ length: 255 }).notNull(),
-    speciesId: uuid()
+    specieId: uuid()
       .references(() => speciesTable.id)
       .notNull(),
   },
-  (t) => [unique().on(t.name, t.speciesId)],
+  (t) => [unique().on(t.name, t.specieId)],
 );

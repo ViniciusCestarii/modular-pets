@@ -22,7 +22,7 @@ export class DrizzlePetsRepository implements PetsRepository {
       await db
         .select()
         .from(speciesTable)
-        .where(eq(speciesTable.id, createdPet.speciesId))
+        .where(eq(speciesTable.id, createdPet.specieId))
     )[0];
 
     return {
@@ -38,7 +38,7 @@ export class DrizzlePetsRepository implements PetsRepository {
       .from(petsTable)
       .leftJoin(imagesTable, eq(imagesTable.ownerId, petsTable.id))
       .leftJoin(breedsTable, eq(breedsTable.id, petsTable.breedId))
-      .leftJoin(speciesTable, eq(speciesTable.id, petsTable.speciesId))
+      .leftJoin(speciesTable, eq(speciesTable.id, petsTable.specieId))
       .where(eq(petsTable.id, id));
 
     if (rows.length === 0) {
@@ -61,7 +61,7 @@ export class DrizzlePetsRepository implements PetsRepository {
     minBirthdate,
     name,
     breedId,
-    speciesId,
+    specieId,
     sex,
   }: ListPets): Promise<{ pets: PetView[]; total: number }> {
     page--;
@@ -84,8 +84,8 @@ export class DrizzlePetsRepository implements PetsRepository {
       filterQueries.push(eq(petsTable.breedId, breedId));
     }
 
-    if (speciesId) {
-      filterQueries.push(eq(petsTable.speciesId, speciesId));
+    if (specieId) {
+      filterQueries.push(eq(petsTable.specieId, specieId));
     }
 
     if (sex) {
@@ -97,7 +97,7 @@ export class DrizzlePetsRepository implements PetsRepository {
       .from(petsTable)
       .leftJoin(imagesTable, eq(imagesTable.ownerId, petsTable.id))
       .leftJoin(breedsTable, eq(breedsTable.id, petsTable.breedId))
-      .leftJoin(speciesTable, eq(speciesTable.id, petsTable.speciesId))
+      .leftJoin(speciesTable, eq(speciesTable.id, petsTable.specieId))
       .where(and(...filterQueries))
       .orderBy(petsTable.name)
       .limit(pageSize)

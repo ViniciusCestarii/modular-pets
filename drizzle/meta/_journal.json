@@ -78,6 +78,20 @@
       "when": 1743094899944,
       "tag": "0010_add_unique_index_constraint_for_breed_specie_id",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1743095047286,
+      "tag": "0011_rename_breed_species_id_to_specie_id",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1743095275916,
+      "tag": "0012_rename_pet_species_id_to_specie_id",
+      "breakpoints": true
     }
   ]
 }

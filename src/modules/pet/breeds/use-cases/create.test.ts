@@ -27,7 +27,7 @@ describe("Create breed use case", () => {
 
     const breed: CreateBreed = {
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     };
 
     const createdBreed = await createBreedUseCase.execute(breed);
@@ -35,14 +35,14 @@ describe("Create breed use case", () => {
     expect(createdBreed).toMatchObject({
       id: expect.any(String),
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     });
   });
 
   it("should throw SpecieNotFound when trying to create a breed with a non-existent specie id", async () => {
     const breed: CreateBreed = {
       name: "German Shepherd",
-      speciesId: "NonExistentId",
+      specieId: "NonExistentId",
     };
 
     expect(createBreedUseCase.execute(breed)).rejects.toThrowError(
@@ -57,12 +57,12 @@ describe("Create breed use case", () => {
 
     await inMemoryBreedsRepository.createBreed({
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     });
 
     const breed: CreateBreed = {
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     };
 
     expect(createBreedUseCase.execute(breed)).rejects.toThrowError(
@@ -81,12 +81,12 @@ describe("Create breed use case", () => {
 
     await inMemoryBreedsRepository.createBreed({
       name: "Siamese",
-      speciesId: dog.id,
+      specieId: dog.id,
     });
 
     const breed: CreateBreed = {
       name: "Siamese",
-      speciesId: cat.id,
+      specieId: cat.id,
     };
 
     expect(createBreedUseCase.execute(breed)).not.fail();

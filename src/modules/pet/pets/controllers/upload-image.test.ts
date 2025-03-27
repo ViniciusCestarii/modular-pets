@@ -15,7 +15,7 @@ describe("Upload pet image e2e", () => {
     const breed = (
       await db
         .insert(breedsTable)
-        .values({ name: "German Shepherd", speciesId: specie.id })
+        .values({ name: "German Shepherd", specieId: specie.id })
         .returning()
     )[0];
 
@@ -23,7 +23,7 @@ describe("Upload pet image e2e", () => {
       name: "Nina",
       birthdate: "2021-01-01",
       sex: "FEMALE",
-      speciesId: specie.id,
+      specieId: specie.id,
       breedId: breed.id,
     };
 

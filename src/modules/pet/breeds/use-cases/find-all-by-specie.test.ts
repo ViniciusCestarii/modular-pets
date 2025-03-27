@@ -29,17 +29,17 @@ describe("Find all breeds by specie use case", () => {
 
     const dog1 = await inMemoryBreedsRepository.createBreed({
       name: "German Shepherd",
-      speciesId: specieDog.id,
+      specieId: specieDog.id,
     });
 
     const dog2 = await inMemoryBreedsRepository.createBreed({
       name: "Labrador Retriever",
-      speciesId: specieDog.id,
+      specieId: specieDog.id,
     });
 
     await inMemoryBreedsRepository.createBreed({
       name: "Maine Coon",
-      speciesId: specieCat.id,
+      specieId: specieCat.id,
     });
 
     const breedsFound = await findAllBreedsBySpecieUseCase.execute(

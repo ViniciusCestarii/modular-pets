@@ -14,7 +14,7 @@ describe("Create pet e2e", () => {
     const breed = (
       await db
         .insert(breedsTable)
-        .values({ name: "German Shepherd", speciesId: specie.id })
+        .values({ name: "German Shepherd", specieId: specie.id })
         .returning()
     )[0];
 
@@ -23,7 +23,7 @@ describe("Create pet e2e", () => {
       birthdate: "2021-01-01",
       sex: "FEMALE",
       observations: "She's a very playful dog",
-      speciesId: specie.id,
+      specieId: specie.id,
       breedId: breed.id,
     };
 
@@ -45,7 +45,7 @@ describe("Create pet e2e", () => {
       name: "Nina",
       birthdate: "2021-01-01",
       sex: "FEMALE",
-      speciesId: specie.id,
+      specieId: specie.id,
       breedId: breed.id,
       breed,
       specie,
@@ -62,7 +62,7 @@ describe("Create pet e2e", () => {
     const breed = (
       await db
         .insert(breedsTable)
-        .values({ name: "German Shepherd", speciesId: specie.id })
+        .values({ name: "German Shepherd", specieId: specie.id })
         .returning()
     )[0];
 
@@ -70,7 +70,7 @@ describe("Create pet e2e", () => {
       name: "Nina",
       birthdate: "2021-01-01",
       sex: "FEMALE",
-      speciesId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284", // Unregistered specie
+      specieId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284", // Unregistered specie
       breedId: breed.id,
     };
 
@@ -101,7 +101,7 @@ describe("Create pet e2e", () => {
       name: "Nina",
       birthdate: "2021-01-01",
       sex: "FEMALE",
-      speciesId: specie.id,
+      specieId: specie.id,
       breedId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284", // Unregistered breed
     };
 
@@ -123,7 +123,7 @@ describe("Create pet e2e", () => {
     expect(response.status).toBe(400);
   });
 
-  it("should return 400 when trying to create a pet with non-matching specie id and breed.speciesId", async () => {
+  it("should return 400 when trying to create a pet with non-matching specie id and breed.specieId", async () => {
     const specieDog = (
       await db.insert(speciesTable).values({ name: "Dog" }).returning()
     )[0];
@@ -135,7 +135,7 @@ describe("Create pet e2e", () => {
     const catBreed = (
       await db
         .insert(breedsTable)
-        .values({ name: "Siamese", speciesId: specieCat.id })
+        .values({ name: "Siamese", specieId: specieCat.id })
         .returning()
     )[0];
 
@@ -143,7 +143,7 @@ describe("Create pet e2e", () => {
       name: "Nina",
       birthdate: "2021-01-01",
       sex: "FEMALE",
-      speciesId: specieDog.id,
+      specieId: specieDog.id,
       breedId: catBreed.id,
     };
 
@@ -192,7 +192,7 @@ describe("Create pet e2e", () => {
       birthdate: "2021-01-01",
       sex: "FEMALE",
       observations: "She's a very playful dog",
-      speciesId: "00000000-0000-0000-0000-000000000000",
+      specieId: "00000000-0000-0000-0000-000000000000",
       breedId: "00000000-0000-0000-0000-000000000000",
     };
 

@@ -27,13 +27,13 @@ describe("Update breed use case", () => {
 
     const breed = await inMemoryBreedsRepository.createBreed({
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     });
 
     const breedToUpdate: UpdateBreed = {
       id: breed.id,
       name: "Pug",
-      speciesId: specie.id,
+      specieId: specie.id,
     };
 
     const updatedBreed = await updateBreedUseCase.execute(breedToUpdate);
@@ -48,13 +48,13 @@ describe("Update breed use case", () => {
 
     await inMemoryBreedsRepository.createBreed({
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     });
 
     const breedToUpdate: UpdateBreed = {
       id: "NonExistentId",
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     };
 
     expect(updateBreedUseCase.execute(breedToUpdate)).rejects.toThrowError(
@@ -69,13 +69,13 @@ describe("Update breed use case", () => {
 
     const breed = await inMemoryBreedsRepository.createBreed({
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     });
 
     const breedToUpdate: UpdateBreed = {
       id: breed.id,
       name: "German Shepherd",
-      speciesId: "NonExistentId",
+      specieId: "NonExistentId",
     };
 
     expect(updateBreedUseCase.execute(breedToUpdate)).rejects.toThrowError(

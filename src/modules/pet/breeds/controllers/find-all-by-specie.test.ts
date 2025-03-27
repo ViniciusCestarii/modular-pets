@@ -23,17 +23,17 @@ describe("Create breed e2e", () => {
     const breedPromises = [
       db
         .insert(breedsTable)
-        .values({ name: "German Shepherd", speciesId: dog.id })
+        .values({ name: "German Shepherd", specieId: dog.id })
         .returning()
         .then((rows) => rows[0]),
       db
         .insert(breedsTable)
-        .values({ name: "Labrador Retriever", speciesId: dog.id })
+        .values({ name: "Labrador Retriever", specieId: dog.id })
         .returning()
         .then((rows) => rows[0]),
       db
         .insert(breedsTable)
-        .values({ name: "Maine Coon", speciesId: cat.id })
+        .values({ name: "Maine Coon", specieId: cat.id })
         .returning()
         .then((rows) => rows[0]),
     ];

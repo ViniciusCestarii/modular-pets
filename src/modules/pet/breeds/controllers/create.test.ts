@@ -13,7 +13,7 @@ describe("Create breed e2e", () => {
 
     const data: CreateBreed = {
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     };
 
     const request = new Request("http://localhost/pet/breeds", {
@@ -32,7 +32,7 @@ describe("Create breed e2e", () => {
     expect(body).toMatchObject({
       id: expect.any(String),
       name: "German Shepherd",
-      speciesId: data.speciesId,
+      specieId: data.specieId,
     });
 
     expect(response.status).toBe(201);
@@ -41,7 +41,7 @@ describe("Create breed e2e", () => {
   it("should return 400 when trying to create a breed with unregistered specie", async () => {
     const data: CreateBreed = {
       name: "German Shepherd",
-      speciesId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284", // Unregistered specie
+      specieId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284", // Unregistered specie
     };
 
     const request = new Request("http://localhost/pet/breeds", {
@@ -69,12 +69,12 @@ describe("Create breed e2e", () => {
 
     await db.insert(breedsTable).values({
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     });
 
     const data: CreateBreed = {
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     };
 
     const request = new Request("http://localhost/pet/breeds", {
@@ -106,12 +106,12 @@ describe("Create breed e2e", () => {
 
     await db.insert(breedsTable).values({
       name: "Siamese",
-      speciesId: dog.id,
+      specieId: dog.id,
     });
 
     const data: CreateBreed = {
       name: "Siamese",
-      speciesId: cat.id,
+      specieId: cat.id,
     };
 
     const request = new Request("http://localhost/pet/breeds", {
@@ -152,7 +152,7 @@ describe("Create breed e2e", () => {
   it("should return 401 trying being Unauthorized", async () => {
     const data: CreateBreed = {
       name: "German Shepherd",
-      speciesId: "00000000-0000-0000-0000-000000000000",
+      specieId: "00000000-0000-0000-0000-000000000000",
     };
 
     const request = new Request("http://localhost/pet/breeds", {

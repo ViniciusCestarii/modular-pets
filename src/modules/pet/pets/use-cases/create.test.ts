@@ -32,7 +32,7 @@ describe("Create pet use case", () => {
 
     const breed = await inMemoryBreedsRepository.createBreed({
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     });
 
     const pet: CreatePet = {
@@ -41,7 +41,7 @@ describe("Create pet use case", () => {
       sex: "FEMALE",
       observations: "She's a very playful dog",
       breedId: breed.id,
-      speciesId: specie.id,
+      specieId: specie.id,
     };
 
     const createdPet = await createPetUseCase.execute(pet);
@@ -53,7 +53,7 @@ describe("Create pet use case", () => {
       sex: "FEMALE",
       observations: "She's a very playful dog",
       breedId: breed.id,
-      speciesId: specie.id,
+      specieId: specie.id,
     });
   });
 
@@ -64,7 +64,7 @@ describe("Create pet use case", () => {
 
     const breed = await inMemoryBreedsRepository.createBreed({
       name: "German Shepherd",
-      speciesId: specie.id,
+      specieId: specie.id,
     });
 
     const pet: CreatePet = {
@@ -72,7 +72,7 @@ describe("Create pet use case", () => {
       birthdate: "2021-01-01",
       sex: "FEMALE",
       breedId: breed.id,
-      speciesId: "NonExistentSpecieId",
+      specieId: "NonExistentSpecieId",
     };
 
     expect(createPetUseCase.execute(pet)).rejects.toThrowError(
@@ -90,7 +90,7 @@ describe("Create pet use case", () => {
       birthdate: "2021-01-01",
       sex: "FEMALE",
       breedId: "NonExistentBreedId",
-      speciesId: specie.id,
+      specieId: specie.id,
     };
 
     expect(createPetUseCase.execute(pet)).rejects.toThrowError(
@@ -109,14 +109,14 @@ describe("Create pet use case", () => {
 
     const breedCat = await inMemoryBreedsRepository.createBreed({
       name: "Siamese",
-      speciesId: specieCat.id,
+      specieId: specieCat.id,
     });
 
     const pet: CreatePet = {
       name: "Nina",
       birthdate: "2021-01-01",
       sex: "FEMALE",
-      speciesId: specieDog.id,
+      specieId: specieDog.id,
       breedId: breedCat.id,
     };
 

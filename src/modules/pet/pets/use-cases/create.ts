@@ -14,7 +14,7 @@ export class CreatePetUseCase {
   ) {}
 
   async execute(pet: CreatePet): Promise<Pet> {
-    const specie = await this.speciesRepository.findSpecieById(pet.speciesId);
+    const specie = await this.speciesRepository.findSpecieById(pet.specieId);
 
     if (!specie) {
       throw new SpecieNotFoundError();
@@ -26,7 +26,7 @@ export class CreatePetUseCase {
       throw new BreedNotFoundError();
     }
 
-    if (breed.speciesId !== specie.id) {
+    if (breed.specieId !== specie.id) {
       throw new InvalidBreedSpecieError();
     }
 
