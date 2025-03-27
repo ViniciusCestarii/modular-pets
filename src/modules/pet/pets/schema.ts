@@ -6,11 +6,17 @@ import { swaggerViewImageSchema } from "@/modules/shared/images/schema";
 import { swaggerBreedSchema } from "../breeds/schema";
 import { swaggerSpecieSchema } from "../species/schema";
 
+const sexSchema = [
+  t.Literal("MALE"),
+  t.Literal("FEMALE"),
+  t.Literal("UNKNOWN"),
+];
+
 export const createPetSchema = t.Object({
   name: t.String(),
   birthdate: t.String({ format: "date" }),
   observations: t.Optional(t.String()),
-  sex: t.Union([t.Literal("MALE"), t.Literal("FEMALE"), t.Literal("UNKNOWN")], {
+  sex: t.Union(sexSchema, {
     default: "UNKNOWN",
   }),
   mainImageId: t.Optional(
@@ -29,6 +35,20 @@ export const createPetSchema = t.Object({
 export const listPetsSchema = t.Object({
   page: t.Integer({ minimum: 1 }),
   pageSize: t.Integer({ minimum: 1, maximum: 100, default: 10 }),
+  name: t.Optional(t.String()),
+  sex: t.Optional(t.Union(sexSchema)),
+  breedId: t.Optional(t.String({ format: "uuid" })),
+  speciesId: t.Optional(t.String({ format: "uuid" })),
+  minBirthdate: t.Optional(
+    t.String({
+      format: "date",
+    }),
+  ),
+  maxBirthdate: t.Optional(
+    t.String({
+      format: "date",
+    }),
+  ),
 });
 
 // just for swagger
