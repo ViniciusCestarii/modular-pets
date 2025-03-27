@@ -1,9 +1,8 @@
 import db from "@/db";
-import { CreatePet, Pet, PetView } from "../types";
+import { CreatePet, ListPets, Pet, PetView } from "../types";
 import { PetsRepository } from "../repository";
 import { petsTable } from "../pet";
-import { eq, sql } from "drizzle-orm";
-import { Pagination } from "@/modules/shared/types/pagination";
+import { and, eq, gte, ilike, lte, sql } from "drizzle-orm";
 import { breedsTable, imagesTable, speciesTable } from "@/db/schema";
 import { ImageView } from "@/modules/shared/images/types";
 
@@ -58,8 +57,40 @@ export class DrizzlePetsRepository implements PetsRepository {
   async listPets({
     page,
     pageSize,
-  }: Pagination): Promise<{ pets: PetView[]; total: number }> {
+    maxBirthdate,
+    minBirthdate,
+    name,
+    breedId,
+    speciesId,
+    sex,
+  }: ListPets): Promise<{ pets: PetView[]; total: number }> {
     page--;
+
+    const filterQueries = [];
+
+    if (name) {
+      filterQueries.push(ilike(petsTable.name, `%${name}%`));
+    }
+
+    if (minBirthdate) {
+      filterQueries.push(gte(petsTable.birthdate, minBirthdate));
+    }
+
+    if (maxBirthdate) {
+      filterQueries.push(lte(petsTable.birthdate, maxBirthdate));
+    }
+
+    if (breedId) {
+      filterQueries.push(eq(petsTable.breedId, breedId));
+    }
+
+    if (speciesId) {
+      filterQueries.push(eq(petsTable.speciesId, speciesId));
+    }
+
+    if (sex) {
+      filterQueries.push(eq(petsTable.sex, sex));
+    }
 
     const petsQuery = db
       .select()
@@ -67,13 +98,14 @@ export class DrizzlePetsRepository implements PetsRepository {
       .leftJoin(imagesTable, eq(imagesTable.ownerId, petsTable.id))
       .leftJoin(breedsTable, eq(breedsTable.id, petsTable.breedId))
       .leftJoin(speciesTable, eq(speciesTable.id, petsTable.speciesId))
+      .where(and(...filterQueries))
       .orderBy(petsTable.name)
       .limit(pageSize)
       .offset(page * pageSize);
-
     const totalQuery = db
       .select({ count: sql`count(*)`.mapWith(Number) })
-      .from(petsTable);
+      .from(petsTable)
+      .where(and(...filterQueries));
 
     const [rows, [{ count: total }]] = await Promise.all([
       petsQuery,

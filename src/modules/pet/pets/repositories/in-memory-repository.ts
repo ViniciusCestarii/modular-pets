@@ -1,6 +1,5 @@
-import { Pagination } from "@/modules/shared/types/pagination";
 import { PetsRepository } from "../repository";
-import { CreatePet, Pet, PetList, PetView } from "../types";
+import { CreatePet, ListPets, Pet, PetList, PetView } from "../types";
 
 export class InMemoryPetsRepository implements PetsRepository {
   private pets: Pet[] = [];
@@ -40,7 +39,7 @@ export class InMemoryPetsRepository implements PetsRepository {
     };
   }
 
-  async listPets({ page, pageSize }: Pagination): Promise<PetList> {
+  async listPets({ page, pageSize }: ListPets): Promise<PetList> {
     page--;
     const start = page * pageSize;
     const end = start + pageSize;
