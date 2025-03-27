@@ -1,0 +1,1 @@
+ALTER TABLE "pet"."breeds" ADD CONSTRAINT "breeds_name_speciesId_unique" UNIQUE("name","speciesId");
