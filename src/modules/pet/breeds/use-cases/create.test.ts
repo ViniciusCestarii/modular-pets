@@ -50,7 +50,7 @@ describe("Create breed use case", () => {
     );
   });
 
-  it("should throw BreedAlreadyExistsError when creating a breed that already exists", async () => {
+  it("should throw BreedAlreadyExistsError when creating a breed that already exists in the same specie", async () => {
     const specie = await inMemorySpeciesRepository.createSpecie({
       name: "Dog",
     });
@@ -68,5 +68,27 @@ describe("Create breed use case", () => {
     expect(createBreedUseCase.execute(breed)).rejects.toThrowError(
       BreedAlreadyExistsError,
     );
+  });
+
+  it("should not throw BreedAlreadyExistsError when creating a breed that already exists but in a different specie", async () => {
+    const dog = await inMemorySpeciesRepository.createSpecie({
+      name: "Dog",
+    });
+
+    const cat = await inMemorySpeciesRepository.createSpecie({
+      name: "Cat",
+    });
+
+    await inMemoryBreedsRepository.createBreed({
+      name: "Siamese",
+      speciesId: dog.id,
+    });
+
+    const breed: CreateBreed = {
+      name: "Siamese",
+      speciesId: cat.id,
+    };
+
+    expect(createBreedUseCase.execute(breed)).not.fail();
   });
 });
