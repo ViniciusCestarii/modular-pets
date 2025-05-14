@@ -51,17 +51,16 @@ export const resetDb = async () => {
   await pool.end();
 };
 
-const firstPetId = "09f1a972-dd95-4359-0c58-d272d1ef23b0";
-
 const seedImages = async (db: NodePgDatabase) => {
-  const resetImagesPromises = [
-    db.update(schemas.petsTable).set({
-      mainImageId: null,
-    }),
-    db.delete(schemas.imagesTable),
-  ];
+  const petId = (
+    await db
+      .select({ id: schemas.petsTable.id })
+      .from(schemas.petsTable)
+      .orderBy(schemas.petsTable.name)
+      .limit(1)
+  )[0].id;
 
-  await Promise.all(resetImagesPromises);
+  console.log(petId);
 
   const url = await fileToBase64Url(dogImageFile);
 
@@ -70,7 +69,7 @@ const seedImages = async (db: NodePgDatabase) => {
     .values({
       ownerType: "pet",
       src: url,
-      ownerId: firstPetId,
+      ownerId: petId,
     })
     .returning({ id: schemas.imagesTable.id });
 
@@ -79,7 +78,7 @@ const seedImages = async (db: NodePgDatabase) => {
     .set({
       mainImageId: imageId[0].id,
     })
-    .where(eq(schemas.petsTable.id, firstPetId));
+    .where(eq(schemas.petsTable.id, petId));
 };
 
 export const seedDb = async (count: number) => {
