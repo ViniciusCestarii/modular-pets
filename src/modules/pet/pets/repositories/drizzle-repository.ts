@@ -1,5 +1,5 @@
 import db from "@/db";
-import { CreatePet, ListPets, Pet, PetView } from "../types";
+import { CreatePet, ListPets, Pet, PetView, UpdatePet } from "../types";
 import { PetsRepository } from "../repository";
 import { petsTable } from "../pet";
 import { and, eq, gte, ilike, lte, sql } from "drizzle-orm";
@@ -54,6 +54,47 @@ export class DrizzlePetsRepository implements PetsRepository {
 
     return pet;
   }
+
+  updatePet(pet: UpdatePet): Promise<PetView> {
+    return db.transaction(async (tx) => {
+      const rows = await tx
+        .update(petsTable)
+        .set(pet)
+        .where(eq(petsTable.id, pet.id))
+        .returning();
+
+      const updatedPet = rows[0];
+
+      const breed = (
+        await tx
+          .select()
+          .from(breedsTable)
+          .where(eq(breedsTable.id, updatedPet.breedId))
+      )[0];
+      const specie = (
+        await tx
+          .select()
+          .from(speciesTable)
+          .where(eq(speciesTable.id, updatedPet.specieId))
+      )[0];
+
+      const images = await tx
+        .select()
+        .from(imagesTable)
+        .where(eq(imagesTable.ownerId, updatedPet.id));
+
+      return {
+        ...updatedPet,
+        breed,
+        specie,
+        images: images.map((image) => ({
+          id: image.id,
+          src: image.src,
+        })),
+      };
+    });
+  }
+
   async listPets({
     page,
     pageSize,

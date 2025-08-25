@@ -9,12 +9,14 @@ import { updateSpecie } from "./species/controllers/update";
 import { updateBreed } from "./breeds/controllers/update";
 import { findAllSpecies } from "./species/controllers/find-all";
 import { findAllBreedsBySpecie } from "./breeds/controllers/find-all-by-specie";
+import { updatePet } from "./pets/controllers/update";
 
 const petRoutes = new Elysia();
 
 petRoutes.group("pet", (app) =>
   app
     .use(createPet)
+    .use(updatePet)
     .use(listPets)
     .use(findPetById)
     .use(uploadPetImage)
