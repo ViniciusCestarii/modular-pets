@@ -111,7 +111,7 @@ describe("Update breed e2e", () => {
     expect(response.status).toBe(404);
   });
 
-  it("should return 422 when creating a specie with invalid data", async () => {
+  it("should return 422 when updating a breed with invalid data", async () => {
     const data = {};
 
     const request = new Request("http://localhost/pet/breeds", {
