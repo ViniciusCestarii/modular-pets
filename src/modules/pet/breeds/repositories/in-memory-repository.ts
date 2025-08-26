@@ -48,4 +48,8 @@ export class InMemoryBreedsRepository implements BreedsRepository {
       ) || null
     );
   }
+
+  async deleteBreed(id: Breed["id"]): Promise<void> {
+    this.breeds = this.breeds.filter((breed) => breed.id !== id);
+  }
 }
