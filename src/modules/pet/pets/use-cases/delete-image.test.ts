@@ -36,7 +36,7 @@ describe("Delete pet image use case", () => {
       dogImageFile,
     );
 
-    expect(deleteImagePetUseCase.execute(image.id)).pass();
+    expect(deleteImagePetUseCase.execute(image.id)).resolves.toBeUndefined();
   });
 
   it("should throw ImageNotFound when trying to delete an image that doens't exist", async () => {
