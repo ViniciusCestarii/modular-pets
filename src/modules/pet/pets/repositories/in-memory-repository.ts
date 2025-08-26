@@ -71,4 +71,9 @@ export class InMemoryPetsRepository implements PetsRepository {
 
     return { pets, total: this.pets.length };
   }
+
+  async deletePet(petId: Pet["id"]): Promise<void> {
+    this.pets = this.pets.filter((pet) => pet.id !== petId);
+    return Promise.resolve();
+  }
 }
