@@ -32,6 +32,27 @@ export const createPetSchema = t.Object({
   }),
 });
 
+export const updatePetSchema = t.Object({
+  id: t.String({ format: "uuid" }),
+  name: t.String(),
+  birthdate: t.String({ format: "date" }),
+  observations: t.Optional(t.String()),
+  sex: t.Union(sexSchema, {
+    default: "UNKNOWN",
+  }),
+  mainImageId: t.Optional(
+    t.String({
+      format: "uuid",
+    }),
+  ),
+  breedId: t.String({
+    format: "uuid",
+  }),
+  specieId: t.String({
+    format: "uuid",
+  }),
+});
+
 export const listPetsSchema = t.Object({
   page: t.Integer({ minimum: 1 }),
   pageSize: t.Integer({ minimum: 1, maximum: 100, default: 10 }),

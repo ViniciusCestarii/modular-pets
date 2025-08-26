@@ -39,6 +39,24 @@ export class InMemoryPetsRepository implements PetsRepository {
     };
   }
 
+  async updatePet(pet: Partial<Pet>): Promise<PetView> {
+    const petIndex = this.pets.findIndex((p) => p.id === pet.id);
+
+    const updatedPet = {
+      ...this.pets[petIndex],
+      ...pet,
+    };
+
+    this.pets[petIndex] = updatedPet;
+
+    return {
+      ...updatedPet,
+      images: [],
+      breed: null,
+      specie: null,
+    };
+  }
+
   async listPets({ page, pageSize }: ListPets): Promise<PetList> {
     page--;
     const start = page * pageSize;

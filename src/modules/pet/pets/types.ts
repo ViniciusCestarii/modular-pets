@@ -1,5 +1,5 @@
 import { Static } from "elysia";
-import { createPetSchema, listPetsSchema } from "./schema";
+import { createPetSchema, listPetsSchema, updatePetSchema } from "./schema";
 import { InferSelectModel } from "drizzle-orm";
 import { petsTable } from "./pet";
 import { ImageView } from "@/modules/shared/images/types";
@@ -22,3 +22,5 @@ export type PetList = {
 export type ListPets = Static<typeof listPetsSchema>;
 
 export type CreatePet = Static<typeof createPetSchema>;
+
+export type UpdatePet = Static<typeof updatePetSchema>;
