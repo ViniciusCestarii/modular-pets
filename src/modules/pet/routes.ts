@@ -10,6 +10,7 @@ import { updateBreed } from "./breeds/controllers/update";
 import { findAllSpecies } from "./species/controllers/find-all";
 import { findAllBreedsBySpecie } from "./breeds/controllers/find-all-by-specie";
 import { updatePet } from "./pets/controllers/update";
+import { deletePetImage } from "./pets/controllers/delete-image";
 
 const petRoutes = new Elysia();
 
@@ -20,6 +21,7 @@ petRoutes.group("pet", (app) =>
     .use(listPets)
     .use(findPetById)
     .use(uploadPetImage)
+    .use(deletePetImage)
     .use(createBreed)
     .use(updateBreed)
     .use(findAllBreedsBySpecie)

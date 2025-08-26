@@ -18,4 +18,14 @@ export class InMemoryImagesRepository implements ImagesRepository {
   async deleteImage(_: Owner["ownerType"], id: string): Promise<void> {
     this.images = this.images.filter((image) => image.id !== id);
   }
+
+  async getImageById(
+    ownerType: Owner["ownerType"],
+    id: string,
+  ): Promise<Image | null> {
+    const image = this.images.find(
+      (image) => image.id === id && image.ownerType === ownerType,
+    );
+    return image || null;
+  }
 }

@@ -2,7 +2,7 @@ import db from "@/db";
 import { ImagesRepository } from "../repository";
 import { Image, Owner } from "../types";
 import { imagesTable } from "../image";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { fileToBase64Url } from "@/utils/transform";
 
 export class DbImagesRepository implements ImagesRepository {
@@ -24,5 +24,19 @@ export class DbImagesRepository implements ImagesRepository {
 
   async deleteImage(ownerType: Owner["ownerType"], id: string): Promise<void> {
     await db.delete(imagesTable).where(eq(imagesTable.id, id));
+  }
+
+  async getImageById(
+    ownerType: Owner["ownerType"],
+    id: string,
+  ): Promise<Image | null> {
+    const rows = await db
+      .select()
+      .from(imagesTable)
+      .where(and(eq(imagesTable.id, id), eq(imagesTable.ownerType, ownerType)));
+
+    const image = rows[0] || null;
+
+    return image;
   }
 }
