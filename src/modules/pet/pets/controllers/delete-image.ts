@@ -21,11 +21,9 @@ export const deletePetImage = new Elysia()
     async ({ params, set }) => {
       const deletePetImageUseCase = makeDeleteImagePetsUseCase();
 
-      const image = await deletePetImageUseCase.execute(params.id);
+      await deletePetImageUseCase.execute(params.id);
 
       set.status = "No Content";
-
-      return image;
     },
     {
       auth: true,
