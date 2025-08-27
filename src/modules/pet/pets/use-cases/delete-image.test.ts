@@ -1,26 +1,23 @@
 import { InMemoryPetsRepository } from "../repositories/in-memory-repository";
 import { beforeEach, describe, expect, it } from "bun:test";
 import { CreatePet } from "../types";
-import { UploadPetImageUseCase } from "./upload-image";
+import { DeletePetImageUseCase } from "./delete-image";
 import { InMemoryImagesRepository } from "@/modules/shared/images/repositories/in-memory-repository";
 import { dogImageFile } from "@/test";
-import { PetNotFoundError } from "../errors/pet-not-found";
+import { ImageNotFoundError } from "@/modules/shared/images/errors/image-not-found";
 
-describe("Upload pet image use case", () => {
-  let uploadImagePetUseCase: UploadPetImageUseCase;
+describe("Delete pet image use case", () => {
+  let deleteImagePetUseCase: DeletePetImageUseCase;
   let inMemoryPetsRepository: InMemoryPetsRepository;
   let inMemoryImagesRepository: InMemoryImagesRepository;
 
   beforeEach(() => {
     inMemoryPetsRepository = new InMemoryPetsRepository();
     inMemoryImagesRepository = new InMemoryImagesRepository();
-    uploadImagePetUseCase = new UploadPetImageUseCase(
-      inMemoryPetsRepository,
-      inMemoryImagesRepository,
-    );
+    deleteImagePetUseCase = new DeletePetImageUseCase(inMemoryImagesRepository);
   });
 
-  it("should create a new image", async () => {
+  it("should delete an image", async () => {
     const createPet: CreatePet = {
       name: "Nina",
       birthdate: "2021-01-01",
@@ -31,22 +28,20 @@ describe("Upload pet image use case", () => {
 
     const pet = await inMemoryPetsRepository.createPet(createPet);
 
-    const image = await uploadImagePetUseCase.execute(pet.id, dogImageFile);
+    const image = await inMemoryImagesRepository.uploadImage(
+      {
+        ownerId: pet.id,
+        ownerType: "pet",
+      },
+      dogImageFile,
+    );
 
-    expect(image).toMatchObject({
-      id: expect.any(String),
-      src: expect.any(String),
-      ownerId: pet.id,
-      ownerType: "pet",
-    });
+    expect(deleteImagePetUseCase.execute(image.id)).resolves.toBeUndefined();
   });
 
-  it("should throw PetNotFound when trying to upload an image to a pet that doens't exist", async () => {
+  it("should throw ImageNotFound when trying to delete an image that doens't exist", async () => {
     expect(
-      uploadImagePetUseCase.execute(
-        "00000000-0000-0000-0000-000000000000",
-        dogImageFile,
-      ),
-    ).rejects.toThrowError(PetNotFoundError);
+      deleteImagePetUseCase.execute("00000000-0000-0000-0000-000000000000"),
+    ).rejects.toThrowError(ImageNotFoundError);
   });
 });

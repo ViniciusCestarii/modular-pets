@@ -63,4 +63,8 @@ export class DrizzleBreedsRepository implements BreedsRepository {
 
     return rows[0];
   }
+
+  async deleteBreed(id: Breed["id"]): Promise<void> {
+    await db.delete(breedsTable).where(eq(breedsTable.id, id));
+  }
 }

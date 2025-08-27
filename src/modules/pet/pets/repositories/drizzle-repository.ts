@@ -180,6 +180,17 @@ export class DrizzlePetsRepository implements PetsRepository {
 
     return { pets, total };
   }
+
+  deletePet(petId: Pet["id"]): Promise<void> {
+    return db.transaction(async (tx) => {
+      await tx
+        .delete(imagesTable)
+        .where(
+          and(eq(imagesTable.ownerId, petId), eq(imagesTable.ownerType, "pet")),
+        );
+      await tx.delete(petsTable).where(eq(petsTable.id, petId));
+    });
+  }
 }
 
 const extractImages = (rows: { images: ImageView | null }[]): ImageView[] =>

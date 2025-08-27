@@ -6,4 +6,5 @@ export interface SpeciesRepository {
   findAll(): Promise<Specie[]>;
   findSpecieById(id: string): Promise<Specie | null>;
   findSpecieByName(name: string): Promise<Specie | null>;
+  deleteSpecie(id: Specie["id"]): Promise<void>;
 }

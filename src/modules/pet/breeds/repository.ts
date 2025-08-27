@@ -9,4 +9,5 @@ export interface BreedsRepository {
     name: string,
     specieId: string,
   ): Promise<Breed | null>;
+  deleteBreed(id: Breed["id"]): Promise<void>;
 }

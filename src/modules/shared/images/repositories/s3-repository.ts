@@ -2,7 +2,7 @@ import db from "@/db";
 import { ImagesRepository } from "../repository";
 import { Image, Owner } from "../types";
 import { imagesTable } from "../image";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import s3 from "@/s3";
 import { v7 } from "uuid";
 import { s3Env } from "@/env/s3-env";
@@ -35,5 +35,19 @@ export class S3ImagesRepository implements ImagesRepository {
     const path = `${ownerType}/${id}`;
     await s3.delete(path);
     await db.delete(imagesTable).where(eq(imagesTable.id, id));
+  }
+
+  async getImageById(
+    ownerType: Owner["ownerType"],
+    id: string,
+  ): Promise<Image | null> {
+    const rows = await db
+      .select()
+      .from(imagesTable)
+      .where(and(eq(imagesTable.id, id), eq(imagesTable.ownerType, ownerType)));
+
+    const image = rows[0] || null;
+
+    return image;
   }
 }

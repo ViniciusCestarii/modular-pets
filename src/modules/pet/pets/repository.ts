@@ -5,4 +5,5 @@ export interface PetsRepository {
   findPetById(id: Pet["id"]): Promise<PetView | null>;
   listPets(filter: ListPets): Promise<PetList>;
   updatePet(pet: Partial<UpdatePet>): Promise<PetView>;
+  deletePet(petId: Pet["id"]): Promise<void>;
 }
