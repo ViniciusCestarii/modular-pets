@@ -12,10 +12,19 @@ const sexSchema = [
   t.Literal("UNKNOWN"),
 ];
 
+const statusSchema = [
+  t.Literal("ACTIVE"),
+  t.Literal("INACTIVE"),
+  t.Literal("ADOPTED"),
+];
+
 export const createPetSchema = t.Object({
   name: t.String(),
   birthdate: t.String({ format: "date" }),
   observations: t.Optional(t.String()),
+  status: t.Union(statusSchema, {
+    default: "ACTIVE",
+  }),
   sex: t.Union(sexSchema, {
     default: "UNKNOWN",
   }),
@@ -37,6 +46,9 @@ export const updatePetSchema = t.Object({
   name: t.String(),
   birthdate: t.String({ format: "date" }),
   observations: t.Optional(t.String()),
+  status: t.Union(statusSchema, {
+    default: "ACTIVE",
+  }),
   sex: t.Union(sexSchema, {
     default: "UNKNOWN",
   }),

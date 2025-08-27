@@ -4,6 +4,7 @@ import { breedsTable } from "../breeds/breed";
 import { speciesTable } from "../species/specie";
 import { imagesTable, sexEnum } from "@/db/schema";
 import { petPgSchema } from "../drizzle";
+import { statusEnum } from "@/modules/shared/schema/status";
 
 export const petsTable = petPgSchema.table("pets", {
   id: uuid().primaryKey().$defaultFn(v7),
@@ -11,6 +12,7 @@ export const petsTable = petPgSchema.table("pets", {
   birthdate: date().notNull(),
   observations: varchar({ length: 1024 }),
   sex: sexEnum().default("UNKNOWN").notNull(),
+  status: statusEnum().default("ACTIVE").notNull(),
   mainImageId: uuid().references(() => imagesTable.id),
   breedId: uuid()
     .references(() => breedsTable.id)

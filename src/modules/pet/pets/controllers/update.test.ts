@@ -228,6 +228,7 @@ describe("Update pet e2e", () => {
     const data: UpdatePet = {
       id: "b38d7184-b9cf-4e79-acb6-6b7b8f797284",
       birthdate: "2021-01-01",
+      status: "ACTIVE",
       breedId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284",
       specieId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284",
       sex: "FEMALE",
@@ -255,6 +256,7 @@ describe("Update pet e2e", () => {
     const data: UpdatePet = {
       id: "b38d7184-b9cf-4e79-acb6-6b7b8f797284",
       birthdate: "2021-01-01",
+      status: "ACTIVE",
       breedId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284",
       specieId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284",
       sex: "FEMALE",

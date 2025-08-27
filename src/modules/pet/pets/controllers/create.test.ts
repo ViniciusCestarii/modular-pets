@@ -20,6 +20,7 @@ describe("Create pet e2e", () => {
 
     const data: CreatePet = {
       name: "Nina",
+      status: "ACTIVE",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       observations: "She's a very playful dog",
@@ -43,6 +44,7 @@ describe("Create pet e2e", () => {
     expect(body).toMatchObject({
       id: expect.any(String),
       name: "Nina",
+      status: "ACTIVE",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       specieId: specie.id,
@@ -68,6 +70,7 @@ describe("Create pet e2e", () => {
 
     const data: CreatePet = {
       name: "Nina",
+      status: "ACTIVE",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       specieId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284", // Unregistered specie
@@ -99,6 +102,7 @@ describe("Create pet e2e", () => {
 
     const data: CreatePet = {
       name: "Nina",
+      status: "ACTIVE",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       specieId: specie.id,
@@ -141,6 +145,7 @@ describe("Create pet e2e", () => {
 
     const data: CreatePet = {
       name: "Nina",
+      status: "ACTIVE",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       specieId: specieDog.id,
@@ -189,6 +194,7 @@ describe("Create pet e2e", () => {
   it("should return 401 trying being Unauthorized", async () => {
     const data: CreatePet = {
       name: "Nina",
+      status: "ACTIVE",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       observations: "She's a very playful dog",

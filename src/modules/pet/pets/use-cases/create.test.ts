@@ -38,6 +38,7 @@ describe("Create pet use case", () => {
     const pet: CreatePet = {
       name: "Nina",
       birthdate: "2021-01-01",
+      status: "ACTIVE",
       sex: "FEMALE",
       observations: "She's a very playful dog",
       breedId: breed.id,
@@ -49,6 +50,7 @@ describe("Create pet use case", () => {
     expect(createdPet).toMatchObject({
       id: expect.any(String),
       name: "Nina",
+      status: "ACTIVE",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       observations: "She's a very playful dog",
@@ -69,6 +71,7 @@ describe("Create pet use case", () => {
 
     const pet: CreatePet = {
       name: "Nina",
+      status: "ACTIVE",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       breedId: breed.id,
@@ -87,6 +90,7 @@ describe("Create pet use case", () => {
 
     const pet: CreatePet = {
       name: "Nina",
+      status: "ACTIVE",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       breedId: "NonExistentBreedId",
@@ -114,6 +118,7 @@ describe("Create pet use case", () => {
 
     const pet: CreatePet = {
       name: "Nina",
+      status: "ACTIVE",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       specieId: specieDog.id,

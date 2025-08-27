@@ -92,6 +92,13 @@
       "when": 1743095275916,
       "tag": "0012_rename_pet_species_id_to_specie_id",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1756336944695,
+      "tag": "0013_add_collumn_pet_status",
+      "breakpoints": true
     }
   ]
 }
