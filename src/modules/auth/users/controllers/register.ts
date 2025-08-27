@@ -8,8 +8,10 @@ import {
   swaggerUserAlreadyExistsErrorSchema,
   swaggerUserViewSchema,
 } from "../schema";
+import { auth } from "@/utils/auth/plugin";
 
 export const registerUser = new Elysia()
+  .use(auth())
   .error({
     UserAlreadyExistsError,
   })
@@ -33,6 +35,7 @@ export const registerUser = new Elysia()
       return { ...registerReturn, expiresIn: tokenExpirationTime };
     },
     {
+      auth: true,
       body: createUserSchema,
       detail: {
         summary: "Register",
