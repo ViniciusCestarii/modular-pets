@@ -69,6 +69,7 @@ export const listPetsSchema = t.Object({
   page: t.Integer({ minimum: 1 }),
   pageSize: t.Integer({ minimum: 1, maximum: 100, default: 10 }),
   name: t.Optional(t.String()),
+  status: t.Optional(t.Union(statusSchema)),
   sex: t.Optional(t.Union(sexSchema)),
   breedId: t.Optional(t.String({ format: "uuid" })),
   specieId: t.Optional(t.String({ format: "uuid" })),

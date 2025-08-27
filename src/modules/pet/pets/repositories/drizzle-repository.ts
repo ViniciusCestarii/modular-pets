@@ -104,6 +104,7 @@ export class DrizzlePetsRepository implements PetsRepository {
     breedId,
     specieId,
     sex,
+    status,
   }: ListPets): Promise<{ pets: PetView[]; total: number }> {
     page--;
 
@@ -131,6 +132,10 @@ export class DrizzlePetsRepository implements PetsRepository {
 
     if (sex) {
       filterQueries.push(eq(petsTable.sex, sex));
+    }
+
+    if (status) {
+      filterQueries.push(eq(petsTable.status, status));
     }
 
     const petsQuery = db
