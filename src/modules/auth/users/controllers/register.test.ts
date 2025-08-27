@@ -4,6 +4,7 @@ import { CreateUser, UserRegisterReturn } from "../types";
 import db from "@/db";
 import { usersTable } from "../user";
 import { tokenExpirationTime, verifyToken } from "@/utils/auth/jwt";
+import { bearerToken } from "@/test";
 
 describe("Create user e2e", () => {
   it("should create a new user successfully", async () => {
@@ -19,6 +20,7 @@ describe("Create user e2e", () => {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: bearerToken,
       },
     });
 
@@ -70,6 +72,7 @@ describe("Create user e2e", () => {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: bearerToken,
       },
     });
 
@@ -90,6 +93,7 @@ describe("Create user e2e", () => {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: bearerToken,
       },
     });
 
@@ -100,5 +104,30 @@ describe("Create user e2e", () => {
     expect(body).toBeTruthy();
 
     expect(response.status).toBe(422);
+  });
+
+  it("should return 401 trying to create an user being Unauthorized", async () => {
+    const data: CreateUser = {
+      name: "John Doe",
+      email: "john.doe@email.com",
+      password: "12345678",
+      birthdate: "1990-01-01",
+    };
+
+    const request = new Request("http://localhost/auth/users/register", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const response = await app.handle(request);
+
+    const body = await response.json();
+
+    expect(body).toBeTruthy();
+
+    expect(response.status).toBe(401);
   });
 });
