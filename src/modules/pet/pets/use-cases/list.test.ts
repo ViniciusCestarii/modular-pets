@@ -34,6 +34,7 @@ describe("Create pet use case", () => {
 
     const pet: CreatePet = {
       name: "Nina",
+      status: "ACTIVE",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       observations: "She's a very playful dog",

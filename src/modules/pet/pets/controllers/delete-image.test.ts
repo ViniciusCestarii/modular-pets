@@ -20,6 +20,7 @@ describe("Delete pet image e2e", () => {
 
     const createPet: CreatePet = {
       name: "Nina",
+      status: "ACTIVE",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       specieId: specie.id,

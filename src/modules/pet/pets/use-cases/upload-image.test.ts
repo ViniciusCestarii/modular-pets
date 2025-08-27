@@ -23,6 +23,7 @@ describe("Upload pet image use case", () => {
   it("should create a new image", async () => {
     const createPet: CreatePet = {
       name: "Nina",
+      status: "ACTIVE",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       specieId: "b38d7184-b9cf-4e79-acb6-6b7b8f797284",

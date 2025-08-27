@@ -33,6 +33,7 @@ const insertDogCat = async () => {
   for (let i = 0; i < 15; i++) {
     const createMarley: CreatePet = {
       name: `Marley-${i}`,
+      status: "ACTIVE",
       birthdate: `20${i}-01-01`,
       sex: "MALE",
       specieId: dog.id,
@@ -43,6 +44,7 @@ const insertDogCat = async () => {
 
     const createPandora: CreatePet = {
       name: `Pandora-${i}`,
+      status: "ACTIVE",
       birthdate: `20${i}-01-01`,
       sex: "FEMALE",
       specieId: cat.id,
@@ -70,6 +72,7 @@ describe("List pet e2e", () => {
 
     const createPet: CreatePet = {
       name: "Nina",
+      status: "ACTIVE",
       birthdate: "2021-01-01",
       sex: "FEMALE",
       specieId: specie.id,
@@ -165,6 +168,7 @@ describe("List pet e2e", () => {
     for (let i = 0; i < 15; i++) {
       const createPet: CreatePet = {
         name: `Nina-${i}`,
+        status: "ACTIVE",
         birthdate: "2021-01-01",
         sex: "FEMALE",
         specieId: specie.id,
