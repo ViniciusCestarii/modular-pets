@@ -54,4 +54,8 @@ export class DrizzleSpeciesRepository implements SpeciesRepository {
 
     return rows[0];
   }
+
+  async deleteSpecie(id: Specie["id"]): Promise<void> {
+    await db.delete(speciesTable).where(eq(speciesTable.id, id));
+  }
 }

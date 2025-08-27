@@ -39,4 +39,8 @@ export class InMemorySpeciesRepository implements SpeciesRepository {
   async findSpecieByName(name: string): Promise<Specie | null> {
     return this.species.find((specie) => specie.name === name) || null;
   }
+
+  async deleteSpecie(id: Specie["id"]): Promise<void> {
+    this.species = this.species.filter((specie) => specie.id !== id);
+  }
 }
