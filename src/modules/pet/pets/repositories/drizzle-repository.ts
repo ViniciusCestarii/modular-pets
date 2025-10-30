@@ -138,25 +138,36 @@ export class DrizzlePetsRepository implements PetsRepository {
       filterQueries.push(eq(petsTable.status, status));
     }
 
-    const petsQuery = db
+    const [paginatedPets, totalQuery] = [
+      await db
+        .select()
+        .from(petsTable)
+        .where(and(...filterQueries))
+        .orderBy(petsTable.name)
+        .limit(pageSize)
+        .offset(page * pageSize),
+      await db
+        .select({ count: sql`count(*)`.mapWith(Number) })
+        .from(petsTable)
+        .where(and(...filterQueries)),
+    ];
+
+    const [{ count: total }] = await totalQuery;
+
+    if (paginatedPets.length === 0) {
+      return { pets: [], total };
+    }
+
+    const petIds = paginatedPets.map((pet) => pet.id);
+
+    const rows = await db
       .select()
       .from(petsTable)
       .leftJoin(imagesTable, eq(imagesTable.ownerId, petsTable.id))
       .leftJoin(breedsTable, eq(breedsTable.id, petsTable.breedId))
       .leftJoin(speciesTable, eq(speciesTable.id, petsTable.specieId))
-      .where(and(...filterQueries))
-      .orderBy(petsTable.name)
-      .limit(pageSize)
-      .offset(page * pageSize);
-    const totalQuery = db
-      .select({ count: sql`count(*)`.mapWith(Number) })
-      .from(petsTable)
-      .where(and(...filterQueries));
-
-    const [rows, [{ count: total }]] = await Promise.all([
-      petsQuery,
-      totalQuery,
-    ]);
+      .where(sql`${petsTable.id} IN ${petIds}`)
+      .orderBy(petsTable.name);
 
     const agreggatedRows = rows.reduce<Record<Pet["id"], PetView>>(
       (acc, row) => {
